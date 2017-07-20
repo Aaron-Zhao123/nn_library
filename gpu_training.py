@@ -34,24 +34,23 @@ tf.app.flags.DEFINE_string('subset', 'train',
 
 def tower_loss(scope, isTrain):
   # Get images and labels.
-  images, labels, images_test, labels_test = model_wrapper.distorted_inputs(True)
+  images_train, labels_train, images_test, labels_test = model_wrapper.distorted_inputs(True)
+
+  images = tf.cond(isTrain, lambda:images_train, lambda:images_test)
+  labels = tf.cond(isTrain, lambda:labels_train, lambda:labels_test)
 
   print(images)
-  print(labels)
-  print(images_test)
-  print(labels_test)
   sys.exit()
-  images_test, labels_test = model_wrapper.distorted_inputs(False)
 
   # Build inference Graph.
-  logits, logits_test= model_wrapper.inference(images, images_test)
+  logits = model_wrapper.inference(images, isTrain)
   # logits_test = model_wrapper.inference(images_test, train=False)
 
   # Build the portion of the Graph calculating the losses. Note that we will
   # assemble the total_loss using a custom function below.
   _ = model_wrapper.loss(logits, labels)
 
-  (test_acc, top5) = model_wrapper.eval(logits_test, labels)
+  (test_acc, top5) = model_wrapper.eval(logits, labels)
   # Assemble all of the losses for the current tower only.
   test_accs = tf.get_collection('test_acc', scope)
   top5s = tf.get_collection('top5', scope)
@@ -134,6 +133,7 @@ def train():
     # Create a variable to count the number of train() calls. This equals the
     # number of batches processed * FLAGS.num_gpus.
     isTrain = True
+    isTrain_ph = tf.placeholder(tf.bool, shape =None, name="is_train")
     isLoad = True
     global_step = tf.get_variable(
         'global_step', [],
@@ -165,7 +165,7 @@ def train():
         with tf.device('/gpu:%d' % i):
           with tf.name_scope('%s_%d' % (model_wrapper.TOWER_NAME, i)) as scope:
             # loss for one tower.
-            loss = tower_loss(scope, isTrain)
+            loss = tower_loss(scope, isTrain_ph)
             # Reuse variables for the next tower.
             tf.get_variable_scope().reuse_variables()
             # Retain the summaries from the final tower.

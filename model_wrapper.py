@@ -127,7 +127,7 @@ def distorted_inputs(isTrain):
   #   batch_size=FLAGS.batch_size,
   #   num_preprocess_threads=FLAGS.num_preprocess_threads)
 
-def inference(images_train, images_test):
+def inference(images, isTrain):
   """Build the vggnet model.
 
   Args:
@@ -137,13 +137,11 @@ def inference(images_train, images_test):
     Logits.
   """
   isLoad = False
-  isTrain = tf.placeholder(tf.bool)
   # model = mobilenet_model.mobilenet(isLoad, isTrain)
   model = vgg_model.vggnet(isLoad, isTrain)
-  softmax_linear = model.conv_network(images_train, 0.5)
-  # softmax_linear_test = model.conv_network(images_test, 1.0)
-  # return (softmax_linear, softmax_linear_test)
-  return (softmax_linear, softmax_linear)
+  keep_prob = tf.cond(isTrain, lambda: 0.5, lambda: 1.0)
+  softmax_linear = model.conv_network(images, keep_prob)
+  return softmax_linear
 
 def eval(logits, labels):
   labels = tf.cast(labels, tf.int64)
