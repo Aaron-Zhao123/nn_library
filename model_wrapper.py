@@ -105,8 +105,8 @@ def distorted_inputs(isTrain):
   dataset_train = ImagenetData(subset='train')
   dataset_test = ImagenetData(subset='validation')
 
-  assert dataset.data_files_train()
-  assert dataset.data_files_test()
+  assert dataset_train.data_files()
+  assert dataset_test.data_files()
 
   data_train = ult.distorted_inputs(
     dataset_train,
