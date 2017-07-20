@@ -13,7 +13,7 @@ import tensorflow as tf
 
 from preprocessing import preprocess_utility as ult
 # from datasets.imagenet_data import ImagenetData
-from datasets import imagenet_data
+from datasets import imagenet_dataset
 from models import mobilenet_model
 from models import vgg_model
 
