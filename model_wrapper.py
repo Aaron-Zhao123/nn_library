@@ -14,6 +14,7 @@ import tensorflow as tf
 from preprocessing import preprocess_utility as ult
 # from imagenet_data import ImagenetData
 from models import mobilenet_model
+from models import vgg_model
 
 
 FLAGS = tf.app.flags.FLAGS
@@ -86,7 +87,7 @@ def _variable_with_weight_decay(name, shape, stddev, wd):
     tf.add_to_collection('losses', weight_decay)
   return var
 
-def distorted_inputs():
+def distorted_inputs(isTrain):
   """Construct distorted input for CIFAR training using the Reader ops.
 
   Returns:
@@ -100,8 +101,10 @@ def distorted_inputs():
     raise ValueError('Please supply a data_dir')
   # data_dir = os.path.join(FLAGS.data_dir, 'cifar-10-batches-bin')
 
-  if FLAGS.isgpu:
-      dataset = ImagenetData(subset=FLAGS.subset)
+  if isTrain:
+      dataset = ImagenetData(subset='train')
+  else:
+      dataset = ImagenetData(subset='validation')
 
   assert dataset.data_files()
 
@@ -111,6 +114,7 @@ def distorted_inputs():
 
   return ult.distorted_inputs(
     dataset,
+    isTrain,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
@@ -125,10 +129,25 @@ def inference(images):
   """
   isLoad = False
   isTrain = tf.placeholder(tf.bool)
-  model = mobilenet_model.mobilenet(isLoad, isTrain)
+  # model = mobilenet_model.mobilenet(isLoad, isTrain)
+  model = vgg_model.vggnet(isLoad, isTrain)
   softmax_linear = model.conv_network(images, 0.5)
   return softmax_linear
 
+def eval(logits, labels):
+  labels = tf.cast(labels, tf.int64)
+  predictions = tf.argmax(logits, 1)
+  top5_acc = tf.metrics.recall_at_k(
+      labels = labels,
+      predictions = logits,
+      k = 5
+  )
+  acc = tf.metrics.accuracy(
+      labels = labels,
+      predictions = predictions
+  )
+  # acc = tf.reduce_mean(tf.cast(tf.equal(predictions, labels), tf.float32))
+  return (acc, top5_acc)
 
 def loss(logits, labels):
   """Add L2Loss to all the trainable variables.

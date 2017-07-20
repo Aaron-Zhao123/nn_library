@@ -109,7 +109,7 @@ def inputs(dataset, batch_size=None, num_preprocess_threads=None):
   return images, labels
 
 
-def distorted_inputs(dataset, batch_size=None, num_preprocess_threads=None):
+def distorted_inputs(dataset, isTrain, batch_size=None, num_preprocess_threads=None):
   """Generate batches of distorted versions of ImageNet images.
 
   Use this function as the inputs for training a network.
@@ -136,7 +136,7 @@ def distorted_inputs(dataset, batch_size=None, num_preprocess_threads=None):
   # the forward inference and back-propagation.
   with tf.device('/cpu:0'):
     images, labels = batch_inputs(
-        dataset, batch_size, train=True,
+        dataset, batch_size, train=isTrain,
         num_preprocess_threads=num_preprocess_threads,
         num_readers=FLAGS.num_readers)
   return images, labels
