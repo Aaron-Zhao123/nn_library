@@ -35,11 +35,12 @@ np.set_printoptions(precision=32)
 from tensorflow.python import pywrap_tensorflow
 from tensorflow.python.platform import app
 from tensorflow.python.platform import flags
-CHECK_ALL = True 
+CHECK_ALL = True
 # CHECK_ALL = True
 weights_params = {}
 bn_params = {}
-model_name = "../data/mobilenet_v1_1.0_224.ckpt"
+# model_name = "../data/mobilenet_v1_1.0_224.ckpt"
+model_name = "TRAIN_DIR=/local/scratch/yaz21/tmp/model.ckpt"
 reader = pywrap_tensorflow.NewCheckpointReader(model_name)
 var_to_shape_map = reader.get_variable_to_shape_map()
 TEST = False
