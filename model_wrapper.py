@@ -132,7 +132,7 @@ def inference(images_train, images_test):
   isTrain = tf.placeholder(tf.bool)
   # model = mobilenet_model.mobilenet(isLoad, isTrain)
   model = vgg_model.vggnet(isLoad, isTrain)
-  softmax_linear = model.conv_network(images, 0.5)
+  softmax_linear = model.conv_network(images_train, 0.5)
   softmax_linear_test = model.conv_network(images_test, 1.0)
   return (softmax_linear, softmax_linear_test)
 
