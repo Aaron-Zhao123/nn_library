@@ -12,7 +12,8 @@ from six.moves import urllib
 import tensorflow as tf
 
 from preprocessing import preprocess_utility as ult
-from datasets.imagenet_data import ImagenetData
+# from datasets.imagenet_data import ImagenetData
+from datasets import imagenet_data
 from models import mobilenet_model
 from models import vgg_model
 
@@ -102,9 +103,9 @@ def distorted_inputs(isTrain):
   # data_dir = os.path.join(FLAGS.data_dir, 'cifar-10-batches-bin')
 
   if isTrain:
-      dataset = ImagenetData(subset='train')
+      dataset = imagenet_data.ImagenetData(subset='train')
   else:
-      dataset = ImagenetData(subset='validation')
+      dataset = imagenet_data.ImagenetData(subset='validation')
 
   assert dataset.data_files()
 
