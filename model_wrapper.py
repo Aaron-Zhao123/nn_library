@@ -12,7 +12,7 @@ from six.moves import urllib
 import tensorflow as tf
 
 from preprocessing import preprocess_utility as ult
-# from imagenet_data import ImagenetData
+from datasets.imagenet_data import ImagenetData
 from models import mobilenet_model
 from models import vgg_model
 

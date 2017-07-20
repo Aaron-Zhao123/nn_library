@@ -12,8 +12,6 @@ from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 import progressbar
 
-from datasets import imagenet
-from preprocessing import preprocessing
 import model_wrapper
 
 FLAGS = tf.app.flags.FLAGS
