@@ -119,7 +119,7 @@ def distorted_inputs(isTrain):
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
-def inference(images):
+def inference(images, train=True):
   """Build the vggnet model.
 
   Args:
@@ -131,7 +131,8 @@ def inference(images):
   isLoad = False
   isTrain = tf.placeholder(tf.bool)
   # model = mobilenet_model.mobilenet(isLoad, isTrain)
-  model = vgg_model.vggnet(isLoad, isTrain)
+  if train:
+      model = vgg_model.vggnet(isLoad, isTrain)
   softmax_linear = model.conv_network(images, 0.5)
   return softmax_linear
 
