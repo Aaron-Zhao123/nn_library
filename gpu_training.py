@@ -13,6 +13,7 @@ import tensorflow as tf
 import progressbar
 
 import model_wrapper
+import sys
 
 FLAGS = tf.app.flags.FLAGS
 
