@@ -4,8 +4,8 @@ CPU_DATA_DIR=/Users/aaron/Projects/NN_models/datasets/flowers
 GPU_DATA_DIR=/local/scratch/ssd
 TRAIN_DIR=./tmp
 
-run: gpu_train.py
-	CUDA_VISIBLE_DEVICES=2,3 python gpu_train.py --num_preprocess_threads=4 --num_gpus=2 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR)
+run: gpu_training.py
+	CUDA_VISIBLE_DEVICES=2,3 python gpu_training.py --num_preprocess_threads=4 --num_gpus=2 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR)
 
 clean:
 	rm -rf *.pyc
