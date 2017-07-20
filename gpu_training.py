@@ -39,9 +39,6 @@ def tower_loss(scope, isTrain):
   images = tf.cond(isTrain, lambda:images_train, lambda:images_test)
   labels = tf.cond(isTrain, lambda:labels_train, lambda:labels_test)
 
-  print(images)
-  sys.exit()
-
   # Build inference Graph.
   logits = model_wrapper.inference(images, isTrain)
   # logits_test = model_wrapper.inference(images_test, train=False)
