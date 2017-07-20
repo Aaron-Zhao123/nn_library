@@ -34,7 +34,7 @@ tf.app.flags.DEFINE_string('subset', 'train',
 
 def tower_loss(scope, isTrain):
   # Get images and labels.
-  images, labels = model_wrapper.distorted_inputs(True)
+  images, labels, images_test, labels_test = model_wrapper.distorted_inputs(True)
 
   print(images)
   print(labels)

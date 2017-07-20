@@ -102,22 +102,30 @@ def distorted_inputs(isTrain):
     raise ValueError('Please supply a data_dir')
   # data_dir = os.path.join(FLAGS.data_dir, 'cifar-10-batches-bin')
 
-  if isTrain:
-      dataset = ImagenetData(subset='train')
-  else:
-      dataset = ImagenetData(subset='validation')
+  dataset_train = ImagenetData(subset='train')
+  dataset_test = ImagenetData(subset='validation')
 
-  assert dataset.data_files()
+  assert dataset.data_files_train()
+  assert dataset.data_files_test()
 
-  # if tf.gfile.Exists(FLAGS.train_dir):
-  #   tf.gfile.DeleteRecursively(FLAGS.train_dir)
-  # tf.gfile.MakeDirs(FLAGS.train_dir)
-
-  return ult.distorted_inputs(
+  data_train = ult.distorted_inputs(
     dataset,
-    isTrain,
+    isTrain=True,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
+
+  data_test = ult.distorted_inputs(
+    dataset,
+    isTrain=True,
+    batch_size=FLAGS.batch_size,
+    num_preprocess_threads=FLAGS.num_preprocess_threads)
+
+  return (data_train, data_test)
+  # return ult.distorted_inputs(
+  #   dataset,
+  #   isTrain,
+  #   batch_size=FLAGS.batch_size,
+  #   num_preprocess_threads=FLAGS.num_preprocess_threads)
 
 def inference(images_train, images_test):
   """Build the vggnet model.
