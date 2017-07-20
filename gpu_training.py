@@ -16,7 +16,7 @@ import model_wrapper
 
 FLAGS = tf.app.flags.FLAGS
 
-tf.app.flags.DEFINE_string('data_gpu_dir', '/tmp',
+tf.app.flags.DEFINE_string('data_dir', '/tmp',
                            """Path to the processed data, i.e. """
                            """TFRecord of Example protos.""")
 tf.app.flags.DEFINE_string('train_dir', '/tmp',
