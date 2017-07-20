@@ -37,8 +37,8 @@ def tower_loss(scope, isTrain):
   images_test, labels_test = model_wrapper.distorted_inputs(False)
 
   # Build inference Graph.
-  logits = model_wrapper.inference(images, train=True)
-  logits_test = model_wrapper.inference(images_test, train=False)
+  logits, logits_test= model_wrapper.inference(images, images_test)
+  # logits_test = model_wrapper.inference(images_test, train=False)
 
   # Build the portion of the Graph calculating the losses. Note that we will
   # assemble the total_loss using a custom function below.
