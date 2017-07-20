@@ -38,6 +38,8 @@ def tower_loss(scope, isTrain):
 
   print(images)
   print(labels)
+  print(images_test)
+  print(labels_test)
   sys.exit()
   images_test, labels_test = model_wrapper.distorted_inputs(False)
 
