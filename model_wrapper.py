@@ -108,19 +108,19 @@ def distorted_inputs(isTrain):
   assert dataset_train.data_files()
   assert dataset_test.data_files()
 
-  data_train = ult.distorted_inputs(
+  imgs_train, labels_train= ult.distorted_inputs(
     dataset_train,
     isTrain=True,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
-  data_test = ult.distorted_inputs(
+  imgs_test, labels_test = ult.distorted_inputs(
     dataset_test,
     isTrain=True,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
-  return (data_train, data_test)
+  return (imgs_train, labels_train, imgs_test, labels_test)
   # return ult.distorted_inputs(
   #   dataset,
   #   isTrain,
