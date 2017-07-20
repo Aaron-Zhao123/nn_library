@@ -109,13 +109,13 @@ def distorted_inputs(isTrain):
   assert dataset.data_files_test()
 
   data_train = ult.distorted_inputs(
-    dataset,
+    dataset_train,
     isTrain=True,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
   data_test = ult.distorted_inputs(
-    dataset,
+    dataset_test,
     isTrain=True,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
