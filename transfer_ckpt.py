@@ -46,6 +46,5 @@ var_to_shape_map = reader.get_variable_to_shape_map()
 TEST = False
 
 for key in sorted(var_to_shape_map):
-    if CHECK_ALL:
-      print("tensor_name: ", key)
-      print(np.shape(var_to_shape_map[key]))
+     if (key.endswith('/w') or key.endswith('/b')):
+         print (key)
