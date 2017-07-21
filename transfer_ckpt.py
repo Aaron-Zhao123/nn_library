@@ -48,3 +48,4 @@ TEST = False
 for key in sorted(var_to_shape_map):
     if CHECK_ALL:
       print("tensor_name: ", key)
+      print(np.shape(var_to_shape_map[key]))
