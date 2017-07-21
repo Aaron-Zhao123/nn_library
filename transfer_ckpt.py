@@ -52,4 +52,4 @@ for key in sorted(var_to_shape_map):
          vars_to_store[key] = var_to_shape_map[key]
          print (key)
 with open('vgg_var.pkl','wb') as f:
-    f.dump(vars_to_store)
+    pickle.dump(vars_to_store,f)
