@@ -29,6 +29,7 @@ from __future__ import print_function
 import argparse
 import sys
 import math
+import pickle
 
 import numpy as np
 np.set_printoptions(precision=32)
@@ -44,7 +45,11 @@ model_name = "/local/scratch/yaz21/tmp/model.ckpt-255000"
 reader = pywrap_tensorflow.NewCheckpointReader(model_name)
 var_to_shape_map = reader.get_variable_to_shape_map()
 TEST = False
+vars_to_store = {}
 
 for key in sorted(var_to_shape_map):
      if (key.endswith('/w') or key.endswith('/b')):
+         vars_to_store[key] = var_to_shape_map[key]
          print (key)
+with open('vgg_var.pkl','wb') as f:
+    f.dump(vars_to_store)
