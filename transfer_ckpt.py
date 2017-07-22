@@ -45,11 +45,17 @@ model_name = "/local/scratch/yaz21/tmp/model.ckpt-255000"
 reader = pywrap_tensorflow.NewCheckpointReader(model_name)
 var_to_shape_map = reader.get_variable_to_shape_map()
 TEST = False
-vars_to_store = {}
+w_vars_to_store = {}
+b_vars_to_store = {}
 
 for key in sorted(var_to_shape_map):
      if (key.endswith('/w') or key.endswith('/b')):
-         vars_to_store[key] = var_to_shape_map[key]
+         w_vars_to_store[key] = var_to_shape_map[key]
          print (key)
+    if (key.endswith('/b')):
+         b_vars_to_store[key] = var_to_shape_map[key]
+         print (key)
+
+vars_to_store = [w_vars_to_store, b_vars_to_store]
 with open('vgg_var.pkl','wb') as f:
     pickle.dump(vars_to_store,f)
