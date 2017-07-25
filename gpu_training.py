@@ -245,9 +245,9 @@ def train():
         # print (format_str % (datetime.now(), step, loss_value,
         #                      examples_per_sec, sec_per_batch))
 
-      if step % 100 == 0:
-        summary_str = sess.run(summary_op)
-        summary_writer.add_summary(summary_str, step)
+    #   if step % 100 == 0:
+    #     summary_str = sess.run(summary_op)
+    #     summary_writer.add_summary(summary_str, step)
 
       # Save the model checkpoint periodically.
       if step % 1000 == 0 or (step + 1) == FLAGS.max_steps:
