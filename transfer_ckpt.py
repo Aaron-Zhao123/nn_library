@@ -57,5 +57,5 @@ for key in sorted(var_to_shape_map):
          print (key)
 
 vars_to_store = [w_vars_to_store, b_vars_to_store]
-with open('vgg_var.pkl','wb') as f:
+with open('vgg_vars.pkl','wb') as f:
     pickle.dump(vars_to_store,f)

@@ -1,5 +1,5 @@
 DATA_DIR=/local/scratch/ssd
-TRAIN_DIR=/local/scratch/yaz21/tmp
+TRAIN_DIR=/local/scratch/yaz21/tmp2
 CPU_DATA_DIR=/Users/aaron/Projects/NN_models/datasets/flowers
 GPU_DATA_DIR=/local/scratch/ssd
 TRAIN_DIR=./tmp

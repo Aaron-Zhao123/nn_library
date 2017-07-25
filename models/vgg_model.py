@@ -67,7 +67,6 @@ class vggnet(object):
         pool5 = self.maxpool(conv5_3, 'pool5', 2, 2, padding = 'SAME')
 
         shape = int(np.prod(pool5.get_shape()[1:]))
-        print(shape)
         flattened = tf.reshape(pool5, [-1, shape])
         fc6 = self.fc_layer(flattened, 'fc6', prune = True)
         fc6_drop = self.dropout_layer(fc6)
@@ -174,7 +173,7 @@ class vggnet(object):
             ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
         return ret
 
-    def _get_variables(self, isload, weights_path = 'DEFAULT'):
+    def _get_variables(self, isload, weights_path = 'vgg_vars'):
         """
         Network architecture definition
         """
@@ -226,7 +225,7 @@ class vggnet(object):
         self.weight_shapes = kernel_shapes
         self.biase_shapes = biase_shape
         if isload:
-            with open(weights_path+'.npy', 'rb') as f:
+            with open(weights_path+'.py', 'rb') as f:
                 weights, biases = pickle.load(f)
             for i, key in enumerate(self.keys):
                 self._init_layerwise_variables(w_shape = kernel_shapes[i],
