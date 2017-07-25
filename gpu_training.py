@@ -34,7 +34,7 @@ tf.app.flags.DEFINE_string('subset', 'train',
 
 def tower_loss(scope, isTrain):
   # Get images and labels.
-  images_train, labels_train, images_test, labels_test = model_wrapper.distorted_inputs(True)
+  images_train, labels_train, images_test, labels_test = model_wrapper.distorted_inputs()
 
   images = tf.cond(isTrain, lambda:images_train, lambda:images_test)
   labels = tf.cond(isTrain, lambda:labels_train, lambda:labels_test)
@@ -250,7 +250,7 @@ def train():
     #     summary_writer.add_summary(summary_str, step)
 
       # Save the model checkpoint periodically.
-      if step % 1000 == 0 or (step + 1) == FLAGS.max_steps:
+      if (step % 1000 == 0 or (step + 1) == FLAGS.max_steps) and isTrain:
         checkpoint_path = os.path.join(FLAGS.train_dir, 'model.ckpt')
         saver.save(sess, checkpoint_path, global_step=step)
 

@@ -88,7 +88,7 @@ def _variable_with_weight_decay(name, shape, stddev, wd):
     tf.add_to_collection('losses', weight_decay)
   return var
 
-def distorted_inputs(isTrain):
+def distorted_inputs():
   """Construct distorted input for CIFAR training using the Reader ops.
 
   Returns:
@@ -116,7 +116,7 @@ def distorted_inputs(isTrain):
 
   imgs_test, labels_test = ult.distorted_inputs(
     dataset_test,
-    isTrain=True,
+    isTrain=False,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
