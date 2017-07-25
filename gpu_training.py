@@ -224,7 +224,7 @@ def train():
 
     for step in xrange(FLAGS.max_steps):
       start_time = time.time()
-      _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph=False})
+      _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:False})
       duration = time.time() - start_time
       examples_cnt += FLAGS.batch_size * FLAGS.num_gpus
 
