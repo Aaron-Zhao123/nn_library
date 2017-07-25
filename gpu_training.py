@@ -201,12 +201,12 @@ def train():
     sess = tf.Session(config=tf.ConfigProto(
         allow_soft_placement=True,
         log_device_placement=FLAGS.log_device_placement))
-    if (isLoad):
-        checkpoint_path = os.path.join(FLAGS.train_dir, 'model.ckpt')
-        saver.restore(sess, checkpoint_path)
-    else:
-        sess.run(init)
-    sys.exit()
+    # if (isLoad):
+    #     checkpoint_path = os.path.join(FLAGS.train_dir, 'model.ckpt')
+    #     saver.restore(sess, checkpoint_path)
+    # else:
+    #     sess.run(init)
+    sess.run(init)
 
     # Start the queue runners.
     tf.train.start_queue_runners(sess=sess)
