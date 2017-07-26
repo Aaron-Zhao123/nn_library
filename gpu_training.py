@@ -228,7 +228,7 @@ def train():
     for step in xrange(FLAGS.max_steps):
       start_time = time.time()
     #   _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:False})
-      top1_acc_val, top5_acc_val, loss_value= sess.run([top1_acc, top5_acc, loss_value], feed_dict = {isTrain_ph:False})
+      top1_acc_val, top5_acc_val, loss_value= sess.run([top1_acc, top5_acc, loss], feed_dict = {isTrain_ph:False})
 
       top1_acc_vals.append(top1_acc_val)
       top5_acc_vals.append(top5_acc_val)
