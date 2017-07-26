@@ -146,16 +146,17 @@ def inference(images, isTrain):
 def eval(logits, labels):
   labels = tf.cast(labels, tf.int64)
   predictions = tf.argmax(logits, 1)
-  top5_acc = tf.metrics.recall_at_k(
-      labels = labels,
-      predictions = logits,
-      k = 5
-  )
-  acc = tf.metrics.accuracy(
-      labels = labels,
-      predictions = predictions
-  )
-  # acc = tf.reduce_mean(tf.cast(tf.equal(predictions, labels), tf.float32))
+  # top5_acc = tf.metrics.recall_at_k(
+  #     labels = labels,
+  #     predictions = logits,
+  #     k = 5
+  # )
+  # acc = tf.metrics.accuracy(
+  #     labels = labels,
+  #     predictions = predictions
+  # )
+  acc = tf.reduce_mean(tf.cast(tf.equal(predictions, labels), tf.float32))
+  top5_acc = tf.reduce_mean(tf.cast(tf.nn.in_top_k(predictions, labels), tf.float32))
   return (acc, top5_acc)
 
 def loss(logits, labels):
