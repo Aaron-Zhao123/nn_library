@@ -173,8 +173,8 @@ def train():
             tower_top5_accs.append(tower_top5_acc)
 
     grads = average_gradients(tower_grads)
-    top1_acc = tf.reduce_mean(tower_top1_accs)
-    top5_acc = tf.reduce_mean(tower_top5_accs)
+    top1_acc = tf.reduce_mean(tower_top1_accs, 0)
+    top5_acc = tf.reduce_mean(tower_top5_accs, 0)
 
     # Add histograms for gradients.
     for grad, var in grads:
@@ -228,7 +228,7 @@ def train():
     for step in xrange(FLAGS.max_steps):
       start_time = time.time()
     #   _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:False})
-      top1_acc_val, top5_acc_val = sess.run([top1_acc, top5_acc], feed_dict = {isTrain_ph:False})
+      top1_acc_val, top5_acc_val, loss_value= sess.run([top1_acc, top5_acc, loss_value], feed_dict = {isTrain_ph:False})
 
       top1_acc_vals.append(top1_acc_val)
       top5_acc_vals.append(top5_acc_val)
