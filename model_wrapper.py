@@ -156,7 +156,7 @@ def eval(logits, labels):
   #     predictions = predictions
   # )
   acc = tf.reduce_mean(tf.cast(tf.equal(predictions, labels), tf.float32))
-  top5_acc = tf.reduce_mean(tf.cast(tf.nn.in_top_k(predictions, labels), tf.float32))
+  top5_acc = tf.reduce_mean(tf.cast(tf.nn.in_top_k(predictions, labels, 5), tf.float32))
   return (acc, top5_acc)
 
 def loss(logits, labels):
