@@ -49,14 +49,10 @@ def tower_loss(scope, isTrain):
 
   (test_acc, top5) = model_wrapper.eval(logits, labels)
   # Assemble all of the losses for the current tower only.
-  test_accs = tf.get_collection('test_acc', scope)
-  top5s = tf.get_collection('top5', scope)
   losses = tf.get_collection('losses', scope)
 
   # Calculate the total loss for the current tower.
   total_loss = tf.add_n(losses, name='total_loss')
-  total_test_acc = tf.add_n(losses, name='total_test_acc')
-  total_top5 = tf.add_n(losses, name='total_top5')
 
   # Compute the moving average of all individual losses and the total loss.
   loss_averages = tf.train.ExponentialMovingAverage(0.9, name='avg')
@@ -75,7 +71,7 @@ def tower_loss(scope, isTrain):
 
   # with tf.control_dependencies([loss_averages_op]):
   total_loss = tf.identity(total_loss)
-  return total_loss
+  return (total_loss, test_acc, top5)
 
 
 def average_gradients(tower_grads):
@@ -157,12 +153,14 @@ def train():
 
     # Calculate the gradients for each model tower.
     tower_grads = []
+    tower_top1_accs = []
+    tower_top5_accs = []
     with tf.variable_scope(tf.get_variable_scope()) as scope:
       for i in xrange(FLAGS.num_gpus):
         with tf.device('/gpu:%d' % i):
           with tf.name_scope('%s_%d' % (model_wrapper.TOWER_NAME, i)) as scope:
             # loss for one tower.
-            loss = tower_loss(scope, isTrain_ph)
+            loss, tower_top1_acc, tower_top5_acc = tower_loss(scope, isTrain_ph)
             # Reuse variables for the next tower.
             tf.get_variable_scope().reuse_variables()
             # Retain the summaries from the final tower.
@@ -171,8 +169,12 @@ def train():
             grads = opt.compute_gradients(loss)
             # Keep track of the gradients across all towers.
             tower_grads.append(grads)
+            tower_top1_accs.append(tower_top1_acc)
+            tower_top5_accs.append(tower_top5_acc)
 
     grads = average_gradients(tower_grads)
+    top1_acc = tf.reduce_mean(tower_top1_accs)
+    top5_acc = tf.reduce_mean(tower_top5_accs)
 
     # Add histograms for gradients.
     for grad, var in grads:
@@ -221,10 +223,16 @@ def train():
         widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
     examples_cnt = 0
     bar.start()
-
+    top1_acc_vals = []
+    top5_acc_vals = []
     for step in xrange(FLAGS.max_steps):
       start_time = time.time()
-      _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:False})
+    #   _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:False})
+      top1_acc_val, top5_acc_val = sess.run([top1_acc, top5_acc], feed_dict = {isTrain_ph:False})
+
+      top1_acc_vals.append(top1_acc_val)
+      top5_acc_vals.append(top5_acc_val)
+
       duration = time.time() - start_time
       examples_cnt += FLAGS.batch_size * FLAGS.num_gpus
 
@@ -234,6 +242,10 @@ def train():
         bar.update(examples_cnt)
       if (examples_cnt >= epoch_size):
         bar.finish()
+        top1_acc_avg = sum(top1_acc_vals/float(len(top1_acc_vals)))
+        top5_acc_avg = sum(top5_acc_vals/float(len(top5_acc_vals)))
+        print('eval top1 acc is {}, top5 acc is {}'.format(top1_acc_avg, top5_acc_avg))
+        sys.exit()
         bar.start()
 
         # num_examples_per_step = FLAGS.batch_size * FLAGS.num_gpus
