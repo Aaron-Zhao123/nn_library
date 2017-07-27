@@ -173,7 +173,7 @@ class vggnet(object):
             ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
         return ret
 
-    def _get_variables(self, isload, weights_path = 'vgg_var'):
+    def _get_variables(self, isload, weights_path = 'vgg_vars'):
         """
         Network architecture definition
         """
