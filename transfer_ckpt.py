@@ -49,6 +49,8 @@ w_vars_to_store = {}
 b_vars_to_store = {}
 
 for key in sorted(var_to_shape_map):
+    print(key)
+    print(np.shape(var_to_shape_map[key]))
     if (key.endswith('/w')):
          w_vars_to_store[key] = var_to_shape_map[key]
          print (key)
