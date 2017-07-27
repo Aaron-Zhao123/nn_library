@@ -32,7 +32,7 @@ tf.app.flags.DEFINE_boolean('log_device_placement', False,
 tf.app.flags.DEFINE_string('subset', 'train',
                            """Either 'train' or 'validation'.""")
 
-def tower_loss(scope, isTrain):
+def tower_loss(scope, isTrain, isLoad):
   # Get images and labels.
   images_train, labels_train, images_test, labels_test = model_wrapper.distorted_inputs()
 
@@ -40,7 +40,7 @@ def tower_loss(scope, isTrain):
   labels = tf.cond(isTrain, lambda:labels_train, lambda:labels_test)
 
   # Build inference Graph.
-  logits = model_wrapper.inference(images, isTrain)
+  logits = model_wrapper.inference(images, isTrain, isLoad)
   # logits_test = model_wrapper.inference(images_test, train=False)
 
   # Build the portion of the Graph calculating the losses. Note that we will
@@ -160,7 +160,7 @@ def train():
         with tf.device('/gpu:%d' % i):
           with tf.name_scope('%s_%d' % (model_wrapper.TOWER_NAME, i)) as scope:
             # loss for one tower.
-            loss, tower_top1_acc, tower_top5_acc = tower_loss(scope, isTrain_ph)
+            loss, tower_top1_acc, tower_top5_acc = tower_loss(scope, isTrain_ph, isLoad)
             # Reuse variables for the next tower.
             tf.get_variable_scope().reuse_variables()
             # Retain the summaries from the final tower.

@@ -127,7 +127,7 @@ def distorted_inputs():
   #   batch_size=FLAGS.batch_size,
   #   num_preprocess_threads=FLAGS.num_preprocess_threads)
 
-def inference(images, isTrain):
+def inference(images, isTrain, isLoad):
   """Build the vggnet model.
 
   Args:
@@ -136,7 +136,6 @@ def inference(images, isTrain):
   Returns:
     Logits.
   """
-  isLoad = False
   # model = mobilenet_model.mobilenet(isLoad, isTrain)
   model = vgg_model.vggnet(isLoad, isTrain)
   keep_prob = tf.cond(isTrain, lambda: 0.5, lambda: 1.0)
