@@ -250,13 +250,15 @@ class vggnet(object):
                     w = tf.get_variable('w', w_shape, initializer = w_init)
                 else:
                     w_init = tf.constant(w_init, dtype=tf.float32)
-                    w = tf.get_variable('w', initializer = w_init)
+                    w = tf.get_variable('w', w_shape, initializer = w_init)
+                    # w = tf.get_variable('w', initializer = w_init)
                 if b_init is None:
                     b_init = tf.constant_initializer()
                     b = tf.get_variable('b', b_shape, initializer = b_init)
                 else:
                     b_init = tf.constant(b_init, dtype=tf.float32)
-                    b = tf.get_variable('b', initializer = b_init)
+                    b = tf.get_variable('b', b_shape, initializer = b_init)
+                    # b = tf.get_variable('b', initializer = b_init)
 
     def _init_weight_masks(self, is_load):
         names = self.keys
