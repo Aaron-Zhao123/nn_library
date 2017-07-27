@@ -125,7 +125,7 @@ def train():
   with tf.Graph().as_default(), tf.device('/cpu:0'):
     # Create a variable to count the number of train() calls. This equals the
     # number of batches processed * FLAGS.num_gpus.
-    isTrain = False 
+    isTrain = False
     isTrain_ph = tf.placeholder(tf.bool, shape =None, name="is_train")
     isLoad = True
     global_step = tf.get_variable(
@@ -242,8 +242,8 @@ def train():
         bar.update(examples_cnt)
       if (examples_cnt >= epoch_size):
         bar.finish()
-        top1_acc_avg = sum(top1_acc_vals/float(len(top1_acc_vals)))
-        top5_acc_avg = sum(top5_acc_vals/float(len(top5_acc_vals)))
+        top1_acc_avg = sum(top1_acc_vals)/float(len(top1_acc_vals))
+        top5_acc_avg = sum(top5_acc_vals)/float(len(top5_acc_vals))
         print('eval top1 acc is {}, top5 acc is {}'.format(top1_acc_avg, top5_acc_avg))
         sys.exit()
         bar.start()
