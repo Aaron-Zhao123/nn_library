@@ -50,15 +50,12 @@ w_vars_to_store = {}
 b_vars_to_store = {}
 
 for key in sorted(var_to_shape_map):
-    print(key)
-    print(np.shape(var_to_shape_map[key]))
-    print(var_to_shape_map[key])
     if (key.endswith('/w')):
-         w_vars_to_store[key] = var_to_shape_map[key]
+         w_vars_to_store[key] = reader.get_tensor(key)
          print (key)
          print(np.shape(w_vars_to_store[key]))
     if (key.endswith('/b')):
-         b_vars_to_store[key] = var_to_shape_map[key]
+         b_vars_to_store[key] = reader.get_tensor(key)
          print(np.shape(b_vars_to_store[key]))
          print (key)
 
