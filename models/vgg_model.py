@@ -251,7 +251,7 @@ class vggnet(object):
                 else:
                     # w_init = tf.constant(w_init, dtype=tf.float32)
                     w_init = tf.constant_initializer(w_init, dtype=tf.float32)
-                    w = tf.get_variable('w', initializer = w_init)
+                    w = tf.get_variable('w', w_shape, initializer = w_init)
                     # w = tf.get_variable(w_init, name = 'w', dtype = tf.float32)
                     # w = tf.Variable(w_init, name = 'w', dtype = tf.float32)
                 if b_init is None:
@@ -260,7 +260,7 @@ class vggnet(object):
                 else:
                     # b_init = tf.constant(b_init, dtype=tf.float32)
                     b_init = tf.constant_initializer(b_init, dtype=tf.float32)
-                    b = tf.get_variable('b', initializer = b_init)
+                    b = tf.get_variable('b', b_shape, initializer = b_init)
                     # b = tf.get_variable(b_init, name = 'b', dtype = tf.float32)
                     # b = tf.Variable(b_init, name = 'b', dtype = tf.float32)
 
