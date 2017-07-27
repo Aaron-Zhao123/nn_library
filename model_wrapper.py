@@ -114,9 +114,8 @@ def distorted_inputs():
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
-  imgs_test, labels_test = ult.distorted_inputs(
+  imgs_test, labels_test = ult.inputs(
     dataset_test,
-    isTrain=False,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
