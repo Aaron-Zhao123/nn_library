@@ -102,24 +102,25 @@ def distorted_inputs():
     raise ValueError('Please supply a data_dir')
   # data_dir = os.path.join(FLAGS.data_dir, 'cifar-10-batches-bin')
 
-  dataset_train = ImagenetData(subset='train')
+  # dataset_train = ImagenetData(subset='train')
   dataset_test = ImagenetData(subset='validation')
 
-  assert dataset_train.data_files()
+  # assert dataset_train.data_files()
   assert dataset_test.data_files()
 
-  imgs_train, labels_train= ult.distorted_inputs(
-    dataset_train,
-    isTrain=True,
-    batch_size=FLAGS.batch_size,
-    num_preprocess_threads=FLAGS.num_preprocess_threads)
+  # imgs_train, labels_train= ult.distorted_inputs(
+  #   dataset_train,
+  #   isTrain=True,
+  #   batch_size=FLAGS.batch_size,
+  #   num_preprocess_threads=FLAGS.num_preprocess_threads)
 
   imgs_test, labels_test = ult.inputs(
     dataset_test,
     batch_size=FLAGS.batch_size,
     num_preprocess_threads=FLAGS.num_preprocess_threads)
 
-  return (imgs_train, labels_train, imgs_test, labels_test)
+  # return (imgs_train, labels_train, imgs_test, labels_test)
+  return (0, 0, imgs_test, labels_test)
   # return ult.distorted_inputs(
   #   dataset,
   #   isTrain,
