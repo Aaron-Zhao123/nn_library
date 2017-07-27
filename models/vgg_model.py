@@ -225,7 +225,7 @@ class vggnet(object):
         self.weight_shapes = kernel_shapes
         self.biase_shapes = biase_shape
         if isload:
-            with open(weights_path+'.py', 'rb') as f:
+            with open(weights_path+'.pkl', 'rb') as f:
                 weights, biases = pickle.load(f)
             for i, key in enumerate(self.keys):
                 self._init_layerwise_variables(w_shape = kernel_shapes[i],
