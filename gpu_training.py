@@ -125,7 +125,7 @@ def train():
   with tf.Graph().as_default(), tf.device('/cpu:0'):
     # Create a variable to count the number of train() calls. This equals the
     # number of batches processed * FLAGS.num_gpus.
-    isTrain = True
+    isTrain = False 
     isTrain_ph = tf.placeholder(tf.bool, shape =None, name="is_train")
     isLoad = True
     global_step = tf.get_variable(
