@@ -249,16 +249,16 @@ class vggnet(object):
                     w_init = tf.contrib.layers.variance_scaling_initializer()
                     w = tf.get_variable('w', w_shape, initializer = w_init)
                 else:
-                    w_init = tf.constant(w_init, dtype=tf.float32)
-                    w = tf.get_variable('w', w_shape, initializer = w_init)
+                    # w_init = tf.constant(w_init, dtype=tf.float32)
                     # w = tf.get_variable('w', initializer = w_init)
+                    w = tf.Variable(w_init, name = 'w', dtype = tf.float32)
                 if b_init is None:
                     b_init = tf.constant_initializer()
                     b = tf.get_variable('b', b_shape, initializer = b_init)
                 else:
                     b_init = tf.constant(b_init, dtype=tf.float32)
-                    b = tf.get_variable('b', b_shape, initializer = b_init)
                     # b = tf.get_variable('b', initializer = b_init)
+                    b = tf.Variable(b_init, name = 'b', dtype = tf.float32)
 
     def _init_weight_masks(self, is_load):
         names = self.keys

@@ -35,10 +35,10 @@ tf.app.flags.DEFINE_string('subset', 'train',
 def tower_loss(scope, isTrain, isLoad):
   # Get images and labels.
   # images_train, labels_train, images_test, labels_test = model_wrapper.distorted_inputs()
-  _, _, images_test, labels_test = model_wrapper.distorted_inputs()
+  images_train, labels_train, images_test, labels_test = model_wrapper.distorted_inputs()
 
-  images = tf.cond(isTrain, lambda:images_test, lambda:images_test)
-  labels = tf.cond(isTrain, lambda:labels_test, lambda:labels_test)
+  images = tf.cond(isTrain, lambda:images_train, lambda:images_test)
+  labels = tf.cond(isTrain, lambda:labels_train, lambda:labels_test)
 
   # Build inference Graph.
   logits = model_wrapper.inference(images, isTrain, isLoad)
