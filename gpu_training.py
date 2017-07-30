@@ -248,7 +248,7 @@ def train():
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         step += FLAGS.batch_size * FLAGS.num_gpus
         if (step % 100 == 0):
-          bar.update(step)
+          train_bar.update(step)
       if (FLAGS.is_train):
         duration = time.time() - start_time
         train_bar.finish()
