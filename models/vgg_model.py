@@ -154,9 +154,6 @@ class vggnet(object):
         channel_axis = 3 if data_format == 'NHWC' else 1
         with tf.variable_scope(name, reuse = True):
             with tf.device('/cpu:0'):
-
-                print(tf.get_default_graph().get_name_scope())
-                sys.exit()
                 w = tf.get_variable('w')
                 b = tf.get_variable('b')
             if prune:
@@ -175,21 +172,6 @@ class vggnet(object):
             # using Relu
             ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
         return ret
-
-    def save_model(self, sess, weights_path = 'vgg_vars'):
-        w_save = {}
-        b_save = {}
-        for key in self.keys:
-            with tf.variable_scope(key, reuse = True):
-                with tf.device('/cpu:0'):
-                    w = tf.get_variable('w')
-                    b = tf.get_variable('b')
-            w_save[key] = w.eval()
-            b_save[key] = b.eval()
-        with open(weights_path, 'wb') as f:
-            pickle.dump([w_save, b_save], f)
-        print('model saved')
-
 
 
     def _get_variables(self, isload, weights_path = 'vgg_vars'):
@@ -298,3 +280,17 @@ class vggnet(object):
 
     def _apply_a_mask(self, mask, var):
         return (var * mask)
+
+def save_model(sess, weights_path = 'vgg_vars'):
+    w_save = {}
+    b_save = {}
+    for key in self.keys:
+        with tf.variable_scope(key, reuse = True):
+            with tf.device('/cpu:0'):
+                w = tf.get_variable('w')
+                b = tf.get_variable('b')
+        w_save[key] = w.eval()
+        b_save[key] = b.eval()
+    with open(weights_path, 'wb') as f:
+        pickle.dump([w_save, b_save], f)
+    print('model saved')
