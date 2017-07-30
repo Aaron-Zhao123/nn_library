@@ -138,9 +138,9 @@ class vggnet(object):
 
     def fc_layer(self, x, name, prune = False, apply_relu = True):
         with tf.variable_scope(name, reuse = True):
-            with tf.device('/cpu:0'):
-                w = tf.get_variable('w')
-                b = tf.get_variable('b')
+            # with tf.device('/cpu:0'):
+            w = tf.get_variable('w')
+            b = tf.get_variable('b')
             if prune:
                 w = w * self.weights_masks[name]
             ret = tf.nn.xw_plus_b(x,w,b)
@@ -153,9 +153,9 @@ class vggnet(object):
 
         channel_axis = 3 if data_format == 'NHWC' else 1
         with tf.variable_scope(name, reuse = True):
-            with tf.device('/cpu:0'):
-                w = tf.get_variable('w')
-                b = tf.get_variable('b')
+            # with tf.device('/cpu:0'):
+            w = tf.get_variable('w')
+            b = tf.get_variable('b')
             if prune:
                 w = w * self.weights_masks[name]
             if split == 1:
@@ -246,25 +246,25 @@ class vggnet(object):
 
     def _init_layerwise_variables(self, w_shape, b_shape, name, w_init = None, b_init = None):
         with tf.variable_scope(name):
-            with tf.device('/cpu:0'):
-                if w_init is None:
-                    w_init = tf.contrib.layers.variance_scaling_initializer()
-                    w = tf.get_variable('w', w_shape, initializer = w_init)
-                else:
-                    # w_init = tf.constant(w_init, dtype=tf.float32)
-                    w_init = tf.constant_initializer(w_init, dtype=tf.float32)
-                    w = tf.get_variable('w', w_shape, initializer = w_init)
-                    # w = tf.get_variable(w_init, name = 'w', dtype = tf.float32)
-                    # w = tf.Variable(w_init, name = 'w', dtype = tf.float32)
-                if b_init is None:
-                    b_init = tf.constant_initializer()
-                    b = tf.get_variable('b', b_shape, initializer = b_init)
-                else:
-                    # b_init = tf.constant(b_init, dtype=tf.float32)
-                    b_init = tf.constant_initializer(b_init, dtype=tf.float32)
-                    b = tf.get_variable('b', b_shape, initializer = b_init)
-                    # b = tf.get_variable(b_init, name = 'b', dtype = tf.float32)
-                    # b = tf.Variable(b_init, name = 'b', dtype = tf.float32)
+            # with tf.device('/cpu:0'):
+            if w_init is None:
+                w_init = tf.contrib.layers.variance_scaling_initializer()
+                w = tf.get_variable('w', w_shape, initializer = w_init)
+            else:
+                # w_init = tf.constant(w_init, dtype=tf.float32)
+                w_init = tf.constant_initializer(w_init, dtype=tf.float32)
+                w = tf.get_variable('w', w_shape, initializer = w_init)
+                # w = tf.get_variable(w_init, name = 'w', dtype = tf.float32)
+                # w = tf.Variable(w_init, name = 'w', dtype = tf.float32)
+            if b_init is None:
+                b_init = tf.constant_initializer()
+                b = tf.get_variable('b', b_shape, initializer = b_init)
+            else:
+                # b_init = tf.constant(b_init, dtype=tf.float32)
+                b_init = tf.constant_initializer(b_init, dtype=tf.float32)
+                b = tf.get_variable('b', b_shape, initializer = b_init)
+                # b = tf.get_variable(b_init, name = 'b', dtype = tf.float32)
+                # b = tf.Variable(b_init, name = 'b', dtype = tf.float32)
 
     def _init_weight_masks(self, is_load):
         names = self.keys
@@ -295,9 +295,9 @@ def save_model(sess, weights_path = 'vgg_vars'):
                 ]
     for key in keys:
         with tf.variable_scope(key, reuse = True):
-            with tf.device('/cpu:0'):
-                w = tf.get_variable('w')
-                b = tf.get_variable('b')
+            # with tf.device('/cpu:0'):
+            w = tf.get_variable('w')
+            b = tf.get_variable('b')
         w_save[key] = w.eval(session = sess)
         b_save[key] = b.eval(session = sess)
     with open(weights_path, 'wb') as f:
