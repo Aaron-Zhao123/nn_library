@@ -183,7 +183,6 @@ def loss(logits, labels):
   return tf.add_n(tf.get_collection('losses'), name='total_loss')
 
 def pickle_save(sess):
-    print(tf.get_default_graph().get_name_scope())
     sys.exit()
     vgg_model.save_model(sess)
 

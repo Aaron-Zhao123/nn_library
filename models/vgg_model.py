@@ -154,6 +154,9 @@ class vggnet(object):
         channel_axis = 3 if data_format == 'NHWC' else 1
         with tf.variable_scope(name, reuse = True):
             with tf.device('/cpu:0'):
+
+                print(tf.get_default_graph().get_name_scope())
+                sys.exit()
                 w = tf.get_variable('w')
                 b = tf.get_variable('b')
             if prune:
