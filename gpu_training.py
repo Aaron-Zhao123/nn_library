@@ -226,7 +226,7 @@ def train():
     summary_writer = tf.summary.FileWriter(FLAGS.train_dir, sess.graph)
 
     train_epoch_size = 1281167
-    train_epoch_size = 128
+    # train_epoch_size = 128
     val_epoch_size = 50000
 
     train_bar = progressbar.ProgressBar(maxval = train_epoch_size,
@@ -234,7 +234,6 @@ def train():
     val_bar = progressbar.ProgressBar(maxval = val_epoch_size,
         widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 
-    examples_cnt = 0
     top1_acc_vals = []
     top5_acc_vals = []
     if (FLAGS.is_train):
@@ -250,10 +249,11 @@ def train():
 
       while (step <= train_epoch_size and FLAGS.is_train):
         _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:FLAGS.is_train})
-        assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         step += FLAGS.batch_size * FLAGS.num_gpus
+        assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
           train_bar.update(step)
+
       if (FLAGS.is_train):
         duration = time.time() - start_time
         train_bar.finish()
