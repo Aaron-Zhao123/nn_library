@@ -298,8 +298,8 @@ def save_model(sess, weights_path = 'vgg_vars'):
             with tf.device('/cpu:0'):
                 w = tf.get_variable('w')
                 b = tf.get_variable('b')
-        w_save[key] = w.eval()
-        b_save[key] = b.eval()
+        w_save[key] = w.eval(session = sess)
+        b_save[key] = b.eval(session = sess)
     with open(weights_path, 'wb') as f:
         pickle.dump([w_save, b_save], f)
     print('model saved')
