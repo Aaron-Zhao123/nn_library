@@ -23,7 +23,7 @@ tf.app.flags.DEFINE_string('data_dir', '/tmp',
 tf.app.flags.DEFINE_string('train_dir', '/tmp',
                            """Directory where to write event logs """
                            """and checkpoint.""")
-tf.app.flags.DEFINE_integer('max_steps', 1000000,
+tf.app.flags.DEFINE_integer('max_epochs', 90,
                             """Number of batches to run.""")
 tf.app.flags.DEFINE_integer('num_gpus', 1,
                             """How many GPUs to use.""")
@@ -31,6 +31,10 @@ tf.app.flags.DEFINE_boolean('log_device_placement', False,
                             """Whether to log device placement.""")
 tf.app.flags.DEFINE_string('subset', 'train',
                            """Either 'train' or 'validation'.""")
+tf.app.flags.DEFINE_bool('is_train', True,
+                            """Number of batches to run.""")
+tf.app.flags.DEFINE_bool('is_load', True,
+                            """Number of batches to run.""")
 
 def tower_loss(scope, isTrain, isLoad):
   # Get images and labels.
@@ -126,9 +130,10 @@ def train():
   with tf.Graph().as_default(), tf.device('/cpu:0'):
     # Create a variable to count the number of train() calls. This equals the
     # number of batches processed * FLAGS.num_gpus.
-    isTrain = False
+    isTrain = FLAGS.is_train
+    isLoad = FLAGS.is_load
+
     isTrain_ph = tf.placeholder(tf.bool, shape =None, name="is_train")
-    isLoad = True
     global_step = tf.get_variable(
         'global_step', [],
         initializer=tf.constant_initializer(0), trainable=False)
@@ -216,38 +221,57 @@ def train():
 
     summary_writer = tf.summary.FileWriter(FLAGS.train_dir, sess.graph)
 
-    if (isTrain):
-        epoch_size = 1281167
-    else:
-        epoch_size = 50000
-    bar = progressbar.ProgressBar(maxval = epoch_size,
+    train_epoch_size = 1281167
+    val_epoch_size = 50000
+
+    train_bar = progressbar.ProgressBar(maxval = train_epoch_size,
         widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+    val_bar = progressbar.ProgressBar(maxval = train_epoch_size,
+        widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+
     examples_cnt = 0
-    bar.start()
     top1_acc_vals = []
     top5_acc_vals = []
-    for step in xrange(FLAGS.max_steps):
+    if (FLAGS.is_train):
+        running_epochs = FLAGS.max_epochs
+    else
+        running_epochs = 1
+    for epoch in xrange(running_epochs):
+      if (FLAGS.is_train):
+        print('This is the {} epoch of training'.format(epoch))
+        train_bar.start()
       start_time = time.time()
-    #   _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:False})
-      top1_acc_val, top5_acc_val, loss_value= sess.run([top1_acc, top5_acc, loss], feed_dict = {isTrain_ph:False})
+      step = 0
 
-      top1_acc_vals.append(top1_acc_val)
-      top5_acc_vals.append(top5_acc_val)
+      while (step <= train_epoch_size and FLAGS.is_train):
+        _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:FLAGS.is_train})
+        assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
+        step += FLAGS.batch_size * FLAGS.num_gpus
+        if (step % 100 == 0):
+          bar.update(step)
+      if (FLAGS.is_train):
+        duration = time.time() - start_time
+        train_bar.finish()
+        print('{} epoch of training finishes with a time of {} and loss of {}'.format(
+            epoch, duration, loss_value))
 
-      duration = time.time() - start_time
-      examples_cnt += FLAGS.batch_size * FLAGS.num_gpus
+      print('start validation')
+      start_time = time.time()
+      step = 0
+      val_bar.start()
 
-      assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
-
-      if step % 10 == 0:
-        bar.update(examples_cnt)
-      if (examples_cnt >= epoch_size):
-        bar.finish()
-        top1_acc_avg = sum(top1_acc_vals)/float(len(top1_acc_vals))
-        top5_acc_avg = sum(top5_acc_vals)/float(len(top5_acc_vals))
-        print('eval top1 acc is {}, top5 acc is {}'.format(top1_acc_avg, top5_acc_avg))
-        sys.exit()
-        bar.start()
+      while (step <= val_epoch_size):
+        top1_acc_val, top5_acc_val, loss_value= sess.run([top1_acc, top5_acc, loss], feed_dict = {isTrain_ph:False})
+        top1_acc_vals.append(top1_acc_val)
+        top5_acc_vals.append(top5_acc_val)
+        step += FLAGS.batch_size * FLAGS.num_gpus
+        if step % 10 == 0:
+          val_bar.update(step)
+      bar.finish()
+      top1_acc_avg = sum(top1_acc_vals)/float(len(top1_acc_vals))
+      top5_acc_avg = sum(top5_acc_vals)/float(len(top5_acc_vals))
+      print('eval top1 acc is {}, top5 acc is {}'.format(top1_acc_avg, top5_acc_avg))
+      sys.exit()
 
         # num_examples_per_step = FLAGS.batch_size * FLAGS.num_gpus
         # examples_per_sec = num_examples_per_step / duration
@@ -263,7 +287,7 @@ def train():
     #     summary_writer.add_summary(summary_str, step)
 
       # Save the model checkpoint periodically.
-      if (step % 1000 == 0 or (step + 1) == FLAGS.max_steps) and isTrain:
+      if (step % 1000 == 0 or (step + 1) == FLAGS.max_epochs) and isTrain:
         checkpoint_path = os.path.join(FLAGS.train_dir, 'model.ckpt')
         saver.save(sess, checkpoint_path, global_step=step)
 
