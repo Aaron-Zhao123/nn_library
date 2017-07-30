@@ -37,7 +37,7 @@ tf.app.flags.DEFINE_bool('is_load', True,
                             """whether to load from a model or not.""")
 tf.app.flags.DEFINE_bool('ckpt_save', False,
                             """whether to save a ckpt file.""")
-tf.app.flags.DEFINE_bool('pickle_save', False,
+tf.app.flags.DEFINE_bool('pickle_save', True,
                             """whether to save into a pickle file""")
 
 def tower_loss(scope, isTrain, isLoad):
