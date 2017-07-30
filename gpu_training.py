@@ -222,6 +222,7 @@ def train():
     summary_writer = tf.summary.FileWriter(FLAGS.train_dir, sess.graph)
 
     train_epoch_size = 1281167
+    train_epoch_size = 128
     val_epoch_size = 50000
 
     train_bar = progressbar.ProgressBar(maxval = train_epoch_size,
