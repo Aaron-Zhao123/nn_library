@@ -8,7 +8,6 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
     for i in xrange(2):
         with tf.device('/gpu:%d' % i):
             with tf.name_scope('%s_%d' % ('tower', i)) as scope:
-                with tf.device('/cpu:0'):
-                    a_shape = [6]
-                    a_init = tf.constant_initializer(a, dtype=tf.float32)
-                    a_tf = tf.get_variable('a', a_shape, initializer = a_init)
+                a_shape = [6]
+                a_init = tf.constant_initializer(a, dtype=tf.float32)
+                a_tf = tf.get_variable('a', a_shape, initializer = a_init)
