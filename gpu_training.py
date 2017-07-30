@@ -227,7 +227,7 @@ def train():
 
     train_bar = progressbar.ProgressBar(maxval = train_epoch_size,
         widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-    val_bar = progressbar.ProgressBar(maxval = train_epoch_size,
+    val_bar = progressbar.ProgressBar(maxval = val_epoch_size,
         widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 
     examples_cnt = 0
