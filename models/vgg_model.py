@@ -173,7 +173,6 @@ class vggnet(object):
             ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
         return ret
 
-
     def save_model(self, sess, weights_path = 'vgg_vars'):
         w_save = {}
         b_save = {}

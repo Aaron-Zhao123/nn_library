@@ -262,6 +262,10 @@ def train():
             duration,
             loss_value))
 
+
+      if (FLAGS.pickle_save):
+        model_wrapper.pickle_save(sess)
+
       print('start validation')
       start_time = time.time()
       step = 0
@@ -280,15 +284,10 @@ def train():
       print('Top1 acc is {}, top5 acc is {}'.format(
           top1_acc_avg,
           top5_acc_avg))
-      sys.exit()
       # Save the model checkpoint periodically.
-      if (step % 1000 == 0 or (step + 1) == FLAGS.max_epochs) and isTrain and FLAGS.ckpt_save:
+      if (epoch% 10 == 0 or (epoch + 1) == FLAGS.max_epochs) and isTrain and FLAGS.ckpt_save:
         checkpoint_path = os.path.join(FLAGS.train_dir, 'model.ckpt')
         saver.save(sess, checkpoint_path, global_step=step)
-
-      if (FLAGS.pickle_save):
-        model_wrapper.pickle_save(sess)
-
 
 
 def main(argv=None):  # pylint: disable=unused-argument
