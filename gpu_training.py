@@ -32,9 +32,13 @@ tf.app.flags.DEFINE_boolean('log_device_placement', False,
 tf.app.flags.DEFINE_string('subset', 'train',
                            """Either 'train' or 'validation'.""")
 tf.app.flags.DEFINE_bool('is_train', True,
-                            """Number of batches to run.""")
+                            """whether to perform training or not.""")
 tf.app.flags.DEFINE_bool('is_load', True,
-                            """Number of batches to run.""")
+                            """whether to load from a model or not.""")
+tf.app.flags.DEFINE_bool('ckpt_save', False,
+                            """whether to save a ckpt file.""")
+tf.app.flags.DEFINE_bool('pickle_save', False,
+                            """whether to save into a pickle file""")
 
 def tower_loss(scope, isTrain, isLoad):
   # Get images and labels.
@@ -253,8 +257,10 @@ def train():
       if (FLAGS.is_train):
         duration = time.time() - start_time
         train_bar.finish()
-        print('{} epoch of training finishes with a time of {} and loss of {}'.format(
-            epoch, duration, loss_value))
+        print('Performed {} training epochs with a time of {} and a loss of {}'.format(
+            epoch+1,
+            duration,
+            loss_value))
 
       print('start validation')
       start_time = time.time()
@@ -271,26 +277,18 @@ def train():
       val_bar.finish()
       top1_acc_avg = sum(top1_acc_vals)/float(len(top1_acc_vals))
       top5_acc_avg = sum(top5_acc_vals)/float(len(top5_acc_vals))
-      print('eval top1 acc is {}, top5 acc is {}'.format(top1_acc_avg, top5_acc_avg))
+      print('Top1 acc is {}, top5 acc is {}'.format(
+          top1_acc_avg,
+          top5_acc_avg))
       sys.exit()
-
-        # num_examples_per_step = FLAGS.batch_size * FLAGS.num_gpus
-        # examples_per_sec = num_examples_per_step / duration
-        # sec_per_batch = duration / FLAGS.num_gpus
-        #
-        # format_str = ('%s: step %d, loss = %.2f (%.1f examples/sec; %.3f '
-        #               'sec/batch)')
-        # print (format_str % (datetime.now(), step, loss_value,
-        #                      examples_per_sec, sec_per_batch))
-
-    #   if step % 100 == 0:
-    #     summary_str = sess.run(summary_op)
-    #     summary_writer.add_summary(summary_str, step)
-
       # Save the model checkpoint periodically.
-      if (step % 1000 == 0 or (step + 1) == FLAGS.max_epochs) and isTrain:
+      if (step % 1000 == 0 or (step + 1) == FLAGS.max_epochs) and isTrain and FLAGS.ckpt_save:
         checkpoint_path = os.path.join(FLAGS.train_dir, 'model.ckpt')
         saver.save(sess, checkpoint_path, global_step=step)
+
+      if (FLAGS.pickle_save):
+        model_wrapper.pickle_save(sess)
+
 
 
 def main(argv=None):  # pylint: disable=unused-argument

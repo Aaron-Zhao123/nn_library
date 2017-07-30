@@ -173,6 +173,23 @@ class vggnet(object):
             ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
         return ret
 
+
+    def save_model(self, sess, weights_path = 'vgg_vars'):
+        w_save = {}
+        b_save = {}
+        for key in self.keys:
+            with tf.variable_scope(key, reuse = True):
+                with tf.device('/cpu:0'):
+                    w = tf.get_variable('w')
+                    b = tf.get_variable('b')
+            w_save[key] = w.eval()
+            b_save[key] = b.eval()
+        with open(weights_path, 'wb') as f:
+            pickle.dump([w_save, b_save], f)
+        print('model saved')
+
+
+
     def _get_variables(self, isload, weights_path = 'vgg_vars'):
         """
         Network architecture definition
@@ -224,6 +241,7 @@ class vggnet(object):
         ]
         self.weight_shapes = kernel_shapes
         self.biase_shapes = biase_shape
+
         if isload:
             with open(weights_path+'.pkl', 'rb') as f:
                 weights, biases = pickle.load(f)

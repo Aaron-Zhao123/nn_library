@@ -182,6 +182,9 @@ def loss(logits, labels):
   # decay terms (L2 loss).
   return tf.add_n(tf.get_collection('losses'), name='total_loss')
 
+def pickle_save(sess):
+    vgg_model.save_model(sess)
+
 
 def _add_loss_summaries(total_loss):
   """Add summaries for losses in CIFAR-10 model.
