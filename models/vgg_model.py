@@ -284,7 +284,16 @@ class vggnet(object):
 def save_model(sess, weights_path = 'vgg_vars'):
     w_save = {}
     b_save = {}
-    for key in self.keys:
+    keys = ['conv1_1', 'conv1_2',
+                'conv2_1', 'conv2_2',
+                'conv3_1', 'conv3_2', 'conv3_3',
+                'conv4_1', 'conv4_2', 'conv4_3',
+                'conv5_1', 'conv5_2', 'conv5_3',
+                'fc6',
+                'fc7',
+                'fc8'
+                ]
+    for key in keys:
         with tf.variable_scope(key, reuse = True):
             with tf.device('/cpu:0'):
                 w = tf.get_variable('w')
