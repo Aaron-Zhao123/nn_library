@@ -234,7 +234,7 @@ def train():
     top5_acc_vals = []
     if (FLAGS.is_train):
         running_epochs = FLAGS.max_epochs
-    else
+    else:
         running_epochs = 1
     for epoch in xrange(running_epochs):
       if (FLAGS.is_train):
@@ -267,7 +267,7 @@ def train():
         step += FLAGS.batch_size * FLAGS.num_gpus
         if step % 10 == 0:
           val_bar.update(step)
-      bar.finish()
+      val_bar.finish()
       top1_acc_avg = sum(top1_acc_vals)/float(len(top1_acc_vals))
       top5_acc_avg = sum(top5_acc_vals)/float(len(top5_acc_vals))
       print('eval top1 acc is {}, top5 acc is {}'.format(top1_acc_avg, top5_acc_avg))
