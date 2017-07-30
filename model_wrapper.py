@@ -184,6 +184,7 @@ def loss(logits, labels):
 
 def pickle_save(sess):
     print(tf.get_default_graph().get_name_scope())
+    sys.exit()
     vgg_model.save_model(sess)
 
 
