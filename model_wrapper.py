@@ -135,8 +135,8 @@ def inference(images, isTrain, isLoad):
   Returns:
     Logits.
   """
-  model = mobilenet_model.mobilenet(isLoad, isTrain)
-  # model = vgg_model.vggnet(isLoad, isTrain)
+  # model = mobilenet_model.mobilenet(isLoad, isTrain)
+  model = vgg_model.vggnet(isLoad, isTrain)
   keep_prob = tf.cond(isTrain, lambda: 0.5, lambda: 1.0)
   softmax_linear = model.conv_network(images, keep_prob)
   return softmax_linear
