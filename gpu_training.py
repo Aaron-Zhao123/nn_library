@@ -255,6 +255,7 @@ def train():
         step += FLAGS.batch_size * FLAGS.num_gpus
         # print(loss_value)
         # print(logits_value)
+        assert not np.isnan(np.min(logits_value)), 'Model diverged with logits value have NaN'
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
           train_bar.update(step)
