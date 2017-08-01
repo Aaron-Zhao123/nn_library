@@ -35,7 +35,7 @@ tf.app.flags.DEFINE_boolean('isgpu', False,
 tf.app.flags.DEFINE_string('subset', 'train',
                            """Either 'train' or 'validation'.""")
 
-def cpu_loss(images, labels, scope):
+def cpu_loss(images, labels, scope, is_Train):
   """Calculate the total loss on a single tower running the CIFAR model.
 
   Args:
@@ -51,7 +51,7 @@ def cpu_loss(images, labels, scope):
   images = tf.cast(images, tf.float32)
 
   # Build inference Graph.
-  logits = model_wrapper.inference(images)
+  logits = model_wrapper.inference(images, is_Train, False)
 
   # Build the portion of the Graph calculating the losses. Note that we will
   # assemble the total_loss using a custom function below.
@@ -120,6 +120,7 @@ def train():
     # Calculate the learning rate schedule.
     opt = tf.train.AdamOptimizer(1e-4)
 
+    isTrain_ph = tf.placeholder(tf.bool, shape =None, name="is_train")
     # images = tf.placeholder(tf.float32, [None, 224, 224, 3])
     # labels = tf.placeholder(tf.float32, shape=[1024])
 
@@ -140,7 +141,7 @@ def train():
 
 
     with tf.variable_scope(tf.get_variable_scope()) as scope:
-      loss = cpu_loss(images, labels, scope)
+      loss = cpu_loss(images, labels, scope, isTrain_ph)
       # Calculate the gradients for the batch of data on this CIFAR tower.
       grads = opt.compute_gradients(loss)
 
@@ -167,7 +168,9 @@ def train():
 
     for step in xrange(FLAGS.max_steps):
       start_time = time.time()
-      _, loss_value = sess.run([train_op, loss])
+      _, loss_value = sess.run([train_op, loss], feed_dict = {
+          isTrain_ph:False
+      })
       duration = time.time() - start_time
 
       assert not np.isnan(loss_value), 'Model diverged with loss = NaN'

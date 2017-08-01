@@ -3,6 +3,9 @@ import numpy as np
 import pickle
 import sys
 slim = tf.contrib.slim
+from tensorflow.contrib.framework import add_model_variable
+from tensorflow.python.training import moving_averages
+
 
 
 """
@@ -44,23 +47,38 @@ class mobilenet(object):
     def conv_network(self, images, keep_prob):
         # self.keep_prob = keep_prob
         imgs = images
+        print(imgs)
         conv1 = self.conv_layer(imgs, 'conv1', stride = 2, padding = 'SAME', prune = True)
+        print(conv1)
         conv_ds2 = self.depth_separable_layer(conv1, 'conv_ds_2', padding = 'SAME', prune = True)
         conv_ds3 = self.depth_separable_layer(conv_ds2, 'conv_ds_3', strides = 2, padding = 'SAME', prune = True)
         conv_ds4 = self.depth_separable_layer(conv_ds3, 'conv_ds_4', padding = 'SAME', prune = True)
         conv_ds5 = self.depth_separable_layer(conv_ds4, 'conv_ds_5', strides = 2, padding = 'SAME', prune = True)
         conv_ds6 = self.depth_separable_layer(conv_ds5, 'conv_ds_6', padding = 'SAME', prune = True)
         conv_ds7 = self.depth_separable_layer(conv_ds6, 'conv_ds_7', strides = 2,padding = 'SAME', prune = True)
+        print(conv_ds2)
+        print(conv_ds3)
+        print(conv_ds4)
+        print(conv_ds5)
+        print(conv_ds6)
+        print(conv_ds7)
 
         conv_ds8 = self.depth_separable_layer(conv_ds7, 'conv_ds_8', padding = 'SAME', prune = True)
         conv_ds9 = self.depth_separable_layer(conv_ds8, 'conv_ds_9', padding = 'SAME', prune = True)
         conv_ds10 = self.depth_separable_layer(conv_ds9, 'conv_ds_10', padding = 'SAME', prune = True)
         conv_ds11 = self.depth_separable_layer(conv_ds10, 'conv_ds_11', padding = 'SAME', prune = True)
         conv_ds12 = self.depth_separable_layer(conv_ds11, 'conv_ds_12', padding = 'SAME', prune = True)
+        print(conv_ds8)
+        print(conv_ds9)
+        print(conv_ds10)
+        print(conv_ds11)
+        print(conv_ds12)
 
         conv_ds13 = self.depth_separable_layer(conv_ds12, 'conv_ds_13', strides = 2, padding = 'SAME', prune = True)
+        print(conv_ds13)
         conv_ds14 = self.depth_separable_layer(conv_ds13, 'conv_ds_14', padding = 'SAME', prune = True)
-        avg_pool = tf.nn.avg_pool(conv_ds13, ksize = [1,7,7,1],
+        print(conv_ds14)
+        avg_pool = tf.nn.avg_pool(conv_ds14, ksize = [1,7,7,1],
                                   strides = [1,1,1,1], padding='VALID', name='avg_pool')
 
         print(avg_pool)
@@ -82,7 +100,56 @@ class mobilenet(object):
         return tf.nn.lrn(x, depth_radius = depth_radius, bias = bias,
             alpha = alpha, beta = beta, name = name)
 
-    def batch_norm(self, x, name, train_phase, data_format = 'NHWC', epsilon = 1e-3):
+    def get_bn_variables(self, name, n_out, use_scale, use_bias, gamma_init):
+        with tf.variable_scope(name, reuse = False) as scope:
+            if use_bias:
+                beta = tf.get_variable('beta', [n_out], initializer=tf.constant_initializer())
+            else:
+                beta = tf.zeros([n_out], name='beta')
+            if use_scale:
+                gamma = tf.get_variable('gamma', [n_out], initializer=gamma_init)
+            else:
+                gamma = tf.ones([n_out], name='gamma')
+            # x * gamma + beta
+
+            moving_mean = tf.get_variable('mean/EMA', [n_out],
+                                          initializer=tf.constant_initializer(), trainable=False)
+            moving_var = tf.get_variable('variance/EMA', [n_out],
+                                         initializer=tf.constant_initializer(), trainable=False)
+        return beta, gamma, moving_mean, moving_var
+
+
+    def update_bn_ema(self, xn, batch_mean, batch_var, moving_mean, moving_var, decay):
+        update_op1 = moving_averages.assign_moving_average(
+            moving_mean, batch_mean, decay, zero_debias=False,
+            name='mean_ema_op')
+        update_op2 = moving_averages.assign_moving_average(
+            moving_var, batch_var, decay, zero_debias=False,
+            name='var_ema_op')
+        # Only add to model var when we update them
+        add_model_variable(moving_mean)
+        add_model_variable(moving_var)
+
+        tf.add_to_collection(tf.GraphKeys.UPDATE_OPS, update_op1)
+        tf.add_to_collection(tf.GraphKeys.UPDATE_OPS, update_op2)
+        return xn
+
+
+    def reshape_for_bn(self, param, ndims, chan, data_format):
+        if ndims == 2:
+            shape = [1, chan]
+        else:
+            shape = [1, 1, 1, chan] if data_format == 'NHWC' else [1, chan, 1, 1]
+        return tf.reshape(param, shape)
+
+    def reshape_for_bn(self, param, ndims, chan, data_format):
+        if ndims == 2:
+            shape = [1, chan]
+        else:
+            shape = [1, 1, 1, chan] if data_format == 'NHWC' else [1, chan, 1, 1]
+        return tf.reshape(param, shape)
+
+    def batch_norm(self, x, name, train_phase=True, data_format = 'NHWC', epsilon = 1e-3):
         norm = tf.contrib.layers.batch_norm(
             x,
             scale = True,
@@ -91,49 +158,58 @@ class mobilenet(object):
             reuse = False
         )
         return norm
-    # def batch_norm(self, x, name, train_phase, data_format = 'NHWC', epsilon = 1e-3):
-    #     """
-    #     TODO: this batch norm has an error
-    #     refs:
-    #     1. https://github.com/ppwwyyxx/tensorpack/blob/a3674b47bfbf0c8b04aaa85d428b109fea0128ca/tensorpack/models/batch_norm.py
-    #     2. https://gist.github.com/tomokishii/0ce3bdac1588b5cca9fa5fbdf6e1c412
-    #     """
-    #     shape = x.get_shape().as_list()
-    #     ndims = len(shape)
-    #
-    #     assert ndims in [2,4]
-    #     if ndims == 2:
-    #         data_format = 'NHWC'
-    #
-    #     if data_format == 'NCHW':
-    #         n_out = shape[1]
-    #     else:
-    #         n_out = shape[-1]  # channel
-    #
-    #     assert n_out is not None, "Input to BatchNorm cannot have unknown channels!"
-    #
-    #     with tf.variable_scope(name):
-    #         beta = tf.Variable(tf.constant(0.0, shape = [n_out]),
-    #             name = 'beta', trainable = True)
-    #         gamma = tf.Variable(tf.constant(1.0, shape = [n_out]),
-    #             name = 'gamma', trainable = True)
-    #         axis = list(range(len(x.get_shape())-1))
-    #         batch_mean, batch_var = tf.nn.moments(x, axis, name = 'moments')
-    #
-    #         ema = tf.train.ExponentialMovingAverage(decay = 0.5)
-    #
-    #         def mean_var_with_update():
-    #             with tf.variable_scope(tf.get_variable_scope(), reuse=False):
-    #                 ema_apply_op = ema.apply([batch_mean, batch_var])
-    #             with tf.control_dependencies([ema_apply_op]):
-    #                 return tf.identity(batch_mean), tf.identity(batch_var)
-    #
-    #         # with tf.variable_scope(tf.get_variable_scope(), reuse=False):
-    #         mean, var = tf.cond(train_phase,
-    #             mean_var_with_update,
-    #             lambda: (ema.average(batch_mean), ema.average(batch_var)))
-    #         normed = tf.nn.batch_normalization(x, mean, var, beta, gamma, epsilon)
-    #     return normed
+
+    def batchnorm(self, x, name, train_phase=True, decay=0.9, epsilon=1e-5,
+                  use_scale=True, use_bias=True,
+                  gamma_init=tf.constant_initializer(1.0), data_format='NHWC'):
+        """
+        ref:
+        https://github.com/ppwwyyxx/tensorpack/blob/master/tensorpack/models/batch_norm.py
+
+        """
+        shape = x.get_shape().as_list()
+        ndims = len(shape)
+        assert ndims in [2, 4]
+        if ndims == 2:
+            data_format = 'NHWC'
+        if data_format == 'NCHW':
+            n_out = shape[1]
+        else:
+            n_out = shape[-1]  # channel
+        assert n_out is not None, "Input to BatchNorm cannot have unknown channels!"
+        beta, gamma, moving_mean, moving_var = self.get_bn_variables(name, n_out, use_scale, use_bias, gamma_init)
+
+        if train_phase:
+            if ndims == 2:
+                x = tf.reshape(x, [-1, 1, 1, n_out])    # fused_bn only takes 4D input
+                # fused_bn has error using NCHW? (see #190)
+
+            xn, batch_mean, batch_var = tf.nn.fused_batch_norm(
+                x, gamma, beta, epsilon=epsilon,
+                is_training=True, data_format=data_format)
+
+            if ndims == 2:
+                xn = tf.squeeze(xn, [1, 2])
+        else:
+            # non-fused op is faster for inference
+            if ndims == 4 and data_format == 'NCHW':
+                [g, b, mm, mv] = [reshape_for_bn(_, ndims, n_out, data_format)
+                                  for _ in [gamma, beta, moving_mean, moving_var]]
+                xn = tf.nn.batch_normalization(x, mm, mv, b, g, epsilon)
+            else:
+                # avoid the reshape if possible (when channel is the last dimension)
+                xn = tf.nn.batch_normalization(
+                    x, moving_mean, moving_var, beta, gamma, epsilon)
+
+        # maintain EMA only on one GPU is OK, even in replicated mode.
+        # because training time doesn't use EMA
+
+        # if index==0:
+        #     ret = self.update_bn_ema(xn, batch_mean, batch_var, moving_mean, moving_var, decay)
+        # else:
+        #     ret = tf.identity(xn, name='output')
+        ret = self.update_bn_ema(xn, batch_mean, batch_var, moving_mean, moving_var, decay)
+        return ret
 
     def dropout_layer(self, x):
         return tf.nn.dropout(x, self.keep_prob)
@@ -183,15 +259,21 @@ class mobilenet(object):
                 w_pw = tf.get_variable('w_pw')
             # depthwise layer
             dw = tf.nn.depthwise_conv2d(x, w_dw, strides=[1, strides, strides, 1], padding="SAME")
-            # depthwise_conv = tf.nn.bias_add(dw, b_dw)
             # dw_norm = self.batch_norm(dw, 'norm_dw', train_phase = self.isTrain)
-            # dw_relu = tf.nn.relu(dw_norm)
-            dw_relu = tf.nn.relu(dw)
+            # dw_norm = self.batch_norm(dw, 'norm_dw', train_phase = self.isTrain)
+        with tf.variable_scope(name) as scope:
+            dw_norm = self.batchnorm(dw, 'dw')
+            # dw_norm = self.batch_norm(dw, 'norm_dw')
+            dw_relu = tf.nn.relu(dw_norm)
+            # dw_relu = tf.nn.relu(dw)
+        with tf.variable_scope(name, reuse = True) as scope:
             # point-wise layer
-            pw = tf.nn.conv2d(x, w_pw, [1, strides, strides, 1], padding="SAME")
-            # pw_norm = self.batch_norm(pw, 'norm_pw', train_phase = self.isTrain)
-            # pw_relu = tf.nn.relu(pw_norm)
-            pw_relu = tf.nn.relu(pw)
+            pw = tf.nn.conv2d(dw_relu, w_pw, [1, 1, 1, 1], padding="SAME")
+        with tf.variable_scope(name) as scope:
+            # pw_norm = self.batch_norm(pw, 'norm_pw')
+            pw_norm = self.batchnorm(pw, 'pw')
+            pw_relu = tf.nn.relu(pw_norm)
+            # pw_relu = tf.nn.relu(pw)
         return pw_relu
 
     def _get_variables(self, isload, weights_path = 'DEFAULT'):
