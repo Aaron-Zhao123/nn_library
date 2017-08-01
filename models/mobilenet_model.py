@@ -67,7 +67,7 @@ class mobilenet(object):
                                   strides = [1,1,1,1], padding='VALID', name='avg_pool_15')
 
         # conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
-        squeeze = tf.squeeze(conv15, [1, 2], name='SpatialSqueeze')
+        squeeze = tf.squeeze(avg_pool, [1, 2], name='SpatialSqueeze')
         self.pred = self.fc_layer(squeeze, 'fc_16', prune = True, apply_relu = False)
         # self.pred= conv15
         return self.pred
