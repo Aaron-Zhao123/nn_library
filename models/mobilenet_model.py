@@ -198,14 +198,18 @@ class mobilenet(object):
     def dropout_layer(self, x):
         return tf.nn.dropout(x, self.keep_prob)
 
-    def fc_layer(self, x, name, prune = False, apply_relu = True):
+    def fc_layer(self, x, name, prune = False, apply_relu = True, use_bias = False):
         with tf.variable_scope(name, reuse = True):
             with tf.device('/cpu:0'):
                 w = tf.get_variable('w')
-                b = tf.get_variable('b')
+                if use_bias:
+                    b = tf.get_variable('b')
             if prune:
                 w = w * self.weights_masks[name]
-            ret = tf.nn.xw_plus_b(x,w,b)
+            if use_bias:
+                ret = tf.nn.xw_plus_b(x,w,b)
+            else:
+                ret = tf.matmul(x,w)
             if apply_relu:
                 ret = tf.nn.relu(ret)
         return ret
