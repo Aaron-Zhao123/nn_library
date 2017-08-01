@@ -39,6 +39,9 @@ tf.app.flags.DEFINE_bool('ckpt_save', False,
                             """whether to save a ckpt file.""")
 tf.app.flags.DEFINE_bool('pickle_save', True,
                             """whether to save into a pickle file""")
+tf.app.flags.DEFINE_string('model_name', 'vggnet',
+                            """whether to save into a pickle file""")
+
 
 def tower_loss(scope, isTrain, isLoad):
   # Get images and labels.

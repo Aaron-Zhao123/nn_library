@@ -16,6 +16,7 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
                         a_shape = [6]
                         a_init = tf.constant_initializer(a, dtype=tf.float32)
                         a_tf = tf.get_variable('a', a_shape, initializer = a_init)
+with tf.Session 
 
 # with tf.Graph().as_default(), tf.device('/cpu:0'):
 #     for i in xrange(2):

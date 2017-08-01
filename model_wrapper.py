@@ -135,8 +135,10 @@ def inference(images, isTrain, isLoad):
   Returns:
     Logits.
   """
-  # model = mobilenet_model.mobilenet(isLoad, isTrain)
-  model = vgg_model.vggnet(isLoad, isTrain)
+  if FLAGS.model_name == 'vggnet':
+    model = vgg_model.vggnet(isLoad, isTrain)
+  else if FLAGS.model_name == 'mobilenet':
+    model = mobilenet_model.mobilenet(isLoad, isTrain)
   keep_prob = tf.cond(isTrain, lambda: 0.5, lambda: 1.0)
   softmax_linear = model.conv_network(images, keep_prob)
   return softmax_linear
@@ -183,7 +185,10 @@ def loss(logits, labels):
   return tf.add_n(tf.get_collection('losses'), name='total_loss')
 
 def pickle_save(sess):
-    vgg_model.save_model(sess)
+    if FLAGS.model_name == 'vggnet':
+        vgg_model.save_model(sess)
+    else if FLAGS.model_name == 'mobilenet':
+        mobilenet_model.save_model(sess)
 
 
 def _add_loss_summaries(total_loss):
