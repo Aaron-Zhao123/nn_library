@@ -304,7 +304,7 @@ class mobilenet(object):
         ]
         self.weight_shapes = kernel_shapes
         if isload:
-            with open(weights_path+'.npy', 'rb') as f:
+            with open('mobilenet_vars.pkl', 'rb') as f:
                 weights, biases = pickle.load(f)
             for i, key in enumerate(self.keys):
                 self._init_layerwise_variables(w_shape = kernel_shapes[i],
