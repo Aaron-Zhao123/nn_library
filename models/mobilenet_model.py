@@ -64,10 +64,11 @@ class mobilenet(object):
         conv_ds13 = self.depth_separable_layer(conv_ds12, 'conv_ds_13', strides = 2, padding = 'SAME', prune = True)
         conv_ds14 = self.depth_separable_layer(conv_ds13, 'conv_ds_14', padding = 'SAME', prune = True)
         avg_pool = tf.nn.avg_pool(conv_ds14, ksize = [1,7,7,1],
-                                  strides = [1,1,1,1], padding='VALID', name='avg_pool')
+                                  strides = [1,1,1,1], padding='VALID', name='avg_pool_15')
 
-        conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
-        self.pred = tf.squeeze(conv15, [1, 2], name='SpatialSqueeze')
+        # conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
+        squeeze = tf.squeeze(conv15, [1, 2], name='SpatialSqueeze')
+        self.pred = self.fc_layer(squeeze, 'fc_16', prune = True, apply_relu = False)
         # self.pred= conv15
         return self.pred
 
@@ -266,7 +267,7 @@ class mobilenet(object):
         self.keys = ['conv1', 'conv_ds_2', 'conv_ds_3',
                     'conv_ds_4', 'conv_ds_5', 'conv_ds_6', 'conv_ds_7',
                     'conv_ds_8', 'conv_ds_9', 'conv_ds_10', 'conv_ds_11',
-                    'conv_ds_12', 'conv_ds_13', 'conv_ds_14', 'conv15'
+                    'conv_ds_12', 'conv_ds_13', 'conv_ds_14', 'fc_16'
                     ]
         kernel_shapes = [
             [3, 3, 3, 32], #conv1
@@ -283,7 +284,7 @@ class mobilenet(object):
             [512, 512],
             [512, 1024],
             [1024, 1024],
-            [1,1,1024, 1000]
+            [1024, 1000]
         ]
         self.weight_shapes = kernel_shapes
         if isload:
@@ -297,7 +298,7 @@ class mobilenet(object):
                     b_init = biases[key])
         else:
             for i,key in enumerate(self.keys):
-                if (key == 'conv1' or key == 'conv15'):
+                if (key == 'conv1' or key == 'fc_16'):
                     self._init_layerwise_variables(w_shape = kernel_shapes[i],
                         b_shape = None,
                         name = key)
