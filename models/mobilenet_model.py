@@ -47,45 +47,28 @@ class mobilenet(object):
     def conv_network(self, images, keep_prob):
         # self.keep_prob = keep_prob
         imgs = images
-        print(imgs)
         conv1 = self.conv_layer(imgs, 'conv1', stride = 2, padding = 'SAME', prune = True)
-        print(conv1)
         conv_ds2 = self.depth_separable_layer(conv1, 'conv_ds_2', padding = 'SAME', prune = True)
         conv_ds3 = self.depth_separable_layer(conv_ds2, 'conv_ds_3', strides = 2, padding = 'SAME', prune = True)
         conv_ds4 = self.depth_separable_layer(conv_ds3, 'conv_ds_4', padding = 'SAME', prune = True)
         conv_ds5 = self.depth_separable_layer(conv_ds4, 'conv_ds_5', strides = 2, padding = 'SAME', prune = True)
         conv_ds6 = self.depth_separable_layer(conv_ds5, 'conv_ds_6', padding = 'SAME', prune = True)
         conv_ds7 = self.depth_separable_layer(conv_ds6, 'conv_ds_7', strides = 2,padding = 'SAME', prune = True)
-        print(conv_ds2)
-        print(conv_ds3)
-        print(conv_ds4)
-        print(conv_ds5)
-        print(conv_ds6)
-        print(conv_ds7)
 
         conv_ds8 = self.depth_separable_layer(conv_ds7, 'conv_ds_8', padding = 'SAME', prune = True)
         conv_ds9 = self.depth_separable_layer(conv_ds8, 'conv_ds_9', padding = 'SAME', prune = True)
         conv_ds10 = self.depth_separable_layer(conv_ds9, 'conv_ds_10', padding = 'SAME', prune = True)
         conv_ds11 = self.depth_separable_layer(conv_ds10, 'conv_ds_11', padding = 'SAME', prune = True)
         conv_ds12 = self.depth_separable_layer(conv_ds11, 'conv_ds_12', padding = 'SAME', prune = True)
-        print(conv_ds8)
-        print(conv_ds9)
-        print(conv_ds10)
-        print(conv_ds11)
-        print(conv_ds12)
 
         conv_ds13 = self.depth_separable_layer(conv_ds12, 'conv_ds_13', strides = 2, padding = 'SAME', prune = True)
-        print(conv_ds13)
         conv_ds14 = self.depth_separable_layer(conv_ds13, 'conv_ds_14', padding = 'SAME', prune = True)
-        print(conv_ds14)
         avg_pool = tf.nn.avg_pool(conv_ds14, ksize = [1,7,7,1],
                                   strides = [1,1,1,1], padding='VALID', name='avg_pool')
 
-        print(avg_pool)
         conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
         self.pred = tf.squeeze(conv15, [1, 2], name='SpatialSqueeze')
         # self.pred= conv15
-        print(self.pred)
         return self.pred
 
     def maxpool(self, x, name, filter_size, stride, padding = 'SAME'):
