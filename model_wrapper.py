@@ -187,7 +187,7 @@ def loss(logits, labels):
 def pickle_save(sess):
     if FLAGS.model_name == 'vggnet':
         vgg_model.save_model(sess)
-    else if FLAGS.model_name == 'mobilenet':
+    elif FLAGS.model_name == 'mobilenet':
         mobilenet_model.save_model(sess)
 
 
