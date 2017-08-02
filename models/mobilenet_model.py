@@ -288,7 +288,7 @@ class mobilenet(object):
             [512, 512],
             [512, 1024],
             [1024, 1024],
-            [1024, 1000]
+            [1024, 1001]
         ]
         self.weight_shapes = kernel_shapes
         if isload:
