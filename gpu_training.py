@@ -162,7 +162,7 @@ def train():
       # Create an optimizer that performs gradient descent.
       opt = tf.train.GradientDescentOptimizer(lr)
     else:
-      opt = tf.train.AdamOptimizer(1e-4)
+      opt = tf.train.AdamOptimizer(1e-5)
 
     # Calculate the gradients for each model tower.
     tower_grads = []
@@ -243,6 +243,7 @@ def train():
         running_epochs = FLAGS.max_epochs
     else:
         running_epochs = 1
+
     for epoch in xrange(running_epochs):
       if (FLAGS.is_train):
         print('This is the {} epoch of training'.format(epoch))
@@ -257,7 +258,7 @@ def train():
         if (step % 100 == 0):
           train_bar.update(step)
 
-      if (FLAGS.is_train):
+      if FLAGS.is_train:
         duration = time.time() - start_time
         train_bar.finish()
         print('Performed {} training epochs with a time of {} and a loss of {}'.format(
@@ -265,8 +266,7 @@ def train():
             duration,
             loss_value))
 
-
-      if (FLAGS.pickle_save):
+      if FLAGS.pickle_save:
         model_wrapper.pickle_save(sess)
 
       print('start validation')
