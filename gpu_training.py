@@ -57,7 +57,7 @@ def tower_loss(scope, isTrain, isLoad):
 
   # Build the portion of the Graph calculating the losses. Note that we will
   # assemble the total_loss using a custom function below.
-  _ = model_wrapper.loss(logits, labels)
+  loss_test = model_wrapper.loss(logits, labels)
 
   (test_acc, top5) = model_wrapper.eval(logits, labels)
   # Assemble all of the losses for the current tower only.
@@ -83,7 +83,7 @@ def tower_loss(scope, isTrain, isLoad):
 
   # with tf.control_dependencies([loss_averages_op]):
   total_loss = tf.identity(total_loss)
-  return (total_loss, test_acc, top5, logits, labels)
+  return (total_loss, test_acc, top5, logits, labels, loss_test)
 
 
 def average_gradients(tower_grads):
@@ -173,7 +173,7 @@ def train():
         with tf.device('/gpu:%d' % i):
           with tf.name_scope('%s_%d' % (model_wrapper.TOWER_NAME, i)) as scope:
             # loss for one tower.
-            loss, tower_top1_acc, tower_top5_acc, logits, labels = tower_loss(scope, isTrain_ph, isLoad)
+            loss, tower_top1_acc, tower_top5_acc, logits, labels, loss_test = tower_loss(scope, isTrain_ph, isLoad)
             # Reuse variables for the next tower.
             tf.get_variable_scope().reuse_variables()
             # Retain the summaries from the final tower.
@@ -251,9 +251,10 @@ def train():
       step = 0
 
       while (step <= train_epoch_size and FLAGS.is_train):
-        _, loss_value, logits_value, labels_value= sess.run([train_op, loss, logits, labels], feed_dict = {isTrain_ph:FLAGS.is_train})
+        _, loss_value, logits_value, labels_value, loss_test_value= sess.run([train_op, loss, logits, labels, loss_test], feed_dict = {isTrain_ph:FLAGS.is_train})
         step += FLAGS.batch_size * FLAGS.num_gpus
         print(loss_value)
+        print(loss_test_value)
         print(labels_value)
         print(np.isnan(logits_value).any())
         print(np.isnan(labels_value).any())

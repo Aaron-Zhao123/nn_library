@@ -141,7 +141,7 @@ def inference(images, isTrain, isLoad):
     model = mobilenet_model.mobilenet(isLoad, isTrain)
   keep_prob = tf.cond(isTrain, lambda: 0.5, lambda: 1.0)
   pred = model.conv_network(images, keep_prob)
-  return pred 
+  return pred
 
 def eval(logits, labels):
   labels = tf.cast(labels, tf.int64)
@@ -181,8 +181,6 @@ def loss(logits, labels):
   cross_entropy_mean = tf.reduce_mean(cross_entropy, name='cross_entropy')
   tf.add_to_collection('losses', cross_entropy_mean)
 
-  # The total loss is defined as the cross entropy loss plus all of the weight
-  # decay terms (L2 loss).
   return tf.add_n(tf.get_collection('losses'), name='total_loss')
 
 def pickle_save(sess):
