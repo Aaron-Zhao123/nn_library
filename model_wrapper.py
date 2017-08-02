@@ -180,8 +180,7 @@ def loss(logits, labels):
       logits=logits, labels=labels, name='cross_entropy_per_example')
   cross_entropy_mean = tf.reduce_mean(cross_entropy, name='cross_entropy')
   tf.add_to_collection('losses', cross_entropy_mean)
-  return cross_entropy_mean
-  # return tf.add_n(tf.get_collection('losses'), name='total_loss')
+  return tf.add_n(tf.get_collection('losses'), name='total_loss')
 
 def pickle_save(sess):
     if FLAGS.model_name == 'vggnet':

@@ -57,7 +57,7 @@ def tower_loss(scope, isTrain, isLoad):
 
   # Build the portion of the Graph calculating the losses. Note that we will
   # assemble the total_loss using a custom function below.
-  loss_test = model_wrapper.loss(logits, labels)
+  _ = model_wrapper.loss(logits, labels)
 
   (test_acc, top5) = model_wrapper.eval(logits, labels)
   # Assemble all of the losses for the current tower only.
@@ -251,13 +251,8 @@ def train():
       step = 0
 
       while (step <= train_epoch_size and FLAGS.is_train):
-        _, loss_value, logits_value, labels_value, loss_test_value= sess.run([train_op, loss, logits, labels, loss_test], feed_dict = {isTrain_ph:FLAGS.is_train})
+        _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:FLAGS.is_train})
         step += FLAGS.batch_size * FLAGS.num_gpus
-        print(loss_value)
-        print(loss_test_value)
-        print(labels_value)
-        print(np.isnan(logits_value).any())
-        print(np.isnan(labels_value).any())
         assert not np.isnan(np.min(logits_value)), 'Model diverged with logits value have NaN'
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
