@@ -140,8 +140,8 @@ def inference(images, isTrain, isLoad):
   elif FLAGS.model_name == 'mobilenet':
     model = mobilenet_model.mobilenet(isLoad, isTrain)
   keep_prob = tf.cond(isTrain, lambda: 0.5, lambda: 1.0)
-  softmax_linear = model.conv_network(images, keep_prob)
-  return softmax_linear
+  pred = model.conv_network(images, keep_prob)
+  return pred 
 
 def eval(logits, labels):
   labels = tf.cast(labels, tf.int64)
@@ -174,8 +174,8 @@ def loss(logits, labels):
     Loss tensor of type float.
   """
   # Calculate the average cross entropy loss across the batch.
-  # labels = tf.cast(labels, tf.int64)
-  labels = tf.cast(labels, tf.float32)
+  labels = tf.cast(labels, tf.int64)
+  # labels = tf.cast(labels, tf.float32)
   cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
       logits=logits, labels=labels, name='cross_entropy_per_example')
   cross_entropy_mean = tf.reduce_mean(cross_entropy, name='cross_entropy')
