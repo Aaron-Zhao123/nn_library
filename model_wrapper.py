@@ -174,7 +174,8 @@ def loss(logits, labels):
     Loss tensor of type float.
   """
   # Calculate the average cross entropy loss across the batch.
-  labels = tf.cast(labels, tf.int64)
+  # labels = tf.cast(labels, tf.int64)
+  labels = tf.cast(labels, tf.float32)
   cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
       logits=logits, labels=labels, name='cross_entropy_per_example')
   cross_entropy_mean = tf.reduce_mean(cross_entropy, name='cross_entropy')
