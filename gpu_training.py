@@ -257,14 +257,14 @@ def train():
     #     assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
     #     if (step % 100 == 0):
     #       train_bar.update(step)
-
-      if FLAGS.is_train:
-        duration = time.time() - start_time
-        train_bar.finish()
-        print('Performed {} training epochs with a time of {} and a loss of {}'.format(
-            epoch+1,
-            duration,
-            loss_value))
+      #
+    #   if FLAGS.is_train:
+    #     duration = time.time() - start_time
+    #     train_bar.finish()
+    #     print('Performed {} training epochs with a time of {} and a loss of {}'.format(
+    #         epoch+1,
+    #         duration,
+    #         loss_value))
 
       if FLAGS.pickle_save:
         model_wrapper.pickle_save(sess)
