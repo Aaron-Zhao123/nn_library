@@ -5,7 +5,7 @@ GPU_DATA_DIR=/local/scratch/ssd
 TRAIN_DIR=./tmp
 
 run: gpu_training.py
-	CUDA_VISIBLE_DEVICES=2,3 python gpu_training.py --num_preprocess_threads=4 --num_gpus=1 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR) --batch_size=64 --model_name='mobilenet' --is_load=False
+	CUDA_VISIBLE_DEVICES=2 python gpu_training.py --num_preprocess_threads=4 --num_gpus=1 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR) --batch_size=64 --model_name='mobilenet' --is_load=False
 	# CUDA_VISIBLE_DEVICES=0,1 python gpu_training.py --num_preprocess_threads=4 --num_gpus=2 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR) --batch_size=64
 
 clean:
