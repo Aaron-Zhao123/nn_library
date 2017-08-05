@@ -63,8 +63,9 @@ class mobilenet(object):
 
         conv_ds13 = self.depth_separable_layer(conv_ds12, 'conv_ds_13', strides = 2, padding = 'SAME', prune = True)
         conv_ds14 = self.depth_separable_layer(conv_ds13, 'conv_ds_14', padding = 'SAME', prune = True)
-        avg_pool = tf.nn.avg_pool(conv_ds14, ksize = [1,7,7,1],
+        avg_pool = tf.nn.avg_pool(conv_ds14, ksize = [7,7],
                                   strides = [1,1,1,1], padding='VALID', name='avg_pool_15')
+        # avg_pool = tf.nn.pool(conv_ds14, )
 
         # conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
         squeeze = tf.squeeze(avg_pool, [1, 2], name='SpatialSqueeze')
