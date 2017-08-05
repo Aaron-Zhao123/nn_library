@@ -288,7 +288,7 @@ class mobilenet(object):
             [512, 512],
             [512, 1024],
             [1024, 1024],
-            [1024, 1, 1, 1001]
+            [1, 1, 1024, 1001]
             # [1024, 1001]
         ]
         self.weight_shapes = kernel_shapes
