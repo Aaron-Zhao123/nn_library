@@ -369,9 +369,16 @@ def save_model(sess, weights_path = 'mobilenet_vars'):
     for key in keys:
         with tf.variable_scope(key, reuse = True):
             with tf.device('/cpu:0'):
-                w = tf.get_variable('w')
+                if key == 'conv1' or key == 'fc16':
+                    w = tf.get_variable('w')
+                else:
+                    w_dw = tf.get_variable('w_dw')
+                    w_pw = tf.get_variable('w_dw')
                 # b = tf.get_variable('b')
-        w_save[key] = w.eval(session = sess)
+        if key == 'conv1' or key == 'fc16':
+            w_save[key] = w.eval(session = sess)
+        else:
+            w_save[key] = [w_dw.eval(session = sess), w_pw.eval(session = sess)]
         # b_save[key] = b.eval(session = sess)
     with open(weights_path, 'wb') as f:
         pickle.dump([w_save, b_save], f)
