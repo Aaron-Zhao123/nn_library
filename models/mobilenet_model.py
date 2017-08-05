@@ -375,7 +375,7 @@ def save_model(sess, weights_path = 'mobilenet_vars'):
                     w_dw = tf.get_variable('w_dw')
                     w_pw = tf.get_variable('w_dw')
                 # b = tf.get_variable('b')
-        if key == 'conv1' or key == 'fc16':
+        if key == 'conv1' or key == 'fc_16':
             w_save[key] = w.eval(session = sess)
         else:
             w_save[key] = [w_dw.eval(session = sess), w_pw.eval(session = sess)]
