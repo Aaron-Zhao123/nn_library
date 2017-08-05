@@ -211,7 +211,7 @@ def train():
       summaries.append(tf.summary.histogram(var.op.name, var))
     # Group all updates to into a single train op.
     # train_op = tf.group(apply_gradient_op)
-    train_op = opt.minimize(loss) 
+    train_op = opt.minimize(loss)
 
     # Create a saver.
     saver = tf.train.Saver(tf.all_variables())
@@ -276,7 +276,7 @@ def train():
         if (step % 100 == 0):
           print(loss_value)
         #   print(np.mean(grads_val[0]))
-          print(grads_val[0])
+        #   print(grads_val[0])
         #   print(grads_val)
         # #   print(w_dw_val)
           train_bar.update(step)
