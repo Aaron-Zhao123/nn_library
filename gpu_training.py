@@ -258,12 +258,18 @@ def train():
       step = 0
 
       while (step <= train_epoch_size and FLAGS.is_train):
-        _, loss_value, w_dw_val, w_pw_val= sess.run([train_op, loss, w_dw, w_pw], feed_dict = {isTrain_ph:FLAGS.is_train})
+        _, loss_value, w_dw_val, w_pw_val, grads_val= sess.run([
+            train_op,
+            loss,
+            w_dw,
+            w_pw,
+            grads], feed_dict = {isTrain_ph:FLAGS.is_train})
         step += FLAGS.batch_size * FLAGS.num_gpus
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
           print(loss_value)
-          print(w_dw_val)
+          print(grads_val)
+        #   print(w_dw_val)
           train_bar.update(step)
 
       if FLAGS.is_train:
