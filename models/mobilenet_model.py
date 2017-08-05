@@ -66,13 +66,13 @@ class mobilenet(object):
         avg_pool = tf.nn.avg_pool(conv_ds14, ksize = [1,7,7,1],
                                   strides = [1,1,1,1], padding='VALID', name='avg_pool_15')
         # avg_pool = tf.nn.pool(conv_ds14, )
-
+        dropout = tf.nn.dropout(avg_pool, keep_prob, name = 'dropout')
         # conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
-        # squeeze = tf.squeeze(avg_pool, [1, 2], name='SpatialSqueeze')
-        print(avg_pool)
-        self.pred = self.fc_layer(avg_pool, 'fc_16', prune = True, apply_relu = False)
+        self.pred = self.conv_layer(dropout, 'conv_16', prune = True, apply_relu = False, padding = 'Valid')
+
+        logits = tf.squeeze(self.pred, [1, 2], name='SpatialSqueeze')
         # self.pred= conv15
-        return self.pred
+        return logits
 
     def maxpool(self, x, name, filter_size, stride, padding = 'SAME'):
         return tf.nn.max_pool(x, ksize = [1, filter_size, filter_size, 1],
@@ -209,7 +209,7 @@ class mobilenet(object):
         return ret
 
     def conv_layer(self, x, name, padding = 'SAME', stride = 1,
-        split = 1, data_format = 'NHWC', prune = False):
+        split = 1, data_format = 'NHWC', prune = False, apply_relu = True):
 
         channel_axis = 3 if data_format == 'NHWC' else 1
         with tf.variable_scope(name, reuse = True):
@@ -231,7 +231,10 @@ class mobilenet(object):
 
             # using Relu
             # ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
-            ret = tf.nn.relu(conv, name='output')
+            if relu:
+                ret = tf.nn.relu(conv, name='output')
+            else:
+                ret = conv
         return ret
 
     def depth_separable_layer(self, x, name, padding = 'SAME', strides = 1, prune = True):
@@ -265,7 +268,9 @@ class mobilenet(object):
         self.keys = ['conv1', 'conv_ds_2', 'conv_ds_3',
                     'conv_ds_4', 'conv_ds_5', 'conv_ds_6', 'conv_ds_7',
                     'conv_ds_8', 'conv_ds_9', 'conv_ds_10', 'conv_ds_11',
-                    'conv_ds_12', 'conv_ds_13', 'conv_ds_14', 'fc_16'
+                    'conv_ds_12', 'conv_ds_13', 'conv_ds_14',
+                    'conv_16'
+                    # 'fc_16'
                     ]
         kernel_shapes = [
             [3, 3, 3, 32], #conv1
@@ -282,7 +287,8 @@ class mobilenet(object):
             [512, 512],
             [512, 1024],
             [1024, 1024],
-            [1024, 1001]
+            [1, 1, 1, 1001]
+            # [1024, 1001]
         ]
         self.weight_shapes = kernel_shapes
         if isload:
