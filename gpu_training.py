@@ -162,7 +162,7 @@ def train():
       # Create an optimizer that performs gradient descent.
       opt = tf.train.GradientDescentOptimizer(lr)
     else:
-      opt = tf.train.AdamOptimizer(1e-5)
+      opt = tf.train.AdamOptimizer(1e-4)
 
     # Calculate the gradients for each model tower.
     tower_grads = []
