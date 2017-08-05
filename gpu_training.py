@@ -185,10 +185,10 @@ def train():
             tower_top1_accs.append(tower_top1_acc)
             tower_top5_accs.append(tower_top5_acc)
             # testing
-            with tf.variable_scope('conv_ds_2', reuse = True) as scope:
-                with tf.device('/cpu:0'):
-                    w_dw = tf.get_variable('w_dw')
-                    w_pw = tf.get_variable('w_pw')
+            # with tf.variable_scope('conv_ds_2', reuse = True) as scope:
+            #     with tf.device('/cpu:0'):
+            #         w_dw = tf.get_variable('w_dw')
+            #         w_pw = tf.get_variable('w_pw')
 
 
     grads = average_gradients(tower_grads)
