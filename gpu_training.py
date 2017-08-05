@@ -184,6 +184,9 @@ def train():
             tower_grads.append(grads)
             tower_top1_accs.append(tower_top1_acc)
             tower_top5_accs.append(tower_top5_acc)
+            # testing
+            # with tf.variable_scope('conv_ds_2', reuse = True) as scope:
+
 
     grads = average_gradients(tower_grads)
     top1_acc = tf.reduce_mean(tower_top1_accs, 0)

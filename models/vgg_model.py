@@ -155,7 +155,6 @@ class vggnet(object):
         with tf.variable_scope(name, reuse = True):
             with tf.device('/cpu:0'):
                 w = tf.get_variable('w')
-                b = tf.get_variable('b')
             if prune:
                 w = w * self.weights_masks[name]
             if split == 1:
@@ -170,7 +169,8 @@ class vggnet(object):
                 conv = tf.concat(outputs, channel_axis)
 
             # using Relu
-            ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
+            # ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
+            ret = tf.nn.relu(conv, name='output')
         return ret
 
 
