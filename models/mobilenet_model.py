@@ -67,6 +67,7 @@ class mobilenet(object):
                                   strides = [1,1,1,1], padding='VALID', name='avg_pool_15')
         # avg_pool = tf.nn.pool(conv_ds14, )
         dropout = tf.nn.dropout(avg_pool, keep_prob, name = 'dropout')
+        print(dropout)
         # conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
         self.pred = self.conv_layer(dropout, 'conv_16', prune = True, apply_relu = False, padding = 'SAME')
 
