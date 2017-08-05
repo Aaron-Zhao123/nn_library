@@ -68,7 +68,7 @@ class mobilenet(object):
         # avg_pool = tf.nn.pool(conv_ds14, )
         dropout = tf.nn.dropout(avg_pool, keep_prob, name = 'dropout')
         # conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
-        self.pred = self.conv_layer(dropout, 'conv_16', prune = True, apply_relu = False, padding = 'SAME')
+        self.pred = self.conv_layer(dropout, 'conv_16', prune = True, apply_relu = False, padding = 'Valid')
 
         logits = tf.squeeze(self.pred, [1, 2], name='SpatialSqueeze')
         # self.pred= conv15
@@ -287,7 +287,7 @@ class mobilenet(object):
             [512, 512],
             [512, 1024],
             [1024, 1024],
-            [1024, 1, 1, 1001]
+            [1, 1, 1, 1001]
             # [1024, 1001]
         ]
         self.weight_shapes = kernel_shapes
