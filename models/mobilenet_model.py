@@ -249,15 +249,15 @@ class mobilenet(object):
             dw = tf.nn.depthwise_conv2d(x, w_dw, strides=[1, strides, strides, 1], padding="SAME")
             # dw_norm = self.batch_norm(dw, 'norm_dw', train_phase = self.isTrain)
             # dw_norm = self.batch_norm(dw, 'norm_dw', train_phase = self.isTrain)
-        with tf.variable_scope(name) as scope:
+        # with tf.variable_scope(name) as scope:
             # dw_norm = self.batchnorm(dw, 'dw')
             # # dw_norm = self.batch_norm(dw, 'norm_dw')
             # dw_relu = tf.nn.relu(dw_norm)
             dw_relu = tf.nn.relu(dw)
-        with tf.variable_scope(name, reuse = True) as scope:
+        # with tf.variable_scope(name, reuse = True) as scope:
             # point-wise layer
             pw = tf.nn.conv2d(dw_relu, w_pw, [1, 1, 1, 1], padding="SAME")
-        with tf.variable_scope(name) as scope:
+        # with tf.variable_scope(name) as scope:
             # pw_norm = self.batch_norm(pw, 'norm_pw')
             # pw_norm = self.batchnorm(pw, 'pw')
             # pw_relu = tf.nn.relu(pw_norm)
