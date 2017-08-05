@@ -146,7 +146,7 @@ def train():
         initializer=tf.constant_initializer(0), trainable=False)
 
     # Calculate the learning rate schedule.
-    WEIGHTS_DECAY = False
+    WEIGHTS_DECAY = True
     if WEIGHTS_DECAY:
       num_batches_per_epoch = (model_wrapper.NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN /
                                FLAGS.batch_size)
@@ -267,9 +267,9 @@ def train():
         step += FLAGS.batch_size * FLAGS.num_gpus
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
-          print(loss_value)
-          print(grads_val)
-        #   print(w_dw_val)
+        #   print(loss_value)
+        #   print(grads_val)
+        # #   print(w_dw_val)
           train_bar.update(step)
 
       if FLAGS.is_train:
