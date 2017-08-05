@@ -275,7 +275,7 @@ def train():
         if (step % 100 == 0):
           print(loss_value)
           print(np.mean(grads_val[0]))
-          print(np.isnan(grads_val[0].max()))
+        #   print(np.isnan(grads_val[0].max()))
         #   print(grads_val)
         # #   print(w_dw_val)
           train_bar.update(step)
