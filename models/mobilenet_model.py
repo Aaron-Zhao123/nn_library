@@ -231,7 +231,7 @@ class mobilenet(object):
 
             # using Relu
             # ret = tf.nn.relu(tf.nn.bias_add(conv, b, data_format=data_format), name='output')
-            if relu:
+            if apply_relu:
                 ret = tf.nn.relu(conv, name='output')
             else:
                 ret = conv
