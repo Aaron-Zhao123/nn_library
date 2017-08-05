@@ -210,7 +210,8 @@ def train():
     for var in tf.trainable_variables():
       summaries.append(tf.summary.histogram(var.op.name, var))
     # Group all updates to into a single train op.
-    train_op = tf.group(apply_gradient_op)
+    # train_op = tf.group(apply_gradient_op)
+    train_op = opt.minimize(loss) 
 
     # Create a saver.
     saver = tf.train.Saver(tf.all_variables())
