@@ -185,13 +185,13 @@ def train():
             tower_top1_accs.append(tower_top1_acc)
             tower_top5_accs.append(tower_top5_acc)
             # testing
-            with tf.variable_scope('conv_ds_2', reuse = True) as scope:
-                with tf.device('/cpu:0'):
-                    w_dw = tf.get_variable('w_dw')
-                    w_pw = tf.get_variable('w_pw')
-            with tf.variable_scope('conv1', reuse = True) as scope:
-                with tf.device('/cpu:0'):
-                    w = tf.get_variable('w')
+            # with tf.variable_scope('conv_ds_2', reuse = True) as scope:
+            #     with tf.device('/cpu:0'):
+            #         w_dw = tf.get_variable('w_dw')
+            #         w_pw = tf.get_variable('w_pw')
+            # with tf.variable_scope('conv1', reuse = True) as scope:
+            #     with tf.device('/cpu:0'):
+            #         w = tf.get_variable('w')
 
     grads = average_gradients(tower_grads)
     top1_acc = tf.reduce_mean(tower_top1_accs, 0)
@@ -261,16 +261,16 @@ def train():
       step = 0
 
       while (step <= train_epoch_size and FLAGS.is_train):
-        _, loss_value, w_dw_val, w_pw_val, w_val, grads_val= sess.run([
-            train_op,
-            loss,
-            w_dw,
-            w_pw,
-            w,
-            grads], feed_dict = {isTrain_ph:FLAGS.is_train})
-        # _, loss_value = sess.run([
+        # _, loss_value, w_dw_val, w_pw_val, w_val, grads_val= sess.run([
         #     train_op,
-        #     loss], feed_dict = {isTrain_ph:FLAGS.is_train})
+        #     loss,
+        #     w_dw,
+        #     w_pw,
+        #     w,
+        #     grads], feed_dict = {isTrain_ph:FLAGS.is_train})
+        _, loss_value = sess.run([
+            train_op,
+            loss], feed_dict = {isTrain_ph:FLAGS.is_train})
         step += FLAGS.batch_size * FLAGS.num_gpus
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
