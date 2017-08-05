@@ -185,7 +185,10 @@ def train():
             tower_top1_accs.append(tower_top1_acc)
             tower_top5_accs.append(tower_top5_acc)
             # testing
-            # with tf.variable_scope('conv_ds_2', reuse = True) as scope:
+            with tf.variable_scope('conv_ds_2', reuse = True) as scope:
+                with tf.device('/cpu:0'):
+                    w_dw = tf.get_variable('w_dw')
+                    w_pw = tf.get_variable('w_pw')
 
 
     grads = average_gradients(tower_grads)
@@ -255,11 +258,12 @@ def train():
       step = 0
 
       while (step <= train_epoch_size and FLAGS.is_train):
-        _, loss_value = sess.run([train_op, loss], feed_dict = {isTrain_ph:FLAGS.is_train})
+        _, loss_value. w_dw_val, w_pw_val= sess.run([train_op, loss, w_dw, w_pw], feed_dict = {isTrain_ph:FLAGS.is_train})
         step += FLAGS.batch_size * FLAGS.num_gpus
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
           print(loss_value)
+          print(w_dw)
           train_bar.update(step)
 
       if FLAGS.is_train:
