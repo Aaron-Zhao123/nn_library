@@ -263,7 +263,7 @@ def train():
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
           print(loss_value)
-          print(w_dw)
+          print(w_dw_val)
           train_bar.update(step)
 
       if FLAGS.is_train:
