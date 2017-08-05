@@ -63,7 +63,7 @@ class mobilenet(object):
 
         conv_ds13 = self.depth_separable_layer(conv_ds12, 'conv_ds_13', strides = 2, padding = 'SAME', prune = True)
         conv_ds14 = self.depth_separable_layer(conv_ds13, 'conv_ds_14', padding = 'SAME', prune = True)
-        avg_pool = tf.nn.avg_pool(conv_ds14, ksize = [7,7],
+        avg_pool = tf.nn.avg_pool3d(conv_ds14, ksize = [1,7,7,1],
                                   strides = [1,1,1,1], padding='VALID', name='avg_pool_15')
         # avg_pool = tf.nn.pool(conv_ds14, )
 
