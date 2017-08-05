@@ -337,15 +337,15 @@ class mobilenet(object):
 
     def _init_weight_masks(self, is_load):
         names = self.keys
-        if is_load:
-            with open(weights_path+'mask.npy', 'rb') as f:
-                self.weights_masks = pickle.load(f)
-        else:
-            self.weights_masks = {}
-            # self.biases_masks = {}
-            for i, key in enumerate(names):
-                self.weights_masks[key] = np.ones(self.weight_shapes[i])
-                # self.biases_masks[key] = np.ones(self.biase_shapes[i])
+        # if is_load:
+        #     with open(weights_path+'mask.npy', 'rb') as f:
+        #         self.weights_masks = pickle.load(f)
+        # else:
+        self.weights_masks = {}
+        # self.biases_masks = {}
+        for i, key in enumerate(names):
+            self.weights_masks[key] = np.ones(self.weight_shapes[i])
+            # self.biases_masks[key] = np.ones(self.biase_shapes[i])
 
     def _apply_a_mask(self, mask, var):
         return (var * mask)
