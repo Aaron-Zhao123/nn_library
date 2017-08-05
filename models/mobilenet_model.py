@@ -302,7 +302,7 @@ class mobilenet(object):
                     b_init = biases[key])
         else:
             for i,key in enumerate(self.keys):
-                if (key == 'conv1' or key == 'fc_16'):
+                if (key == 'conv1' or key == 'fc_16' or key == 'conv_16'):
                     self._init_layerwise_variables(w_shape = kernel_shapes[i],
                         b_shape = None,
                         name = key)
