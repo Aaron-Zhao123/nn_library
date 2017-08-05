@@ -255,15 +255,15 @@ class mobilenet(object):
             # dw_norm = self.batch_norm(dw, 'norm_dw', train_phase = self.isTrain)
             # dw_norm = self.batch_norm(dw, 'norm_dw', train_phase = self.isTrain)
             with tf.variable_scope(name, **batch_norm_params) as scope:
-                # dw_norm = self.batchnorm(dw, 'dw')
-                dw_norm = self.batch_norm(dw, 'norm_dw')
+                dw_norm = self.batchnorm(dw, 'dw')
+                # dw_norm = self.batch_norm(dw, 'norm_dw')
                 dw_relu = tf.nn.relu(dw_norm)
             # dw_relu = tf.nn.relu(dw)
             # point-wise layer
             pw = tf.nn.conv2d(dw_relu, w_pw, [1, 1, 1, 1], padding="SAME")
             with tf.variable_scope(name,**batch_norm_params) as scope:
-                pw_norm = self.batch_norm(pw, 'norm_pw')
-                # pw_norm = self.batchnorm(pw, 'pw')
+                # pw_norm = self.batch_norm(pw, 'norm_pw')
+                pw_norm = self.batchnorm(pw, 'pw')
                 pw_relu = tf.nn.relu(pw_norm)
                 # pw_relu = tf.nn.relu(pw)
         return pw_relu
