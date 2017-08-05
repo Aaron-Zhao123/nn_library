@@ -118,14 +118,6 @@ class mobilenet(object):
         tf.add_to_collection(tf.GraphKeys.UPDATE_OPS, update_op2)
         return xn
 
-
-    def reshape_for_bn(self, param, ndims, chan, data_format):
-        if ndims == 2:
-            shape = [1, chan]
-        else:
-            shape = [1, 1, 1, chan] if data_format == 'NHWC' else [1, chan, 1, 1]
-        return tf.reshape(param, shape)
-
     def reshape_for_bn(self, param, ndims, chan, data_format):
         if ndims == 2:
             shape = [1, chan]
