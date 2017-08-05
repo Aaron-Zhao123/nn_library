@@ -369,7 +369,7 @@ def save_model(sess, weights_path = 'mobilenet_vars'):
     for key in keys:
         with tf.variable_scope(key, reuse = True):
             with tf.device('/cpu:0'):
-                if key == 'conv1' or key == 'fc16':
+                if key == 'conv1' or key == 'fc_16':
                     w = tf.get_variable('w')
                 else:
                     w_dw = tf.get_variable('w_dw')
