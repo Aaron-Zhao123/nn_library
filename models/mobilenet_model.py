@@ -240,7 +240,7 @@ class mobilenet(object):
 
     def depth_separable_layer(self, x, name, padding = 'SAME', strides = 1, prune = True):
         batch_norm_params = {
-        'is_training': is_training,
+        'is_training': True,
         'center': True,
         'scale': True,
         'decay': 0.9997,
