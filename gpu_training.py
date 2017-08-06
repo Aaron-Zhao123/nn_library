@@ -272,7 +272,7 @@ def train():
             loss], feed_dict = {isTrain_ph:FLAGS.is_train})
         step += FLAGS.batch_size * FLAGS.num_gpus
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
-        print(loss_value)
+        # print(loss_value)
         if (step % 100 == 0):
         #   print(loss_value)
         #   print(np.mean(grads_val[0]))
