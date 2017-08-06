@@ -274,7 +274,7 @@ def train():
         step += FLAGS.batch_size * FLAGS.num_gpus
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         if (step % 100 == 0):
-        #   print(loss_value)
+          print(loss_value)
         #   print(np.mean(grads_val[0]))
         #   print(grads_val[0])
         #   print(grads_val)
