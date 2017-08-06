@@ -136,10 +136,8 @@ def inference(images, isTrain, isLoad):
     Logits.
   """
   if FLAGS.model_name == 'vggnet':
-    print('execute vgg')
     model = vgg_model.vggnet(isLoad, isTrain)
   elif FLAGS.model_name == 'mobilenet':
-    print('execute mobilenet')
     model = mobilenet_model.mobilenet(isLoad, isTrain)
   keep_prob = tf.cond(isTrain, lambda: 0.5, lambda: 1.0)
   pred = model.conv_network(images, keep_prob)

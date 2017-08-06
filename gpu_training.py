@@ -194,7 +194,6 @@ def train():
             #     with tf.device('/cpu:0'):
             #         w = tf.get_variable('w')
     print('after grads update')
-    sys.exit()
 
     grads = average_gradients(tower_grads)
     top1_acc = tf.reduce_mean(tower_top1_accs, 0)
@@ -274,6 +273,8 @@ def train():
         _, loss_value = sess.run([
             train_op,
             loss], feed_dict = {isTrain_ph:FLAGS.is_train})
+        print('executed train op')
+        sys.exit()
         step += FLAGS.batch_size * FLAGS.num_gpus
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         print(loss_value)
