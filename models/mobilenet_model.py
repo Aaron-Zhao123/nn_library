@@ -132,7 +132,7 @@ class mobilenet(object):
             x,
             scale = True,
             is_training = train_phase,
-            scope = 'bn',
+            scope = name,
             updates_collections=None
         )
         return norm
