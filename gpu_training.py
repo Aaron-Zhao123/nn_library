@@ -168,7 +168,6 @@ def train():
     tower_grads = []
     tower_top1_accs = []
     tower_top5_accs = []
-    print('before calling grads update')
     with tf.variable_scope(tf.get_variable_scope()) as scope:
       for i in xrange(FLAGS.num_gpus):
         with tf.device('/gpu:%d' % i):
@@ -193,7 +192,6 @@ def train():
             # with tf.variable_scope('conv1', reuse = True) as scope:
             #     with tf.device('/cpu:0'):
             #         w = tf.get_variable('w')
-    print('after grads update')
 
     grads = average_gradients(tower_grads)
     top1_acc = tf.reduce_mean(tower_top1_accs, 0)
@@ -213,7 +211,6 @@ def train():
       summaries.append(tf.summary.histogram(var.op.name, var))
     # Group all updates to into a single train op.
     train_op = tf.group(apply_gradient_op)
-    # train_op = opt.minimize(loss)
 
     # Create a saver.
     saver = tf.train.Saver(tf.all_variables())
@@ -273,13 +270,11 @@ def train():
         _, loss_value = sess.run([
             train_op,
             loss], feed_dict = {isTrain_ph:FLAGS.is_train})
-        print('executed train op')
-        sys.exit()
         step += FLAGS.batch_size * FLAGS.num_gpus
         assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
         print(loss_value)
         if (step % 100 == 0):
-          print(loss_value)
+        #   print(loss_value)
         #   print(np.mean(grads_val[0]))
         #   print(grads_val[0])
         #   print(grads_val)
