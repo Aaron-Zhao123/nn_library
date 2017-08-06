@@ -65,14 +65,13 @@ class mobilenet(object):
         conv_ds14 = self.depth_separable_layer(conv_ds13, 'conv_ds_14', padding = 'SAME', prune = True)
         avg_pool = tf.nn.avg_pool(conv_ds14, ksize = [1,7,7,1],
                                   strides = [1,1,1,1], padding='VALID', name='avg_pool_15')
-        # avg_pool = tf.nn.pool(conv_ds14, )
         dropout = tf.nn.dropout(avg_pool, keep_prob, name = 'dropout')
-        print(dropout)
-        # conv15 = self.conv_layer(avg_pool, 'conv15', stride = 1, padding = 'SAME', prune = True)
-        self.pred = self.conv_layer(dropout, 'conv_16', prune = True, apply_relu = False, padding = 'SAME')
+        squeeze = tf.squeeze(self.pred, [1, 2], name='SpatialSqueeze')
+        logits = self.fc_layer(squeeze, 'fc_16', apply_relu = False)
 
-        logits = tf.squeeze(self.pred, [1, 2], name='SpatialSqueeze')
-        # self.pred= conv15
+        # self.pred = self.conv_layer(dropout, 'conv_16', prune = True, apply_relu = False, padding = 'SAME')
+        #
+        # logits = tf.squeeze(self.pred, [1, 2], name='SpatialSqueeze')
         return logits
 
     def maxpool(self, x, name, filter_size, stride, padding = 'SAME'):
@@ -277,8 +276,8 @@ class mobilenet(object):
                     'conv_ds_4', 'conv_ds_5', 'conv_ds_6', 'conv_ds_7',
                     'conv_ds_8', 'conv_ds_9', 'conv_ds_10', 'conv_ds_11',
                     'conv_ds_12', 'conv_ds_13', 'conv_ds_14',
-                    'conv_16'
-                    # 'fc_16'
+                    # 'conv_16'
+                    'fc_16'
                     ]
         kernel_shapes = [
             [3, 3, 3, 32], #conv1
@@ -295,8 +294,8 @@ class mobilenet(object):
             [512, 512],
             [512, 1024],
             [1024, 1024],
-            [1, 1, 1024, 1001]
-            # [1024, 1001]
+            # [1, 1, 1024, 1001]
+            [1024, 1001]
         ]
         self.weight_shapes = kernel_shapes
         if isload:
