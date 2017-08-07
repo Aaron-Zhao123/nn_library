@@ -160,7 +160,13 @@ def train():
                                       staircase=True)
 
       # Create an optimizer that performs gradient descent.
-      opt = tf.train.GradientDescentOptimizer(lr)
+      RMSPROP_DECAY = 0.9                # Decay term for RMSProp.
+      RMSPROP_MOMENTUM = 0.9             # Momentum in RMSProp.
+      RMSPROP_EPSILON = 1.0              # Epsilon term for RMSProp.
+      opt = tf.train.RMSPropOptimizer(lr, RMSPROP_DECAY,
+                                    momentum=RMSPROP_MOMENTUM,
+                                    epsilon=RMSPROP_EPSILON)
+    #   opt = tf.train.GradientDescentOptimizer(lr)
     else:
       opt = tf.train.AdamOptimizer(1e-1)
 
