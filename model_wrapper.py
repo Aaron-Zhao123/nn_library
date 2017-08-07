@@ -30,7 +30,7 @@ NUM_EXAMPLES_PER_EPOCH_FOR_EVAL = ult.NUM_EXAMPLES_PER_EPOCH_FOR_EVAL
 MOVING_AVERAGE_DECAY = 0.9999     # The decay to use for the moving average.
 NUM_EPOCHS_PER_DECAY = 6.0      # Epochs after which learning rate decays.
 LEARNING_RATE_DECAY_FACTOR = 0.1  # Learning rate decay factor.
-INITIAL_LEARNING_RATE = 0.001       # Initial learning rate.
+INITIAL_LEARNING_RATE = 0.01       # Initial learning rate.
 TOWER_NAME = 'tower'
 
 def _activation_summary(x):
