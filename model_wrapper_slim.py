@@ -35,10 +35,13 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
         'epsilon': 0.001,
     }
   # Set weight_decay for weights in Conv and FC layers.
-    # with slim.arg_scope([slim.conv2d, slim.fc], weight_decay=0.00004):
+    with slim.arg_scope([slim.conv2d, slim.fully_connected],
+                        activation_fn=tf.nn.relu,
+                        weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
+                         weights_regularizer=slim.l2_regularizer(0.0005)):
     with slim.arg_scope([slim.conv2d],
                         stddev=0.1,
-                        activation=tf.nn.relu,
+                        stride=1, padding='SAME',
                         batch_norm_params=batch_norm_params):
         logits, endpoints = vgg_model_slim.vgg_16(
             images,
