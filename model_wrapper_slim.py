@@ -45,7 +45,6 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
             dropout_keep_prob=0.5,
             num_classes=num_classes,
             is_training=for_training,
-            restore_logits=restore_logits,
             scope=scope)
 
     # Add summaries for viewing model statistics on TensorBoard.
