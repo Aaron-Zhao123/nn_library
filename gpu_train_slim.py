@@ -67,7 +67,7 @@ RMSPROP_EPSILON = 1.0              # Epsilon term for RMSProp.
 
 
 
-def tower_loss(images, labels, isTrain, isLoad, scope, reuse_variables = None):
+def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variables = None):
     """
     Args
         images: [batch_size, image_size, image_size, 3]
@@ -164,6 +164,7 @@ def train():
                         loss = tower_loss(
                                 images_split,
                                 labels_split,
+                                num_classes,
                                 FLAGS.is_train,
                                 FLAGS.is_load,
                                 scope,
