@@ -1,0 +1,162 @@
+tf	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^import tensorflow as tf$/;"	namespace	line:1
+np	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^import numpy as np$/;"	namespace	line:2
+pickle	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^import pickle$/;"	namespace	line:3
+sys	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^import sys$/;"	namespace	line:4
+slim	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^slim = tf.contrib.slim$/;"	variable	line:5
+add_model_variable	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^from tensorflow.contrib.framework import add_model_variable$/;"	namespace	line:6
+moving_averages	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^from tensorflow.python.training import moving_averages$/;"	namespace	line:7
+mobilenet	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^class mobilenet(object):$/;"	class	line:14
+__init__	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def __init__(self, isLoad, isTrain):$/;"	member	line:15	class:mobilenet
+loss	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def loss(self, logits, labels):$/;"	member	line:21	class:mobilenet
+error_rates	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def error_rates(self,topk = 1):$/;"	member	line:34	class:mobilenet
+conv_network	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def conv_network(self, images, keep_prob):$/;"	member	line:47	class:mobilenet
+maxpool	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def maxpool(self, x, name, filter_size, stride, padding = 'SAME'):$/;"	member	line:77	class:mobilenet
+lrn	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def lrn(self, x, name, depth_radius = 2, bias = 1.0, alpha = 2e-5, beta = 0.75):$/;"	member	line:81	class:mobilenet
+get_bn_variables	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def get_bn_variables(self, name, n_out, use_scale, use_bias, gamma_init):$/;"	member	line:89	class:mobilenet
+update_bn_ema	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def update_bn_ema(self, xn, batch_mean, batch_var, moving_mean, moving_var, decay):$/;"	member	line:108	class:mobilenet
+reshape_for_bn	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def reshape_for_bn(self, param, ndims, chan, data_format):$/;"	member	line:123	class:mobilenet
+batch_norm	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def batch_norm(self, x, name, train_phase=True, data_format = 'NHWC', epsilon = 1e-3):$/;"	member	line:130	class:mobilenet
+batchnorm	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def batchnorm(self, x, name, train_phase=True, decay=0.9, epsilon=1e-5,$/;"	member	line:140	class:mobilenet
+dropout_layer	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def dropout_layer(self, x):$/;"	member	line:192	class:mobilenet
+fc_layer	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def fc_layer(self, x, name, prune = False, apply_relu = True, use_bias = False):$/;"	member	line:195	class:mobilenet
+conv_layer	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def conv_layer(self, x, name, padding = 'SAME', stride = 1,$/;"	member	line:211	class:mobilenet
+depth_separable_layer	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def depth_separable_layer(self, x, name, padding = 'SAME', strides = 1, prune = True):$/;"	member	line:240	class:mobilenet
+_get_variables	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def _get_variables(self, isload, weights_path = 'DEFAULT'):$/;"	member	line:271	class:mobilenet
+_init_layerwise_variables	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def _init_layerwise_variables(self, w_shape, b_shape, name, w_init = None, b_init = None):$/;"	member	line:323	class:mobilenet
+_init_depthseparable_variables	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def _init_depthseparable_variables(self, name, input_channel, output_channel, w_init = None):$/;"	member	line:341	class:mobilenet
+_init_weight_masks	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def _init_weight_masks(self, is_load):$/;"	member	line:353	class:mobilenet
+_apply_a_mask	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^    def _apply_a_mask(self, mask, var):$/;"	member	line:365	class:mobilenet
+save_model	/Users/aaron/Projects/NN_models/NN_lib/models/mobilenet_model.py	/^def save_model(sess, weights_path = 'mobilenet_vars'):$/;"	function	line:368
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^from __future__ import absolute_import$/;"	namespace	line:39
+division	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^from __future__ import division$/;"	namespace	line:40
+print_function	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^from __future__ import print_function$/;"	namespace	line:41
+tf	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^import tensorflow as tf$/;"	namespace	line:43
+NUM_CLASSES	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^NUM_CLASSES = 1000$/;"	variable	line:45
+NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN = 1281167$/;"	variable	line:46
+NUM_EXAMPLES_PER_EPOCH_FOR_EVAL	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^NUM_EXAMPLES_PER_EPOCH_FOR_EVAL = 50000$/;"	variable	line:47
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:49
+IMAGE_SIZE	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^IMAGE_SIZE=FLAGS.image_size$/;"	variable	line:60
+inputs	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def inputs(dataset, batch_size=None, num_preprocess_threads=None):$/;"	function	line:79
+distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def distorted_inputs(dataset, isTrain, batch_size=None, num_preprocess_threads=None):$/;"	function	line:112
+decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def decode_jpeg(image_buffer, scope=None):$/;"	function	line:145
+distort_color	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def distort_color(image, thread_id=0, scope=None):$/;"	function	line:169
+distort_image	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def distort_image(image, height, width, bbox, thread_id=0, scope=None):$/;"	function	line:203
+eval_image	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def eval_image(image, height, width, scope=None):$/;"	function	line:284
+image_preprocessing	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def image_preprocessing(image_buffer, bbox, train, thread_id=0):$/;"	function	line:309
+parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def parse_example_proto(example_serialized):$/;"	function	line:344
+batch_inputs	/Users/aaron/Projects/NN_models/NN_lib/preprocessing/preprocess_utility.py	/^def batch_inputs(dataset, batch_size, train, num_preprocess_threads=None,$/;"	function	line:415
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^from __future__ import print_function$/;"	namespace	line:3
+gzip	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^import gzip$/;"	namespace	line:5
+os	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^import os$/;"	namespace	line:6
+re	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^import re$/;"	namespace	line:7
+sys	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^import sys$/;"	namespace	line:8
+tarfile	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^import tarfile$/;"	namespace	line:9
+urllib	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^from six.moves import urllib$/;"	namespace	line:11
+tf	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^import tensorflow as tf$/;"	namespace	line:12
+ult	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^from preprocessing import preprocess_utility as ult$/;"	namespace	line:14
+ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:15
+mobilenet_model	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^from models import mobilenet_model$/;"	namespace	line:17
+vgg_model	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^from models import vgg_model$/;"	namespace	line:18
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:21
+IMAGE_SIZE	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^IMAGE_SIZE = ult.IMAGE_SIZE$/;"	variable	line:23
+NUM_CLASSES	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^NUM_CLASSES = ult.NUM_CLASSES$/;"	variable	line:24
+NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN = ult.NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN$/;"	variable	line:25
+NUM_EXAMPLES_PER_EPOCH_FOR_EVAL	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^NUM_EXAMPLES_PER_EPOCH_FOR_EVAL = ult.NUM_EXAMPLES_PER_EPOCH_FOR_EVAL$/;"	variable	line:26
+MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^MOVING_AVERAGE_DECAY = 0.9999     # The decay to use for the moving average.$/;"	variable	line:30
+NUM_EPOCHS_PER_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^NUM_EPOCHS_PER_DECAY = 1.0      # Epochs after which learning rate decays.$/;"	variable	line:31
+LEARNING_RATE_DECAY_FACTOR	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^LEARNING_RATE_DECAY_FACTOR = 0.75  # Learning rate decay factor.$/;"	variable	line:32
+INITIAL_LEARNING_RATE	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^INITIAL_LEARNING_RATE = 0.1       # Initial learning rate.$/;"	variable	line:33
+TOWER_NAME	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^TOWER_NAME = 'tower'$/;"	variable	line:34
+_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def _activation_summary(x):$/;"	function	line:36
+_variable_on_cpu	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def _variable_on_cpu(name, shape, initializer):$/;"	function	line:53
+_variable_with_weight_decay	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def _variable_with_weight_decay(name, shape, stddev, wd):$/;"	function	line:68
+distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def distorted_inputs():$/;"	function	line:91
+inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def inference(images, isTrain, isLoad):$/;"	function	line:129
+eval	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def eval(logits, labels):$/;"	function	line:146
+loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def loss(logits, labels):$/;"	function	line:164
+pickle_save	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def pickle_save(sess):$/;"	function	line:185
+_add_loss_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper.py	/^def _add_loss_summaries(total_loss):$/;"	function	line:192
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import print_function$/;"	namespace	line:3
+datetime	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from datetime import datetime$/;"	namespace	line:5
+os	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import os.path$/;"	namespace	line:6
+path	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import os.path$/;"	namespace	line:6
+re	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import re$/;"	namespace	line:7
+time	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import time$/;"	namespace	line:8
+np	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import numpy as np$/;"	namespace	line:10
+xrange	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+pylint	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+disable	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+redefined	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+builtin	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+tf	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import tensorflow as tf$/;"	namespace	line:12
+progressbar	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import progressbar$/;"	namespace	line:13
+model_wrapper	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import model_wrapper$/;"	namespace	line:15
+sys	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import sys$/;"	namespace	line:16
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:18
+tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def tower_loss(scope, isTrain, isLoad):$/;"	function	line:46
+average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def average_gradients(tower_grads):$/;"	function	line:89
+ClipIfNotNone	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^      def ClipIfNotNone(grad):$/;"	function	line:111	function:average_gradients
+train	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def train():$/;"	function	line:136
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:325
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
+layers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib import layers$/;"	namespace	line:5
+arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.framework.python.ops import arg_scope$/;"	namespace	line:6
+layers_lib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import layers as layers_lib$/;"	namespace	line:7
+regularizers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import regularizers$/;"	namespace	line:8
+utils	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import utils$/;"	namespace	line:9
+array_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import array_ops$/;"	namespace	line:10
+init_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import init_ops$/;"	namespace	line:11
+nn_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import nn_ops$/;"	namespace	line:12
+variable_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import variable_scope$/;"	namespace	line:13
+vgg_arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_arg_scope(weight_decay=0.0005):$/;"	function	line:16
+vgg_16	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_16(inputs,$/;"	function	line:31
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
+re	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import re$/;"	namespace	line:5
+tf	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow as tf$/;"	namespace	line:7
+slim	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from inception.slim import slim$/;"	namespace	line:9
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:11
+TOWER_NAME	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^TOWER_NAME = 'tower'$/;"	variable	line:12
+BATCHNORM_MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^BATCHNORM_MOVING_AVERAGE_DECAY = 0.9997$/;"	variable	line:16
+MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^MOVING_AVERAGE_DECAY = 0.9999$/;"	variable	line:19
+inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def inference(images, num_classes, for_training=False, restore_logits=True,$/;"	function	line:21
+loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:53
+distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:77
+_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:98
+_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:111
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
+datetime	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from datetime import datetime$/;"	namespace	line:5
+os	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import os.path$/;"	namespace	line:6
+path	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import os.path$/;"	namespace	line:6
+re	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import re$/;"	namespace	line:7
+time	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import time$/;"	namespace	line:8
+np	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import numpy as np$/;"	namespace	line:10
+xrange	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+pylint	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+disable	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+redefined	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+builtin	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+tf	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import tensorflow as tf$/;"	namespace	line:12
+progressbar	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import progressbar$/;"	namespace	line:13
+model_wrapper	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import model_wrapper$/;"	namespace	line:15
+sys	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import sys$/;"	namespace	line:16
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:18
+tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:46
+average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:76
+train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:98
+DATA_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^DATA_DIR=\/local\/scratch\/ssd$/;"	macro	line:1
+TRAIN_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^TRAIN_DIR=\/local\/scratch\/yaz21\/tmp2$/;"	macro	line:2
+CPU_DATA_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^CPU_DATA_DIR=\/Users\/aaron\/Projects\/NN_models\/datasets\/flowers$/;"	macro	line:3
+GPU_DATA_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^GPU_DATA_DIR=\/local\/scratch\/ssd$/;"	macro	line:4
+TRAIN_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^TRAIN_DIR=.\/tmp$/;"	macro	line:5
+CUDA_VISIBLE_DEVICES	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^	CUDA_VISIBLE_DEVICES=0,1 python gpu_train_slim.py --num_preprocess_threads=4 --num_gpus=2 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR) --batch_size=64 --model_name='vggnet' --is_load=False$/;"	macro	line:12
+-train_dir	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^	python cpu_train.py --train_dir=$(TRAIN_DIR) --data_dir=$(CPU_DATA_DIR)$/;"	macro	line:19

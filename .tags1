@@ -1,0 +1,13 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+DATA_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^DATA_DIR=\/local\/scratch\/ssd$/;"	macro	line:1
+TRAIN_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^TRAIN_DIR=\/local\/scratch\/yaz21\/tmp2$/;"	macro	line:2
+CPU_DATA_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^CPU_DATA_DIR=\/Users\/aaron\/Projects\/NN_models\/datasets\/flowers$/;"	macro	line:3
+GPU_DATA_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^GPU_DATA_DIR=\/local\/scratch\/ssd$/;"	macro	line:4
+TRAIN_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^TRAIN_DIR=.\/tmp$/;"	macro	line:5
+CUDA_VISIBLE_DEVICES	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^	CUDA_VISIBLE_DEVICES=0,1 python gpu_train_slim.py --num_preprocess_threads=4 --num_gpus=2 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR) --batch_size=64 --model_name='vggnet' --is_load=False$/;"	macro	line:12
+-train_dir	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^	python cpu_train.py --train_dir=$(TRAIN_DIR) --data_dir=$(CPU_DATA_DIR)$/;"	macro	line:19
