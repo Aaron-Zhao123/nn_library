@@ -51,6 +51,14 @@ tf.app.flags.DEFINE_float('num_epochs_per_decay', 5.0,
 tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.16,
                           """Learning rate decay factor.""")
 
+# Flags governing the type of training.
+tf.app.flags.DEFINE_boolean('fine_tune', False,
+                            """If set, randomly initialize the final layer """
+                            """of weights in order to train the network on a """
+                            """new task.""")
+tf.app.flags.DEFINE_string('pretrained_model_checkpoint_path', '',
+                           """If specified, restore this pretrained model """
+                           """before beginning any training.""")
 
 # Constants dictating the learning rate schedule.
 RMSPROP_DECAY = 0.9                # Decay term for RMSProp.

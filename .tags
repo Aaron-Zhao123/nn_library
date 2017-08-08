@@ -166,10 +166,10 @@ slim	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import tensorflo
 model_wrapper_slim	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import model_wrapper_slim$/;"	namespace	line:16
 sys	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import sys$/;"	namespace	line:17
 FLAGS	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:19
-RMSPROP_DECAY	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_DECAY = 0.9                # Decay term for RMSProp.$/;"	variable	line:56
-RMSPROP_MOMENTUM	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_MOMENTUM = 0.9             # Momentum in RMSProp.$/;"	variable	line:57
-RMSPROP_EPSILON	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_EPSILON = 1.0              # Epsilon term for RMSProp.$/;"	variable	line:58
-tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:62
-average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:92
-train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:114
-main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:229
+RMSPROP_DECAY	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_DECAY = 0.9                # Decay term for RMSProp.$/;"	variable	line:64
+RMSPROP_MOMENTUM	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_MOMENTUM = 0.9             # Momentum in RMSProp.$/;"	variable	line:65
+RMSPROP_EPSILON	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_EPSILON = 1.0              # Epsilon term for RMSProp.$/;"	variable	line:66
+tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:70
+average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:100
+train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:122
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:237
