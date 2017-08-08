@@ -6,11 +6,12 @@ from datetime import datetime
 import os.path
 import re
 import time
+import progressbar
 
 import numpy as np
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
-import progressbar
+import tensorflow.contrib.slim as slim
 
 import model_wrapper_slim
 import sys
