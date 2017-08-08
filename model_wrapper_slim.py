@@ -40,7 +40,7 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
                         stddev=0.1,
                         activation=tf.nn.relu,
                         batch_norm_params=batch_norm_params):
-        logits, endpoints = vgg_model_slim.vgg16(
+        logits, endpoints = vgg_model_slim.vgg_16(
             images,
             dropout_keep_prob=0.5,
             num_classes=num_classes,
