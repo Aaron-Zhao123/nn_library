@@ -152,7 +152,7 @@ def train():
         for i in range(FLAGS.num_gpus):
             with tf.device('/gpu:%d'%i):
                 with tf.name_scope('%s_%d' % ('tower',i)) as scope:
-                    with slim.arg_scope([slim.variables.variable], device = '/cpu:0'):
+                    with slim.arg_scope([slim.variable], device = '/cpu:0'):
                         loss = tower_loss(
                                 images_split,
                                 labels_split,
