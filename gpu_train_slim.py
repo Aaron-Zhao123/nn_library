@@ -45,10 +45,17 @@ tf.app.flags.DEFINE_string('model_name', 'vggnet',
 
 tf.app.flags.DEFINE_float('initial_learning_rate', 0.1,
                           """Initial learning rate.""")
-tf.app.flags.DEFINE_float('num_epochs_per_decay', 30.0,
+tf.app.flags.DEFINE_float('num_epochs_per_decay', 5.0,
                           """Epochs after which learning rate decays.""")
 tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.16,
                           """Learning rate decay factor.""")
+
+
+# Constants dictating the learning rate schedule.
+RMSPROP_DECAY = 0.9                # Decay term for RMSProp.
+RMSPROP_MOMENTUM = 0.9             # Momentum in RMSProp.
+RMSPROP_EPSILON = 1.0              # Epsilon term for RMSProp.
+
 
 
 def tower_loss(images, labels, isTrain, isLoad, scope, reuse_variables = None):
