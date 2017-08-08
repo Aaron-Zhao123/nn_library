@@ -154,7 +154,7 @@ redefined	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.mo
 builtin	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
 tf	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import tensorflow as tf$/;"	namespace	line:12
 progressbar	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import progressbar$/;"	namespace	line:13
-model_wrapper	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import model_wrapper$/;"	namespace	line:15
+model_wrapper_slim	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import model_wrapper_slim$/;"	namespace	line:15
 sys	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import sys$/;"	namespace	line:16
 FLAGS	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:18
 tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:46

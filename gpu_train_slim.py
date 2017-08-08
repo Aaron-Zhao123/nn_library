@@ -12,7 +12,7 @@ from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 import progressbar
 
-import model_wrapper
+import model_wrapper_slim
 import sys
 
 FLAGS = tf.app.flags.FLAGS
