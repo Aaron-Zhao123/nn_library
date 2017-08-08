@@ -157,7 +157,7 @@ def train():
                                 images_split,
                                 labels_split,
                                 FLAGS.is_train,
-                                isLoad,
+                                FLAGS.is_load,
                                 scope,
                                 reuse_variables = reuse_variables)
                     #reuse for the second tower
