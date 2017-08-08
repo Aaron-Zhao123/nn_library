@@ -33,10 +33,10 @@ def vgg_16(inputs,
            dropout_keep_prob=0.5,
            spatial_squeeze=True,
            scope='vgg_16'):
-  """Oxford Net VGG 16-Layers version D Example.
-  Note: All the fully_connected layers have been transformed to conv2d layers.
+    """Oxford Net VGG 16-Layers version D Example.
+    Note: All the fully_connected layers have been transformed to conv2d layers.
         To use in classification mode, resize input to 224x224.
-  Args:
+    Args:
     inputs: a tensor of size [batch_size, height, width, channels].
     num_classes: number of predicted classes.
     is_training: whether or not the model is being trained.
@@ -45,9 +45,9 @@ def vgg_16(inputs,
     spatial_squeeze: whether or not should squeeze the spatial dimensions of the
       outputs. Useful to remove unnecessary dimensions for classification.
     scope: Optional scope for the variables.
-  Returns:
+    Returns:
     the last op containing the log predictions and end_points dict.
-  """
+    """
     with variable_scope.variable_scope(scope, 'vgg_16', [inputs]) as sc:
         end_points_collection = sc.original_name_scope + '_end_points'
     # Collect outputs for conv2d, fully_connected and max_pool2d.
