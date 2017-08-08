@@ -14,12 +14,12 @@ from tensorflow.python.ops import variable_scope
 
 
 def vgg_arg_scope(weight_decay=0.0005):
-  """Defines the VGG arg scope.
-  Args:
-    weight_decay: The l2 regularization coefficient.
-  Returns:
-    An arg_scope.
-  """
+"""Defines the VGG arg scope.
+Args:
+weight_decay: The l2 regularization coefficient.
+Returns:
+An arg_scope.
+"""
     with arg_scope(
             [layers.conv2d, layers_lib.fully_connected],
             activation_fn=nn_ops.relu,
