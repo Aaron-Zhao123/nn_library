@@ -158,8 +158,9 @@ FLAGS	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^FLAGS = tf.
 TOWER_NAME	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^TOWER_NAME = 'tower'$/;"	variable	line:12
 BATCHNORM_MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^BATCHNORM_MOVING_AVERAGE_DECAY = 0.9997$/;"	variable	line:16
 MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^MOVING_AVERAGE_DECAY = 0.9999$/;"	variable	line:19
-inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def inference(images, num_classes, for_training=False, restore_logits=True,$/;"	function	line:21
-loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:53
-distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:77
-_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:98
-_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:111
+num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^num_examples_per_epoch = 1281167$/;"	variable	line:21
+inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def inference(images, num_classes, for_training=False, restore_logits=True,$/;"	function	line:23
+loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:55
+distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:79
+_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:100
+_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:113

@@ -18,6 +18,8 @@ BATCHNORM_MOVING_AVERAGE_DECAY = 0.9997
 # The decay to use for the moving average.
 MOVING_AVERAGE_DECAY = 0.9999
 
+num_examples_per_epoch = 1281167
+
 def inference(images, num_classes, for_training=False, restore_logits=True,
               scope=None):
 
