@@ -156,7 +156,7 @@ def train():
                         loss = tower_loss(
                                 images_split,
                                 labels_split,
-                                isTrain,
+                                FLAGS.is_train,
                                 isLoad,
                                 scope,
                                 reuse_variables = reuse_variables)
