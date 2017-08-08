@@ -7,6 +7,10 @@ import re
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
 
+from preprocessing import preprocess_utility as ult
+from datasets.imagenet_dataset import ImagenetData
+# from datasets import imagenet_dataset
+from models import vgg_model_slim
 
 FLAGS = tf.app.flags.FLAGS
 TOWER_NAME = 'tower'
@@ -36,7 +40,7 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
                             stddev=0.1,
                             activation=tf.nn.relu,
                             batch_norm_params=batch_norm_params):
-            logits, endpoints = models.vgg_slim.vgg16(
+            logits, endpoints = vgg_model_slim.vgg16(
                 images,
                 dropout_keep_prob=0.5,
                 num_classes=num_classes,
