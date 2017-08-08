@@ -42,6 +42,13 @@ tf.app.flags.DEFINE_bool('pickle_save', True,
 tf.app.flags.DEFINE_string('model_name', 'vggnet',
                             """whether to save into a pickle file""")
 
+                            
+tf.app.flags.DEFINE_float('initial_learning_rate', 0.1,
+                          """Initial learning rate.""")
+tf.app.flags.DEFINE_float('num_epochs_per_decay', 30.0,
+                          """Epochs after which learning rate decays.""")
+tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.16,
+                          """Learning rate decay factor.""")
 
 def tower_loss(scope, isTrain, isLoad):
   # Get images and labels.
