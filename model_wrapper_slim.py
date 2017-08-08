@@ -35,18 +35,18 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
         'epsilon': 0.001,
     }
   # Set weight_decay for weights in Conv and FC layers.
-    with slim.arg_scope([slim.conv2d, slim.fc], weight_decay=0.00004):
-        with slim.arg_scope([slim.conv2d],
-                            stddev=0.1,
-                            activation=tf.nn.relu,
-                            batch_norm_params=batch_norm_params):
-            logits, endpoints = vgg_model_slim.vgg16(
-                images,
-                dropout_keep_prob=0.5,
-                num_classes=num_classes,
-                is_training=for_training,
-                restore_logits=restore_logits,
-                scope=scope)
+    # with slim.arg_scope([slim.conv2d, slim.fc], weight_decay=0.00004):
+    with slim.arg_scope([slim.conv2d],
+                        stddev=0.1,
+                        activation=tf.nn.relu,
+                        batch_norm_params=batch_norm_params):
+        logits, endpoints = vgg_model_slim.vgg16(
+            images,
+            dropout_keep_prob=0.5,
+            num_classes=num_classes,
+            is_training=for_training,
+            restore_logits=restore_logits,
+            scope=scope)
 
     # Add summaries for viewing model statistics on TensorBoard.
     _activation_summaries(endpoints)
