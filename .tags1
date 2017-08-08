@@ -4,27 +4,26 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import absolute_import$/;"	namespace	line:1
-division	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import division$/;"	namespace	line:2
-print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import print_function$/;"	namespace	line:3
-datetime	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from datetime import datetime$/;"	namespace	line:5
-os	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import os.path$/;"	namespace	line:6
-path	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import os.path$/;"	namespace	line:6
-re	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import re$/;"	namespace	line:7
-time	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import time$/;"	namespace	line:8
-np	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import numpy as np$/;"	namespace	line:10
-xrange	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
-pylint	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
-disable	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
-redefined	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
-builtin	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
-tf	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import tensorflow as tf$/;"	namespace	line:12
-progressbar	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import progressbar$/;"	namespace	line:13
-model_wrapper	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import model_wrapper$/;"	namespace	line:15
-sys	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^import sys$/;"	namespace	line:16
-FLAGS	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:18
-tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def tower_loss(scope, isTrain, isLoad):$/;"	function	line:53
-average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def average_gradients(tower_grads):$/;"	function	line:96
-ClipIfNotNone	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^      def ClipIfNotNone(grad):$/;"	function	line:118	function:average_gradients
-train	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def train():$/;"	function	line:143
-main	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:332
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
+datetime	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from datetime import datetime$/;"	namespace	line:5
+os	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import os.path$/;"	namespace	line:6
+path	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import os.path$/;"	namespace	line:6
+re	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import re$/;"	namespace	line:7
+time	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import time$/;"	namespace	line:8
+np	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import numpy as np$/;"	namespace	line:10
+xrange	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+pylint	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+disable	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+redefined	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+builtin	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:11
+tf	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import tensorflow as tf$/;"	namespace	line:12
+progressbar	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import progressbar$/;"	namespace	line:13
+model_wrapper_slim	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import model_wrapper_slim$/;"	namespace	line:15
+sys	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import sys$/;"	namespace	line:16
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:18
+tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:54
+average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:84
+train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:106
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:221
