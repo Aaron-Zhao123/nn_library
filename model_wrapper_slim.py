@@ -85,9 +85,9 @@ def loss(logits, labels, batch_size=None):
 def distorted_inputs(num_preprocess_threads):
     if not FLAGS.data_dir:
         raise ValueError('Please supply a data_dir')
-    dataset_train = ImagenetData(subset='train')
+    # dataset_train = ImagenetData(subset='train')
     dataset_test = ImagenetData(subset='validation')
-    assert dataset_train.data_files()
+    # assert dataset_train.data_files()
     assert dataset_test.data_files()
 
     # imgs_train, labels_train= ult.distorted_inputs(
