@@ -256,7 +256,7 @@ def traverse_train():
 
     images, label_index_batch = tf.train.batch_join(
         images_and_labels,
-        batch_size=batch_size,
+        batch_size=32,
         capacity=2 * num_preprocess_threads * batch_size)
 
     # Reshape images into these desired dimensions.
