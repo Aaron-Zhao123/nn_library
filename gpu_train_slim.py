@@ -174,7 +174,7 @@ def train():
                     # final tower. Ideally, we should grab the updates from all towers
                     # but these stats accumulate extremely fast so we can ignore the
                     # other stats from the other towers without significant detriment.
-                    batchnorm_updates = tf.get_collection(slim.UPDATE_OPS_COLLECTION,
+                    batchnorm_updates = tf.get_collection(tf.GraphKeys.UPDATE_OPS,
                                                             scope)
                     grads = opt.compute_gradients(loss)
                     tower_grads.append(grads)
