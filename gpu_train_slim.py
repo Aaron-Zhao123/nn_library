@@ -153,7 +153,7 @@ def train():
         labels_split = tf.split(axis=0,
                                 num_or_size_splits=FLAGS.num_gpus,
                                 value=images_test)
-
+        print(images_split)
         tower_grads = []
         reuse_variables = None
 
