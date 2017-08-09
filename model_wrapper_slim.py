@@ -56,10 +56,11 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
     # Grab the logits associated with the side head. Employed during training.
     # auxiliary_logits = endpoints['aux_logits']
     # return logits, auxiliary_logits
-    return logits 
+    return logits
 
 
 def loss(logits, labels, batch_size=None):
+    print(labels)
     if not batch_size:
         batch_size = FLAGS.batch_size
 
