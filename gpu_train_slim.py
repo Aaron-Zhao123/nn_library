@@ -221,7 +221,7 @@ def train():
         for step in range(FLAGS.max_steps):
             start_time = time.time()
             _, loss_value = sess.run([train_op, loss])
-            labels_value = sess.run(labels_train)
+            images_value,labels_value = sess.run(images_train,labels_train)
             duration = time.time() - start_time
 
             assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
@@ -231,7 +231,7 @@ def train():
                 'sec/batch)')
                 print(format_str % (datetime.now(), step, loss_value,
                     examples_per_sec, duration))
-                print(sum(labels_value))
+                print(sum(labels_value), sum(images_value))
 
             # Save the model checkpoint periodically.
             if step % 5000 == 0 or (step + 1) == FLAGS.max_steps:
