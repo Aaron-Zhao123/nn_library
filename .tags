@@ -189,8 +189,9 @@ tf	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import tensorflow as
 ult	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import preprocessing as ult$/;"	namespace	line:2
 ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:3
 FLAGS	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:6
-distort_image	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_image(image, height, width, bbox, thread_id=0, scope=None):$/;"	function	line:15
-decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def decode_jpeg(image_buffer, scope=None):$/;"	function	line:96
-parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def parse_example_proto(example_serialized):$/;"	function	line:120
-traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:198
-main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:268
+distort_color	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_color(image, thread_id=0, scope=None):$/;"	function	line:15
+distort_image	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_image(image, height, width, bbox, thread_id=0, scope=None):$/;"	function	line:49
+decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def decode_jpeg(image_buffer, scope=None):$/;"	function	line:130
+parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def parse_example_proto(example_serialized):$/;"	function	line:154
+traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:232
+main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:302

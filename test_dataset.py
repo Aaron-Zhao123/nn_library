@@ -12,6 +12,40 @@ tf.app.flags.DEFINE_string('data_dir', '/tmp/mydata',
                            """TFRecord of Example protos.""")
 
 
+def distort_color(image, thread_id=0, scope=None):
+  """Distort the color of the image.
+
+  Each color distortion is non-commutative and thus ordering of the color ops
+  matters. Ideally we would randomly permute the ordering of the color ops.
+  Rather then adding that level of complication, we select a distinct ordering
+  of color ops for each preprocessing thread.
+
+  Args:
+    image: Tensor containing single image.
+    thread_id: preprocessing thread ID.
+    scope: Optional scope for name_scope.
+  Returns:
+    color-distorted image
+  """
+  with tf.name_scope(values=[image], name=scope, default_name='distort_color'):
+    color_ordering = thread_id % 2
+
+    if color_ordering == 0:
+      image = tf.image.random_brightness(image, max_delta=32. / 255.)
+      image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
+      image = tf.image.random_hue(image, max_delta=0.2)
+      image = tf.image.random_contrast(image, lower=0.5, upper=1.5)
+    elif color_ordering == 1:
+      image = tf.image.random_brightness(image, max_delta=32. / 255.)
+      image = tf.image.random_contrast(image, lower=0.5, upper=1.5)
+      image = tf.image.random_saturation(image, lower=0.5, upper=1.5)
+      image = tf.image.random_hue(image, max_delta=0.2)
+
+    # The random_* ops do not necessarily clamp.
+    image = tf.clip_by_value(image, 0.0, 1.0)
+    return image
+
+
 def distort_image(image, height, width, bbox, thread_id=0, scope=None):
   """Distort one image for training a network.
 
@@ -214,7 +248,7 @@ def traverse_train():
     image = decode_jpeg(image_buffer)
 
     height = 224
-    width = 224 
+    width = 224
     image = distort_image(image, height, width, bbox)
     init = tf.global_variables_initializer()
 
