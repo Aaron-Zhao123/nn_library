@@ -278,44 +278,6 @@ def traverse_train():
       value_run = sess.run([images])
       print(value_run)
 
-
-#
-#     # Create filename_queue
-#     if train:
-#         filename_queue = tf.train.string_input_producer(data_files,
-#         shuffle=False,
-#         capacity=16)
-#     else:
-#         filename_queue = tf.train.string_input_producer(data_files,
-#         shuffle=False,
-#         capacity=1)
-#
-#     if num_preprocess_threads is None:
-#         num_preprocess_threads =  4
-#         num_readers = 1
-#
-#     if num_readers > 1:
-#         enqueue_ops = []
-#         for _ in range(num_readers):
-#             reader = dataset.reader()
-#             _, value = reader.read(filename_queue)
-#             enqueue_ops.append(examples_queue.enqueue([value]))
-#
-#             tf.train.queue_runner.add_queue_runner(
-#             tf.train.queue_runner.QueueRunner(examples_queue, enqueue_ops))
-#             example_serialized = examples_queue.dequeue()
-#     else:
-#         reader = dataset.reader()
-#         key, example_serialized = reader.read(filename_queue)
-#         print(key)
-#
-#     images_and_labels = []
-#     for thread_id in range(num_preprocess_threads):
-#         # Parse a serialized Example proto to extract the image and metadata.
-#         image_buffer, label_index, bbox, _ = parse_example_proto(
-#         example_serialized)
-#         image = image_preprocessing(image_buffer, bbox, train, thread_id)
-#         images_and_labels.append([image, label_index])
 def main(argv=None):  # pylint: disable=unused-argument
   traverse_train()
 

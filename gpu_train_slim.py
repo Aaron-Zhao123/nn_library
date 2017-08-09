@@ -146,8 +146,8 @@ def train():
 
         split_batch_size = int(FLAGS.batch_size / FLAGS.num_gpus)
         total_num_preprocess_threads = FLAGS.num_preprocess_threads * FLAGS.num_gpus
-        # images_train, labels_train, images_test, labels_test = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
-        images_train, labels_train = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
+        images_train, labels_train, images_test, labels_test = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
+        # images_train, labels_train = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
 
         num_classes = 1001
         images_splits = tf.split(axis=0,
@@ -232,7 +232,7 @@ def train():
                 'sec/batch)')
                 print(format_str % (datetime.now(), step, loss_value,
                     examples_per_sec, duration))
-                print(sum(labels_value), sum(images_value))
+                print(sum(labels_value), images_value)
 
             # Save the model checkpoint periodically.
             if step % 5000 == 0 or (step + 1) == FLAGS.max_steps:
