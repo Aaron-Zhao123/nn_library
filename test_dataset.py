@@ -245,11 +245,29 @@ def traverse_train():
     _, example_serialized = reader.read(filename_queue)
     image_buffer, label_index, bbox, _ = parse_example_proto(
         example_serialized)
+
     image = decode_jpeg(image_buffer)
 
     height = 224
     width = 224
     image = distort_image(image, height, width, bbox)
+    images_and_labels.append([image, label_index])
+
+    images, label_index_batch = tf.train.batch_join(
+        images_and_labels,
+        batch_size=batch_size,
+        capacity=2 * num_preprocess_threads * batch_size)
+
+    # Reshape images into these desired dimensions.
+    height = FLAGS.image_size
+    width = FLAGS.image_size
+    depth = 3
+
+    images = tf.cast(images, tf.float32)
+    images = tf.reshape(images, shape=[batch_size, height, width, depth])
+
+
+
     init = tf.global_variables_initializer()
 
     sess = tf.Session()
@@ -258,7 +276,7 @@ def traverse_train():
     # Start the queue runners.
     for i in range(1024*10000):
       tf.train.start_queue_runners(sess=sess)
-      value_run = sess.run([image])
+      value_run = sess.run([images])
       print(value_run)
 
 
