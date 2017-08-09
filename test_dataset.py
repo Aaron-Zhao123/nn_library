@@ -257,7 +257,7 @@ def traverse_train():
     images, label_index_batch = tf.train.batch_join(
         images_and_labels,
         batch_size=32,
-        capacity=2 * 2 * batch_size)
+        capacity=2 * 2 * 32)
 
     # Reshape images into these desired dimensions.
     height = FLAGS.image_size
