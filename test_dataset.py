@@ -27,7 +27,6 @@ def traverse_train():
                                                     shuffle=True,
                                                     capacity=16)
     key,value = reader.read(filename_queue)
-    print(key)
     init = tf.global_variables_initializer()
     sess = tf.Session()
     sess.run(init)
@@ -35,8 +34,8 @@ def traverse_train():
     # Start the queue runners.
     for i in range(1024*10000):
       tf.train.start_queue_runners(sess=sess)
-      key_value = sess.run([key])
-      print(key_value)
+      value_run = sess.run([value])
+      print(value_run)
 
 
 #
