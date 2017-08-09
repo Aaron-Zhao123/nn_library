@@ -32,4 +32,4 @@ RMSPROP_EPSILON	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPR
 tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:70
 average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:100
 train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:122
-main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:238
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:237
