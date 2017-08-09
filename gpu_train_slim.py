@@ -234,7 +234,7 @@ def train():
 
         for epoch in range(FLAGS.max_epochs):
 
-            if FLGAS.is_train:
+            if FLAGS.is_train:
                 print('This is the {} epoch of training'.format(epoch))
                 train_bar.start()
                 start_time = time.time()
