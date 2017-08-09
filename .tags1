@@ -4,13 +4,32 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-tf	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import tensorflow as tf$/;"	namespace	line:1
-ult	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import preprocessing as ult$/;"	namespace	line:2
-ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:3
-FLAGS	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:6
-distort_color	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_color(image, thread_id=0, scope=None):$/;"	function	line:15
-distort_image	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_image(image, height, width, bbox, thread_id=0, scope=None):$/;"	function	line:49
-decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def decode_jpeg(image_buffer, scope=None):$/;"	function	line:130
-parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def parse_example_proto(example_serialized):$/;"	function	line:154
-traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:232
-main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:302
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
+datetime	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from datetime import datetime$/;"	namespace	line:5
+os	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import os.path$/;"	namespace	line:6
+path	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import os.path$/;"	namespace	line:6
+re	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import re$/;"	namespace	line:7
+time	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import time$/;"	namespace	line:8
+progressbar	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import progressbar$/;"	namespace	line:9
+np	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import numpy as np$/;"	namespace	line:11
+xrange	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:12
+pylint	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:12
+disable	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:12
+redefined	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:12
+builtin	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from six.moves import xrange  # pylint: disable=redefined-builtin$/;"	namespace	line:12
+tf	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import tensorflow as tf$/;"	namespace	line:13
+tensorflow	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+contrib	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+slim	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+model_wrapper_slim	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import model_wrapper_slim$/;"	namespace	line:16
+sys	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^import sys$/;"	namespace	line:17
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:19
+RMSPROP_DECAY	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_DECAY = 0.9                # Decay term for RMSProp.$/;"	variable	line:66
+RMSPROP_MOMENTUM	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_MOMENTUM = 0.9             # Momentum in RMSProp.$/;"	variable	line:67
+RMSPROP_EPSILON	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_EPSILON = 1.0              # Epsilon term for RMSProp.$/;"	variable	line:68
+tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:72
+average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:102
+train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:124
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:242

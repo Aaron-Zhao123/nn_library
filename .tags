@@ -126,6 +126,25 @@ contrib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import
 slim	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
 vgg_arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_arg_scope(weight_decay=0.0005):$/;"	function	line:16
 vgg_16	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_16(inputs,$/;"	function	line:31
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import absolute_import$/;"	namespace	line:17
+division	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import division$/;"	namespace	line:18
+print_function	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import print_function$/;"	namespace	line:19
+Dataset	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from dataset import Dataset$/;"	namespace	line:20
+ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^class ImagenetData(Dataset):$/;"	class	line:23
+__init__	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def __init__(self, subset):$/;"	member	line:26	class:ImagenetData
+num_classes	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def num_classes(self):$/;"	member	line:29	class:ImagenetData
+num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def num_examples_per_epoch(self):$/;"	member	line:33	class:ImagenetData
+download_message	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def download_message(self):$/;"	member	line:41	class:ImagenetData
+tf	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import tensorflow as tf$/;"	namespace	line:1
+ult	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import preprocessing as ult$/;"	namespace	line:2
+ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:3
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:6
+distort_color	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_color(image, thread_id=0, scope=None):$/;"	function	line:15
+distort_image	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_image(image, height, width, bbox, thread_id=0, scope=None):$/;"	function	line:49
+decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def decode_jpeg(image_buffer, scope=None):$/;"	function	line:130
+parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def parse_example_proto(example_serialized):$/;"	function	line:154
+traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:232
+main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:302
 absolute_import	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
 division	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import division$/;"	namespace	line:2
 print_function	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
@@ -145,8 +164,8 @@ num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim
 inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def inference(images, num_classes, for_training=False, restore_logits=True,$/;"	function	line:27
 loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:62
 distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:85
-_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:106
-_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:119
+_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:107
+_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:120
 absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
 division	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import division$/;"	namespace	line:2
 print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
@@ -175,23 +194,4 @@ RMSPROP_EPSILON	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPR
 tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:72
 average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:102
 train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:124
-main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:241
-absolute_import	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import absolute_import$/;"	namespace	line:17
-division	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import division$/;"	namespace	line:18
-print_function	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import print_function$/;"	namespace	line:19
-Dataset	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from dataset import Dataset$/;"	namespace	line:20
-ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^class ImagenetData(Dataset):$/;"	class	line:23
-__init__	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def __init__(self, subset):$/;"	member	line:26	class:ImagenetData
-num_classes	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def num_classes(self):$/;"	member	line:29	class:ImagenetData
-num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def num_examples_per_epoch(self):$/;"	member	line:33	class:ImagenetData
-download_message	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def download_message(self):$/;"	member	line:41	class:ImagenetData
-tf	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import tensorflow as tf$/;"	namespace	line:1
-ult	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import preprocessing as ult$/;"	namespace	line:2
-ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:3
-FLAGS	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:6
-distort_color	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_color(image, thread_id=0, scope=None):$/;"	function	line:15
-distort_image	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def distort_image(image, height, width, bbox, thread_id=0, scope=None):$/;"	function	line:49
-decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def decode_jpeg(image_buffer, scope=None):$/;"	function	line:130
-parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def parse_example_proto(example_serialized):$/;"	function	line:154
-traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:232
-main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:302
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:242
