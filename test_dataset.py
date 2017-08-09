@@ -213,8 +213,8 @@ def traverse_train():
         example_serialized)
     image = decode_jpeg(image_buffer)
 
-    height = FLAGS.image_size
-    width = FLAGS.image_size
+    height = 224
+    width = 224 
     image = distort_image(image, height, width, bbox)
     init = tf.global_variables_initializer()
 
