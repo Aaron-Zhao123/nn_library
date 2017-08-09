@@ -1,5 +1,5 @@
 import tensorflow as tf
-import preprocess_utility as ult
+import preprocessing as ult
 from imagenet_data import ImagenetData
 
 FLAGS = tf.app.flags.FLAGS
