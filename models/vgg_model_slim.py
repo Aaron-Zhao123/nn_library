@@ -11,6 +11,7 @@ from tensorflow.python.ops import array_ops
 from tensorflow.python.ops import init_ops
 from tensorflow.python.ops import nn_ops
 from tensorflow.python.ops import variable_scope
+import tensorflow.contrib.slim as slim
 
 def vgg_arg_scope(weight_decay=0.0005):
     """Defines the VGG arg scope.
@@ -20,11 +21,11 @@ def vgg_arg_scope(weight_decay=0.0005):
     An arg_scope.
     """
     with arg_scope(
-            [layers.conv2d, layers_lib.fully_connected],
+            [slim.conv2d, slim.fully_connected],
             activation_fn=nn_ops.relu,
             weights_regularizer=regularizers.l2_regularizer(weight_decay),
             biases_initializer=init_ops.zeros_initializer()):
-        with arg_scope([layers.conv2d], padding='SAME') as arg_sc:
+        with arg_scope([slim.conv2d], padding='SAME') as arg_sc:
             return arg_sc
 
 def vgg_16(inputs,
@@ -52,27 +53,27 @@ def vgg_16(inputs,
         end_points_collection = sc.original_name_scope + '_end_points'
     # Collect outputs for conv2d, fully_connected and max_pool2d.
     with arg_scope(
-            [layers.conv2d, layers_lib.fully_connected, layers_lib.max_pool2d],
+            [slim.conv2d, slim.fully_connected, slim.max_pool2d],
             outputs_collections=end_points_collection):
-        net = layers_lib.repeat(
-            inputs, 2, layers.conv2d, 64, [3, 3], scope='conv1')
-        net = layers_lib.max_pool2d(net, [2, 2], scope='pool1')
-        net = layers_lib.repeat(net, 2, layers.conv2d, 128, [3, 3], scope='conv2')
-        net = layers_lib.max_pool2d(net, [2, 2], scope='pool2')
-        net = layers_lib.repeat(net, 3, layers.conv2d, 256, [3, 3], scope='conv3')
-        net = layers_lib.max_pool2d(net, [2, 2], scope='pool3')
-        net = layers_lib.repeat(net, 3, layers.conv2d, 512, [3, 3], scope='conv4')
-        net = layers_lib.max_pool2d(net, [2, 2], scope='pool4')
-        net = layers_lib.repeat(net, 3, layers.conv2d, 512, [3, 3], scope='conv5')
-        net = layers_lib.max_pool2d(net, [2, 2], scope='pool5')
+        net = slim.repeat(
+            inputs, 2, slim.conv2d, 64, [3, 3], scope='conv1')
+        net = slim.max_pool2d(net, [2, 2], scope='pool1')
+        net = slim.repeat(net, 2, slim.conv2d, 128, [3, 3], scope='conv2')
+        net = slim.max_pool2d(net, [2, 2], scope='pool2')
+        net = slim.repeat(net, 3, slim.conv2d, 256, [3, 3], scope='conv3')
+        net = slim.max_pool2d(net, [2, 2], scope='pool3')
+        net = slim.repeat(net, 3, slim.conv2d, 512, [3, 3], scope='conv4')
+        net = slim.max_pool2d(net, [2, 2], scope='pool4')
+        net = slim.repeat(net, 3, slim.conv2d, 512, [3, 3], scope='conv5')
+        net = slim.max_pool2d(net, [2, 2], scope='pool5')
         # Use conv2d instead of fully_connected layers.
-        net = layers.conv2d(net, 4096, [7, 7], padding='VALID', scope='fc6')
-        net = layers_lib.dropout(
+        net = slim.conv2d(net, 4096, [7, 7], padding='VALID', scope='fc6')
+        net = slim.dropout(
             net, dropout_keep_prob, is_training=is_training, scope='dropout6')
-        net = layers.conv2d(net, 4096, [1, 1], scope='fc7')
-        net = layers_lib.dropout(
+        net = slim.conv2d(net, 4096, [1, 1], scope='fc7')
+        net = slim.dropout(
             net, dropout_keep_prob, is_training=is_training, scope='dropout7')
-        net = layers.conv2d(
+        net = slim.conv2d(
             net,
             num_classes, [1, 1],
             activation_fn=None,
