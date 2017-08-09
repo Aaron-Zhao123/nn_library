@@ -147,10 +147,10 @@ def train():
         images_train, labels_train, images_test, labels_test = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
 
         num_classes = 1001
-        images_split = tf.split(axis=0,
+        images_splits = tf.split(axis=0,
                                 num_or_size_splits=FLAGS.num_gpus,
                                 value=images_train)
-        labels_split = tf.split(axis=0,
+        labels_splits = tf.split(axis=0,
                                 num_or_size_splits=FLAGS.num_gpus,
                                 value=images_test)
         print(images_split)
@@ -162,8 +162,8 @@ def train():
                 with tf.name_scope('%s_%d' % ('tower',i)) as scope:
                     with slim.arg_scope([slim.variable], device = '/cpu:0'):
                         loss = tower_loss(
-                                images_split,
-                                labels_split,
+                                images_splits[i],
+                                labels_splits[i],
                                 num_classes,
                                 FLAGS.is_train,
                                 FLAGS.is_load,
