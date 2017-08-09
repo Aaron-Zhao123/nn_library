@@ -248,6 +248,7 @@ def traverse_train():
 
     image = decode_jpeg(image_buffer)
 
+    images_and_labels = []
     height = 224
     width = 224
     image = distort_image(image, height, width, bbox)
