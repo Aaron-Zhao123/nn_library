@@ -178,7 +178,7 @@ train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;
 main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:241
 tf	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import tensorflow as tf$/;"	namespace	line:1
 ult	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import preprocessing as ult$/;"	namespace	line:2
-ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^from datasets import ImagenetData$/;"	namespace	line:3
+ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:3
 FLAGS	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:5
 traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:17
 main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:78

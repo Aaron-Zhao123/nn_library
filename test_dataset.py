@@ -1,6 +1,6 @@
 import tensorflow as tf
 import preprocessing as ult
-from datasets import ImagenetData
+from datasets.imagenet_dataset import ImagenetData
 
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('subset', 'train',
