@@ -263,7 +263,7 @@ def traverse_train():
     depth = 3
 
     images = tf.cast(images, tf.float32)
-    images = tf.reshape(images, shape=[batch_size, height, width, depth])
+    images = tf.reshape(images, shape=[32, height, width, depth])
 
 
 
