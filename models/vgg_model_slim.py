@@ -56,6 +56,7 @@ def vgg_16(inputs,
             [slim.conv2d, slim.fully_connected, slim.max_pool2d],
             outputs_collections=end_points_collection):
         net = inputs
+        print(net)
         net = slim.repeat(
             net, 2, slim.conv2d, 64, [3, 3], scope='conv1')
         net = slim.max_pool2d(net, [2, 2], scope='pool1')
