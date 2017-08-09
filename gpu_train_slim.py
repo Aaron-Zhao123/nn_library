@@ -84,18 +84,18 @@ def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variab
 
     split_batch_size = images.get_shape().as_list()[0]
     model_wrapper_slim.loss(logits, labels, batch_size = split_batch_size)
-    losses = slim.losses.get_total_loss()
+    losses = slim.losses.get_total_loss(add_regularization_losses=True)
     # losses = tf.get_collection(slim.losses.LOSSES_COLLECTION, scope)
 
-    regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
-    total_loss = tf.add_n(losses + regularization_losses, name='total_loss')
-
-    loss_averages = tf.train.ExponentialMovingAverage(0.9, name='avg')
-    loss_averages_op = loss_averages.apply(losses + [total_loss])
-
-    with tf.control_dependencies([loss_averages_op]):
-        total_loss = tf.identity(total_loss)
-    return total_loss
+    # regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+    # total_loss = tf.add_n(losses + regularization_losses, name='total_loss')
+    #
+    # loss_averages = tf.train.ExponentialMovingAverage(0.9, name='avg')
+    # loss_averages_op = loss_averages.apply(losses + [total_loss])
+    #
+    # with tf.control_dependencies([loss_averages_op]):
+    #     total_loss = tf.identity(total_loss)
+    return losses 
 
 def average_gradients(tower_grads):
     average_grads = []
