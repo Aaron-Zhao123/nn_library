@@ -41,7 +41,6 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
                         weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
                         weights_regularizer=slim.l2_regularizer(0.0005)):
         with slim.arg_scope([slim.conv2d],
-                        stride=1, padding='SAME',
                         normalizer_params=batch_norm_params):
             logits, endpoints = vgg_model_slim.vgg_16(
             images,
