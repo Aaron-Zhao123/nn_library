@@ -46,7 +46,7 @@ tf.app.flags.DEFINE_string('model_name', 'vggnet',
                             """whether to save into a pickle file""")
 
 
-tf.app.flags.DEFINE_float('initial_learning_rate', 0.1,
+tf.app.flags.DEFINE_float('initial_learning_rate', 0.5,
                           """Initial learning rate.""")
 tf.app.flags.DEFINE_float('num_epochs_per_decay', 5.0,
                           """Epochs after which learning rate decays.""")
@@ -240,7 +240,7 @@ def train():
                 start_time = time.time()
                 step = 0
 
-            while (step <= train_epoch_size and FLAGS.is_train):
+            while step <= train_epoch_size and FLAGS.is_train:
                 _, loss_value = sess.run([train_op, loss])
                 step += FLAGS.batch_size * FLAGS.num_gpus
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
