@@ -17,15 +17,6 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-import tensorflow as tf
-
-FLAGS = tf.app.flags.FLAGS
-
-# Basic model parameters.
-tf.app.flags.DEFINE_string('data_dir', '/tmp/mydata',
-                           """Path to the processed data, i.e. """
-                           """TFRecord of Example protos.""")
-
 from dataset import Dataset
 
 

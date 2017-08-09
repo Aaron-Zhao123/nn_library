@@ -176,20 +176,20 @@ tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_
 average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:102
 train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:124
 main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:241
-tf	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import tensorflow as tf$/;"	namespace	line:1
-ult	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import preprocessing as ult$/;"	namespace	line:2
-ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:3
-FLAGS	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:5
-traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:17
-main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:78
 absolute_import	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import absolute_import$/;"	namespace	line:17
 division	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import division$/;"	namespace	line:18
 print_function	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from __future__ import print_function$/;"	namespace	line:19
-tf	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^import tensorflow as tf$/;"	namespace	line:20
-FLAGS	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:22
-Dataset	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from dataset import Dataset$/;"	namespace	line:29
-ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^class ImagenetData(Dataset):$/;"	class	line:32
-__init__	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def __init__(self, subset):$/;"	member	line:35	class:ImagenetData
-num_classes	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def num_classes(self):$/;"	member	line:38	class:ImagenetData
-num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def num_examples_per_epoch(self):$/;"	member	line:42	class:ImagenetData
-download_message	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def download_message(self):$/;"	member	line:50	class:ImagenetData
+Dataset	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^from dataset import Dataset$/;"	namespace	line:20
+ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^class ImagenetData(Dataset):$/;"	class	line:23
+__init__	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def __init__(self, subset):$/;"	member	line:26	class:ImagenetData
+num_classes	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def num_classes(self):$/;"	member	line:29	class:ImagenetData
+num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def num_examples_per_epoch(self):$/;"	member	line:33	class:ImagenetData
+download_message	/Users/aaron/Projects/NN_models/NN_lib/datasets/imagenet_dataset.py	/^  def download_message(self):$/;"	member	line:41	class:ImagenetData
+tf	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import tensorflow as tf$/;"	namespace	line:1
+ult	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^import preprocessing as ult$/;"	namespace	line:2
+ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:3
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:6
+decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def decode_jpeg(image_buffer, scope=None):$/;"	function	line:16
+parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def parse_example_proto(example_serialized):$/;"	function	line:40
+traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:118
+main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:184
