@@ -169,7 +169,7 @@ BATCHNORM_MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrap
 MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^MOVING_AVERAGE_DECAY = 0.9999$/;"	variable	line:23
 num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^num_examples_per_epoch = 1281167$/;"	variable	line:25
 inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def inference(images, num_classes, for_training=False, restore_logits=True,$/;"	function	line:27
-loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:62
-distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:86
-_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:107
-_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:120
+loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:61
+distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:85
+_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:106
+_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:119
