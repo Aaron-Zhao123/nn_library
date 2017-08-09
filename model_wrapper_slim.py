@@ -74,7 +74,7 @@ def loss(logits, labels, batch_size=None):
     #                                 [batch_size, num_classes],
     #                                 1.0, 0.0)
     # # Cross entropy loss for the main softmax prediction.
-    slim.losses.sparse_softmax_cross_entropy(logits[0],
+    slim.losses.sparse_softmax_cross_entropy(logits,
                                  labels)
     # Cross entropy loss for the auxiliary softmax head.
     # slim.losses.cross_entropy_loss(logits[1],
