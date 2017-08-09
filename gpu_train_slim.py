@@ -221,7 +221,7 @@ def train():
         for step in range(FLAGS.max_steps):
             start_time = time.time()
             _, loss_value = sess.run([train_op, loss])
-            images_value,labels_value = sess.run(images_train,labels_train)
+            images_value,labels_value = sess.run([images_train,labels_train])
             duration = time.time() - start_time
 
             assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
