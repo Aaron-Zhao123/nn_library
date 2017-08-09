@@ -24,7 +24,7 @@ tf.app.flags.DEFINE_string('data_dir', '/tmp',
 tf.app.flags.DEFINE_string('train_dir', '/tmp',
                             """Directory where to write event logs """
                             """and checkpoint.""")
-tf.app.flags.DEFINE_integer('max_epochs', 90,
+tf.app.flags.DEFINE_integer('max_epochs', 40,
                             """Number of batches to run.""")
 tf.app.flags.DEFINE_integer('num_gpus', 1,
                             """How many GPUs to use.""")
@@ -219,23 +219,45 @@ def train():
         # Start the queue runners.
         tf.train.start_queue_runners(sess=sess)
 
-        for step in range(FLAGS.max_steps):
-            start_time = time.time()
-            _, loss_value = sess.run([train_op, loss])
-            images_value,labels_value = sess.run([images_train,labels_train])
-            duration = time.time() - start_time
 
-            assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
-            if step % 10 == 0:
-                examples_per_sec = FLAGS.batch_size / float(duration)
-                format_str = ('%s: step %d, loss = %.2f (%.1f examples/sec; %.3f '
-                'sec/batch)')
-                print(format_str % (datetime.now(), step, loss_value,
+        train_epoch_size = 1281167
+        # train_epoch_size = 128
+        val_epoch_size = 50000
+
+        train_bar = progressbar.ProgressBar(maxval = train_epoch_size,
+            widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+        val_bar = progressbar.ProgressBar(maxval = val_epoch_size,
+            widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+
+        top1_acc_vals = []
+        top5_acc_vals = []
+
+        for epoch in range(FLAGS.max_epochs):
+
+            if FLGAS.is_train:
+                print('This is the {} epoch of training'.format(epoch))
+                train_bar.start()
+                start_time = time.time()
+                step = 0
+
+            while (step <= train_epoch_size and FLAGS.is_train):
+                _, loss_value = sess.run([train_op, loss])
+                step += FLAGS.batch_size * FLAGS.num_gpus
+                assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
+                if step % 100 == 0:
+                  train_bar.update(step)
+
+            if FLAGS.is_train:
+                duration = time.time() - start_time
+                train_bar.finish()
+
+                examples_per_sec = train_epoch_size / float(duration)
+                format_str = ('%s: epoch %d, loss = %.2f (%.1f examples/sec; %.3f '
+                'sec/epoch)')
+                print(format_str % (datetime.now(), epoch, loss_value,
                     examples_per_sec, duration))
-                print(sum(labels_value), images_value)
 
-            # Save the model checkpoint periodically.
-            if step % 5000 == 0 or (step + 1) == FLAGS.max_steps:
+                # Save the model checkpoint periodically at every epoch
                 checkpoint_path = os.path.join(FLAGS.train_dir, 'model.ckpt')
                 saver.save(sess, checkpoint_path, global_step=step)
 
