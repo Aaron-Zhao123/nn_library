@@ -28,6 +28,8 @@ tf.app.flags.DEFINE_integer('max_epochs', 90,
                             """Number of batches to run.""")
 tf.app.flags.DEFINE_integer('num_gpus', 1,
                             """How many GPUs to use.""")
+tf.app.flags.DEFINE_integer('max_steps', 1000,
+                            """How many GPUs to use.""")
 tf.app.flags.DEFINE_boolean('log_device_placement', False,
                             """Whether to log device placement.""")
 tf.app.flags.DEFINE_string('subset', 'train',
