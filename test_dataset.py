@@ -260,8 +260,6 @@ def traverse_train():
         capacity=2 * 2 * 32)
 
     # Reshape images into these desired dimensions.
-    height = FLAGS.image_size
-    width = FLAGS.image_size
     depth = 3
 
     images = tf.cast(images, tf.float32)

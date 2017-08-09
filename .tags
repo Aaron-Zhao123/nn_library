@@ -194,4 +194,4 @@ distort_image	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def disto
 decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def decode_jpeg(image_buffer, scope=None):$/;"	function	line:130
 parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def parse_example_proto(example_serialized):$/;"	function	line:154
 traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:232
-main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:321
+main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:319
