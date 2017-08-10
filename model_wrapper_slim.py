@@ -60,9 +60,12 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
 
 
 def loss(logits, labels, batch_size=None):
-    print(labels)
     if not batch_size:
         batch_size = FLAGS.batch_size
+    loss = tf.losses.softmax_cross_entropy(logits = logits, labels = labels)
+    loss = tf.reduce_mean(loss)
+    tf.add_to_collection('losses', loss)
+    return loss
 
     # Reshape the labels into a dense Tensor of
     # shape [FLAGS.batch_size, num_classes].
@@ -74,8 +77,8 @@ def loss(logits, labels, batch_size=None):
     #                                 [batch_size, num_classes],
     #                                 1.0, 0.0)
     # # Cross entropy loss for the main softmax prediction.
-    slim.losses.sparse_softmax_cross_entropy(logits,
-                                 labels)
+    # slim.losses.sparse_softmax_cross_entropy(logits,
+    #                              labels)
     # Cross entropy loss for the auxiliary softmax head.
     # slim.losses.cross_entropy_loss(logits[1],
     #                              dense_labels,

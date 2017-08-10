@@ -85,19 +85,19 @@ def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variab
                 scope = scope)
 
     split_batch_size = images.get_shape().as_list()[0]
-    model_wrapper_slim.loss(logits, labels, batch_size = split_batch_size)
-    losses = slim.losses.get_total_loss(add_regularization_losses=True)
-    # losses = tf.get_collection(slim.losses.LOSSES_COLLECTION, scope)
+    _ = model_wrapper_slim.loss(logits, labels, batch_size = split_batch_size)
+    # losses = slim.losses.get_total_loss(add_regularization_losses=True)
+    losses = tf.get_collection('losses', scope)
 
-    # regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
-    # total_loss = tf.add_n(losses + regularization_losses, name='total_loss')
+    regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+    total_loss = tf.add_n(losses + regularization_losses, name='total_loss')
     #
     # loss_averages = tf.train.ExponentialMovingAverage(0.9, name='avg')
     # loss_averages_op = loss_averages.apply(losses + [total_loss])
     #
     # with tf.control_dependencies([loss_averages_op]):
     #     total_loss = tf.identity(total_loss)
-    return losses
+    return total_loss
 
 def average_gradients(tower_grads):
     average_grads = []
@@ -245,7 +245,8 @@ def train():
                 step += FLAGS.batch_size * FLAGS.num_gpus
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
                 if step % 100 == 0:
-                  train_bar.update(step)
+                    print(loss_value)
+                    train_bar.update(step)
 
             if FLAGS.is_train:
                 duration = time.time() - start_time
