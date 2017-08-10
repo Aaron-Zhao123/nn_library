@@ -48,7 +48,7 @@ tf.app.flags.DEFINE_string('model_name', 'vggnet',
 
 tf.app.flags.DEFINE_float('initial_learning_rate', 0.5,
                           """Initial learning rate.""")
-tf.app.flags.DEFINE_float('num_epochs_per_decay', 5.0,
+tf.app.flags.DEFINE_float('num_epochs_per_decay', 20.0,
                           """Epochs after which learning rate decays.""")
 tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.16,
                           """Learning rate decay factor.""")
@@ -113,12 +113,12 @@ def average_gradients(tower_grads):
         # Average over the 'tower' dimension.
         grad = tf.concat(axis=0, values=grads)
         grad = tf.reduce_mean(grad, 0)
-    # Keep in mind that the Variables are redundant because they are shared
-    # across towers. So .. we will just return the first tower's pointer to
-    # the Variable.
-    v = grad_and_vars[0][1]
-    grad_and_var = (grad, v)
-    average_grads.append(grad_and_var)
+        # Keep in mind that the Variables are redundant because they are shared
+        # across towers. So .. we will just return the first tower's pointer to
+        # the Variable.
+        v = grad_and_vars[0][1]
+        grad_and_var = (grad, v)
+        average_grads.append(grad_and_var)
     return average_grads
 
 def train():
