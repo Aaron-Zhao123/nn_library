@@ -45,7 +45,7 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
                         normalizer_params=batch_norm_params):
             logits, endpoints = vgg_model_slim.vgg_16(
             images,
-            dropout_keep_prob=0.5,
+            dropout_keep_prob=0.8,
             num_classes=num_classes,
             is_training=for_training,
             scope=scope)
