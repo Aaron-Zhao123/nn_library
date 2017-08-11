@@ -184,9 +184,9 @@ def train():
                     grads = opt.compute_gradients(loss)
                     tower_grads.append(grads)
 
-        grads = average_gradients(tower_grads)
+        tw_grads = average_gradients(tower_grads)
 
-        apply_gradient_op = opt.apply_gradients(grads, global_step=global_step)
+        apply_gradient_op = opt.apply_gradients(tw_grads, global_step=global_step)
 
         variable_averages = tf.train.ExponentialMovingAverage(
             model_wrapper_slim.MOVING_AVERAGE_DECAY, global_step)
