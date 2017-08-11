@@ -139,10 +139,10 @@ def train():
                                     FLAGS.learning_rate_decay_factor,
                                     staircase=True)
         # Create an optimizer that performs gradient descent.
-        opt = tf.train.RMSPropOptimizer(lr, RMSPROP_DECAY,
-                                    momentum=RMSPROP_MOMENTUM,
-                                    epsilon=RMSPROP_EPSILON)
-        # opt = tf.train.GradientDescentOptimizer(lr)
+        # opt = tf.train.RMSPropOptimizer(lr, RMSPROP_DECAY,
+        #                             momentum=RMSPROP_MOMENTUM,
+        #                             epsilon=RMSPROP_EPSILON)
+        opt = tf.train.GradientDescentOptimizer(lr)
         assert FLAGS.batch_size % FLAGS.num_gpus == 0, (
         'Batch size must be divisible by number of GPUs')
 
