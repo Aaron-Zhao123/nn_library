@@ -46,7 +46,7 @@ tf.app.flags.DEFINE_string('model_name', 'vggnet',
                             """whether to save into a pickle file""")
 
 
-tf.app.flags.DEFINE_float('initial_learning_rate', 0.5,
+tf.app.flags.DEFINE_float('initial_learning_rate', 0.1,
                           """Initial learning rate.""")
 tf.app.flags.DEFINE_float('num_epochs_per_decay', 10.0,
                           """Epochs after which learning rate decays.""")
