@@ -250,7 +250,7 @@ def train():
                 if step % 100 == 0:
                     print(loss_value)
                     print(lr_value)
-                    print(grads_value)
+                    # print(grads_value)
                     train_bar.update(step)
 
             if FLAGS.is_train:
