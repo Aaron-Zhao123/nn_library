@@ -131,8 +131,8 @@ def train():
 
         # decay the learning rate
         num_batches_per_epoch = (model_wrapper_slim.num_examples_per_epoch /
-                             FLAGS.batch_size)
-        decay_steps = int(num_batches_per_epoch/FLAGS.batch_size)
+                             (FLAGS.batch_size * FLAGS.num_gpus))
+        decay_steps = int(num_batches_per_epoch * FLAGS.num_epochs_per_decay)
         lr = tf.train.exponential_decay(FLAGS.initial_learning_rate,
                                     global_step,
                                     decay_steps,
