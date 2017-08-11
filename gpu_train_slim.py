@@ -139,9 +139,10 @@ def train():
                                     FLAGS.learning_rate_decay_factor,
                                     staircase=True)
         # Create an optimizer that performs gradient descent.
-        opt = tf.train.RMSPropOptimizer(lr, RMSPROP_DECAY,
-                                    momentum=RMSPROP_MOMENTUM,
-                                    epsilon=RMSPROP_EPSILON)
+        # opt = tf.train.RMSPropOptimizer(lr, RMSPROP_DECAY,
+        #                             momentum=RMSPROP_MOMENTUM,
+        #                             epsilon=RMSPROP_EPSILON)
+        opt = tf.train.GradientDescentOptimizer(lr)
         assert FLAGS.batch_size % FLAGS.num_gpus == 0, (
         'Batch size must be divisible by number of GPUs')
 
@@ -246,7 +247,7 @@ def train():
                 step += FLAGS.batch_size * FLAGS.num_gpus
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
                 if step % 100 == 0:
-                    # print(loss_value)
+                    print(loss_value)
                     train_bar.update(step)
 
             if FLAGS.is_train:
