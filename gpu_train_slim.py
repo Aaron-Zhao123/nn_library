@@ -159,8 +159,8 @@ def train():
         labels_splits = tf.split(axis=0,
                                 num_or_size_splits=FLAGS.num_gpus,
                                 value=labels_train)
-        # tower_grads = []
-        tower_losses = []
+        tower_grads = []
+        # tower_losses = []
         reuse_variables = None
 
         for i in range(FLAGS.num_gpus):
@@ -184,26 +184,26 @@ def train():
                     # other stats from the other towers without significant detriment.
                     # batchnorm_updates = tf.get_collection(tf.GraphKeys.UPDATE_OPS,
                     #                                         scope)
-                    # grads = opt.compute_gradients(loss)
-                    # tower_grads.append(grads)
+                    grads = opt.compute_gradients(loss)
+                    tower_grads.append(grads)
 
-        # tw_grads = average_gradients(tower_grads)
-        # grad_fetch = [grad for (grad,var) in tw_grads]
-        #
-        # apply_gradient_op = opt.apply_gradients(tw_grads, global_step=global_step)
-        #
-        # variable_averages = tf.train.ExponentialMovingAverage(
-        #     model_wrapper_slim.MOVING_AVERAGE_DECAY, global_step)
-        # variables_to_average = (tf.trainable_variables() +
-        #                     tf.moving_average_variables())
-        # variables_averages_op = variable_averages.apply(variables_to_average)
-        #
-        # batchnorm_updates_op = tf.group(*batchnorm_updates)
-        #
-        # train_op = tf.group(apply_gradient_op, variables_averages_op,
-        #                 batchnorm_updates_op)
-        total_loss = tf.reduce_mean(tower_losses, 0)
-        train_op = slim.learning.create_train_op(total_loss, opt, clip_gradient_norm=3)
+        tw_grads = average_gradients(tower_grads)
+        grad_fetch = [grad for (grad,var) in tw_grads]
+
+        apply_gradient_op = opt.apply_gradients(tw_grads, global_step=global_step)
+
+        variable_averages = tf.train.ExponentialMovingAverage(
+            model_wrapper_slim.MOVING_AVERAGE_DECAY, global_step)
+        variables_to_average = (tf.trainable_variables() +
+                            tf.moving_average_variables())
+        variables_averages_op = variable_averages.apply(variables_to_average)
+
+        batchnorm_updates_op = tf.group(*batchnorm_updates)
+
+        train_op = tf.group(apply_gradient_op, variables_averages_op,
+                        batchnorm_updates_op)
+        # total_loss = tf.reduce_mean(tower_losses, 0)
+        # train_op = slim.learning.create_train_op(total_loss, opt, clip_gradient_norm=3)
 
         saver = tf.train.Saver(tf.global_variables())
 
