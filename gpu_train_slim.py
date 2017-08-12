@@ -46,11 +46,11 @@ tf.app.flags.DEFINE_string('model_name', 'vggnet',
                             """whether to save into a pickle file""")
 
 
-tf.app.flags.DEFINE_float('initial_learning_rate', 0.001,
+tf.app.flags.DEFINE_float('initial_learning_rate', 0.1,
                           """Initial learning rate.""")
 tf.app.flags.DEFINE_float('num_epochs_per_decay', 1.0,
                           """Epochs after which learning rate decays.""")
-tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.5,
+tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.7,
                           """Learning rate decay factor.""")
 
 # Flags governing the type of training.
@@ -139,11 +139,11 @@ def train():
                                     FLAGS.learning_rate_decay_factor,
                                     staircase=True)
         # Create an optimizer that performs gradient descent.
-        # opt = tf.train.RMSPropOptimizer(lr, RMSPROP_DECAY,
-        #                             momentum=RMSPROP_MOMENTUM,
-        #                             epsilon=RMSPROP_EPSILON)
+        opt = tf.train.RMSPropOptimizer(lr, RMSPROP_DECAY,
+                                    momentum=RMSPROP_MOMENTUM,
+                                    epsilon=RMSPROP_EPSILON)
         # opt = tf.train.GradientDescentOptimizer(lr)
-        opt = tf.train.AdamOptimizer(lr)
+        # opt = tf.train.AdamOptimizer(lr)
         assert FLAGS.batch_size % FLAGS.num_gpus == 0, (
         'Batch size must be divisible by number of GPUs')
 
