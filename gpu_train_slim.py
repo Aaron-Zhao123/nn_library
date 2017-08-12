@@ -177,7 +177,6 @@ def train():
                                 reuse_variables = reuse_variables)
                     #reuse for the second tower
                     reuse_variables = True
-                    tower_losses.append(loss)
                     # Retain the Batch Normalization updates operations only from the
                     # final tower. Ideally, we should grab the updates from all towers
                     # but these stats accumulate extremely fast so we can ignore the
