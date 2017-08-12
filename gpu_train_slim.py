@@ -48,9 +48,9 @@ tf.app.flags.DEFINE_string('model_name', 'vggnet',
 
 tf.app.flags.DEFINE_float('initial_learning_rate', 0.001,
                           """Initial learning rate.""")
-tf.app.flags.DEFINE_float('num_epochs_per_decay', 10.0,
+tf.app.flags.DEFINE_float('num_epochs_per_decay', 2.0,
                           """Epochs after which learning rate decays.""")
-tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.16,
+tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.5,
                           """Learning rate decay factor.""")
 
 # Flags governing the type of training.
