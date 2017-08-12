@@ -17,7 +17,7 @@ TOWER_NAME = 'tower'
 
 # Batch normalization. Constant governing the exponential moving average of
 # the 'global' mean and variance for all activations.
-BATCHNORM_MOVING_AVERAGE_DECAY = 0.9997
+BATCHNORM_MOVING_AVERAGE_DECAY = 0.9
 
 # The decay to use for the moving average.
 MOVING_AVERAGE_DECAY = 0.9999
