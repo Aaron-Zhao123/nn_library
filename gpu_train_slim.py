@@ -251,7 +251,7 @@ def train():
                 if step % 100 == 0:
                     # print(grads_value)
                     with open("loss.txt", "a") as f:
-                        f.write("{}\n".format()loss_value)
+                        f.write("{}\n".format(loss_value))
 
                     train_bar.update(step)
 
