@@ -127,7 +127,7 @@ def train():
 
         global_step = tf.get_variable(
         'global_step', [],
-        initializer=tf.constant_initializer(0), trainable=False)
+        initializer=tf.constant_initializer(0), trainable=False, dtype=tf.int32)
 
         # decay the learning rate
         num_batches_per_epoch = (model_wrapper_slim.num_examples_per_epoch /
