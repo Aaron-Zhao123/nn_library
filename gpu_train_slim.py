@@ -203,7 +203,7 @@ def train():
         # train_op = tf.group(apply_gradient_op, variables_averages_op,
         #                 batchnorm_updates_op)
         total_loss = tf.reduce_mean(tower_losses, 0)
-        train_op = slim.learning.create_train_op(total_loss, opt)
+        train_op = slim.learning.create_train_op(total_loss, opt, clip_gradient_norm=3)
 
         saver = tf.train.Saver(tf.global_variables())
 
