@@ -48,7 +48,7 @@ tf.app.flags.DEFINE_string('model_name', 'vggnet',
 
 tf.app.flags.DEFINE_float('initial_learning_rate', 0.001,
                           """Initial learning rate.""")
-tf.app.flags.DEFINE_float('num_epochs_per_decay', 2.0,
+tf.app.flags.DEFINE_float('num_epochs_per_decay', 1.0,
                           """Epochs after which learning rate decays.""")
 tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.5,
                           """Learning rate decay factor.""")
@@ -249,8 +249,6 @@ def train():
                 step += FLAGS.batch_size * FLAGS.num_gpus
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
                 if step % 100 == 0:
-                    print(loss_value)
-                    print(lr_value)
                     # print(grads_value)
                     train_bar.update(step)
 
@@ -261,6 +259,7 @@ def train():
                 examples_per_sec = train_epoch_size / float(duration)
                 format_str = ('%s: epoch %d, loss = %.2f (%.1f examples/sec; %.3f '
                 'sec/epoch)')
+                print(lr_value)
                 print(format_str % (datetime.now(), epoch, loss_value,
                     examples_per_sec, duration))
 
