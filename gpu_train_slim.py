@@ -249,7 +249,7 @@ def train():
                 step = 0
 
             while step <= train_epoch_size and FLAGS.is_train:
-                _, loss_value, lr_value, grads_value = sess.run([train_op, loss, lr, grad_fetch])
+                _, loss_value, lr_value = sess.run([train_op, loss, lr])
                 step += FLAGS.batch_size * FLAGS.num_gpus
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
                 if step % 100 == 0:
