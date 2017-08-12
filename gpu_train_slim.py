@@ -48,9 +48,9 @@ tf.app.flags.DEFINE_string('model_name', 'vggnet',
 
 tf.app.flags.DEFINE_float('initial_learning_rate', 0.1,
                           """Initial learning rate.""")
-tf.app.flags.DEFINE_float('num_epochs_per_decay', 1.0,
+tf.app.flags.DEFINE_float('num_epochs_per_decay', 10.0,
                           """Epochs after which learning rate decays.""")
-tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.7,
+tf.app.flags.DEFINE_float('learning_rate_decay_factor', 0.16,
                           """Learning rate decay factor.""")
 
 # Flags governing the type of training.
@@ -250,8 +250,9 @@ def train():
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
                 if step % 100 == 0:
                     # print(grads_value)
-                    print(loss_value)
-                    print(lr_value)
+                    with open("loss.txt", "a") as f:
+                        f.write("{}\n".format()loss_value)
+
                     train_bar.update(step)
 
             if FLAGS.is_train:
