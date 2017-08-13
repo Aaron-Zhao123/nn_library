@@ -84,6 +84,7 @@ def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variab
                 restore_logits=restore_logits,
                 scope = scope)
     split_batch_size = images.get_shape().as_list()[0]
+    print(split_batch_size)
     _ = model_wrapper_slim.loss(logits, labels, batch_size = split_batch_size)
     # losses = slim.losses.get_total_loss(add_regularization_losses=True)
     losses = tf.get_collection('losses', scope)
