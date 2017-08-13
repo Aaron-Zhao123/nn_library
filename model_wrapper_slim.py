@@ -24,7 +24,7 @@ MOVING_AVERAGE_DECAY = 0.9999
 
 num_examples_per_epoch = 1281167
 
-def inference(images, num_classes, for_training=False, restore_logits=True,
+def inference(images, num_classes, is_training=True, restore_logits=True,
               scope=None):
 
     # Parameters for BatchNorm.
@@ -47,9 +47,9 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
                         # normalizer_params=batch_norm_params):
             logits, endpoints = vgg_model_slim.vgg_16(
             images,
-            dropout_keep_prob=0.8,
+            dropout_keep_prob=0.5,
             num_classes=num_classes,
-            is_training=for_training,
+            is_training=is_training,
             scope=scope)
 
     # Add summaries for viewing model statistics on TensorBoard.
@@ -66,7 +66,7 @@ def loss(logits, labels, batch_size=None):
         batch_size = FLAGS.batch_size
     labels = slim.one_hot_encoding(
                 labels, 1001)
-    loss = tf.losses.softmax_cross_entropy(logits = logits, onehot_labels = labels)
+    loss = tf.nn.sparse_softmax_cross_entropy_with_logits(logits = logits, labels = labels)
     loss = tf.reduce_mean(loss)
     tf.add_to_collection('losses', loss)
     return loss

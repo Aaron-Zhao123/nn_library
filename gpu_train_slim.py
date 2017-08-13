@@ -140,7 +140,7 @@ def train():
 
         # decay the learning rate
         num_batches_per_epoch = (model_wrapper_slim.num_examples_per_epoch /
-                             (FLAGS.batch_size * FLAGS.num_gpus))
+                             FLAGS.batch_size)
         decay_steps = int(num_batches_per_epoch * FLAGS.num_epochs_per_decay)
         lr = tf.train.exponential_decay(FLAGS.initial_learning_rate,
                                     global_step,
@@ -214,7 +214,7 @@ def train():
         train_op = apply_gradient_op
         # total_loss = tf.reduce_mean(tower_losses, 0)
         # train_op = slim.learning.create_train_op(total_loss, opt, clip_gradient_norm=3)
-        variables_names = [v.name for v in tf.trainable_variables()]
+        # variables_names = [v.name for v in tf.trainable_variables()]
         # print(variables_names)
         # sys.exit()
 
@@ -263,7 +263,7 @@ def train():
 
             while step <= train_epoch_size and FLAGS.is_train:
                 _, loss_value, lr_value = sess.run([train_op, loss, lr])
-                step += FLAGS.batch_size * FLAGS.num_gpus
+                step += FLAGS.batch_size
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
                 # assert not np.isnan(grads_value).any(), 'Model has NaN gradients'
                 # assert not np.sum(grads_value == None), 'Model has None gradients'
