@@ -206,8 +206,8 @@ def train():
         # total_loss = tf.reduce_mean(tower_losses, 0)
         # train_op = slim.learning.create_train_op(total_loss, opt, clip_gradient_norm=3)
         variables_names = [v.name for v in tf.trainable_variables()]
-        print(variables_names)
-        sys.exit()
+        # print(variables_names)
+        # sys.exit()
 
         saver = tf.train.Saver(tf.global_variables())
 
