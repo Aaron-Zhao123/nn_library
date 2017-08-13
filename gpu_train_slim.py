@@ -107,6 +107,7 @@ def average_gradients(tower_grads):
         #   ((grad0_gpu0, var0_gpu0), ... , (grad0_gpuN, var0_gpuN))
         grads = []
         for g, _ in grad_and_vars:
+            g = tf.clip_by_value(g, -1., 1.)
             # Add 0 dimension to the gradients to represent the tower.
             expanded_g = tf.expand_dims(g, 0)
             # Append on a 'tower' dimension which we will average over below.
@@ -256,8 +257,8 @@ def train():
                 _, loss_value, lr_value, grads_value = sess.run([train_op, loss, lr, grad_fetch])
                 step += FLAGS.batch_size * FLAGS.num_gpus
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
-                assert not np.isnan(grad_value).any(), 'Model has NaN gradients'
-                assert not np.sum(grad_value == None), 'Model has None gradients'
+                assert not np.isnan(grads_value).any(), 'Model has NaN gradients'
+                assert not np.sum(grads_value == None), 'Model has None gradients'
                 if step % 100 == 0:
                     # print(grads_value)
                     # print(lr_value)
