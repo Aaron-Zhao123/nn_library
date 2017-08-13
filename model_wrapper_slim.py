@@ -27,37 +27,13 @@ num_examples_per_epoch = 1281167
 def inference(images, num_classes, is_training=True, restore_logits=True,
               scope=None):
 
-    # Parameters for BatchNorm.
-    batch_norm_params = {
-        # Decay for the moving averages.
-        'is_training':True,
-        'decay': BATCHNORM_MOVING_AVERAGE_DECAY,
-        # epsilon to prevent 0s in variance.
-        'epsilon': 0.001,
-    }
-  # Set weight_decay for weights in Conv and FC layers.
-    with slim.arg_scope([slim.conv2d, slim.fully_connected],
-                        activation_fn=tf.nn.relu,
-                        weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
-                        biases_initializer=tf.zeros_initializer(),
-                        weights_regularizer=slim.l2_regularizer(0.0005)):
-        with slim.arg_scope([slim.conv2d],
-                        stride=1, padding='SAME'):
-                        # stride=1, padding='SAME',
-                        # normalizer_params=batch_norm_params):
-            logits, endpoints = vgg_model_slim.vgg_16(
-            images,
-            dropout_keep_prob=0.5,
-            num_classes=num_classes,
-            is_training=is_training,
-            scope=scope)
-
-    # Add summaries for viewing model statistics on TensorBoard.
-    _activation_summaries(endpoints)
-
-    # Grab the logits associated with the side head. Employed during training.
-    # auxiliary_logits = endpoints['aux_logits']
-    # return logits, auxiliary_logits
+    logits = vgg_model_slim.vgg_16(
+    images,
+    dropout_keep_prob=0.5,
+    num_classes=num_classes,
+    is_training=is_training,
+    scope=scope)
+    
     return logits
 
 
@@ -67,6 +43,7 @@ def loss(logits, labels, batch_size=None):
     # labels = slim.one_hot_encoding(
     #             labels, 1001)
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(logits = logits, labels = labels)
+    loss = tf.reduce_mean(loss)
     tf.add_to_collection('losses', loss)
     return loss
 

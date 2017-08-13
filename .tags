@@ -97,23 +97,6 @@ decode_jpeg	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def decode_
 parse_example_proto	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def parse_example_proto(example_serialized):$/;"	function	line:154
 traverse_train	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def traverse_train():$/;"	function	line:232
 main	/Users/aaron/Projects/NN_models/NN_lib/test_dataset.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:281
-absolute_import	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
-division	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import division$/;"	namespace	line:2
-print_function	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
-layers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib import layers$/;"	namespace	line:5
-arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.framework.python.ops import arg_scope$/;"	namespace	line:6
-layers_lib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import layers as layers_lib$/;"	namespace	line:7
-regularizers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import regularizers$/;"	namespace	line:8
-utils	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import utils$/;"	namespace	line:9
-array_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import array_ops$/;"	namespace	line:10
-init_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import init_ops$/;"	namespace	line:11
-nn_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import nn_ops$/;"	namespace	line:12
-variable_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import variable_scope$/;"	namespace	line:13
-tensorflow	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
-contrib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
-slim	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
-vgg_arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_arg_scope(weight_decay=0.0005):$/;"	function	line:16
-vgg_16	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_16(inputs,$/;"	function	line:31
 absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import absolute_import$/;"	namespace	line:1
 division	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import division$/;"	namespace	line:2
 print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^from __future__ import print_function$/;"	namespace	line:3
@@ -192,7 +175,24 @@ BATCHNORM_MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrap
 MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^MOVING_AVERAGE_DECAY = 0.9999$/;"	variable	line:23
 num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^num_examples_per_epoch = 1281167$/;"	variable	line:25
 inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def inference(images, num_classes, is_training=True, restore_logits=True,$/;"	function	line:27
-loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:64
-distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:91
-_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:112
-_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:125
+loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:40
+distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:68
+_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:89
+_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:102
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
+layers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib import layers$/;"	namespace	line:5
+arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.framework.python.ops import arg_scope$/;"	namespace	line:6
+layers_lib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import layers as layers_lib$/;"	namespace	line:7
+regularizers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import regularizers$/;"	namespace	line:8
+utils	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import utils$/;"	namespace	line:9
+array_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import array_ops$/;"	namespace	line:10
+init_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import init_ops$/;"	namespace	line:11
+nn_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import nn_ops$/;"	namespace	line:12
+variable_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import variable_scope$/;"	namespace	line:13
+tensorflow	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+contrib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+slim	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+vgg_arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_arg_scope(weight_decay=0.0005):$/;"	function	line:16
+vgg_16	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_16(inputs,$/;"	function	line:31
