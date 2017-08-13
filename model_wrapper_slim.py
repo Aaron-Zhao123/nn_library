@@ -64,8 +64,8 @@ def inference(images, num_classes, is_training=True, restore_logits=True,
 def loss(logits, labels, batch_size=None):
     if not batch_size:
         batch_size = FLAGS.batch_size
-    labels = slim.one_hot_encoding(
-                labels, 1001)
+    # labels = slim.one_hot_encoding(
+    #             labels, 1001)
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(logits = logits, labels = labels)
     loss = tf.reduce_mean(loss)
     tf.add_to_collection('losses', loss)
