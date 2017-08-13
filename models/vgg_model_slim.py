@@ -79,7 +79,7 @@ def vgg_16(inputs,
             net = slim.fully_connected(net, 4096, scope='fc7')
             net = slim.dropout(
                 net, dropout_keep_prob, is_training=is_training, scope='dropout7')
-            net = slim.conv2d(
+            net = slim.fully_connected(
                 net,
                 num_classes,
                 activation_fn=None,
