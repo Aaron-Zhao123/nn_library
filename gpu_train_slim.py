@@ -158,8 +158,8 @@ def train():
 
         split_batch_size = int(FLAGS.batch_size / FLAGS.num_gpus)
         total_num_preprocess_threads = FLAGS.num_preprocess_threads * FLAGS.num_gpus
-        images_train, labels_train, images_test, labels_test = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
-        # images_train, labels_train = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
+        # images_train, labels_train, images_test, labels_test = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
+        images_train, labels_train = model_wrapper_slim.distorted_inputs(total_num_preprocess_threads)
 
         num_classes = 1001
         images_splits = tf.split(axis=0,
