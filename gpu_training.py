@@ -117,15 +117,17 @@ def average_gradients(tower_grads):
 
       # Append on a 'tower' dimension which we will average over below.
       grads.append(expanded_g)
-      # Average over the 'tower' dimension.
-      grad = tf.concat(axis=0, values=grads)
-      grad = tf.reduce_mean(grad, 0)
-      # Keep in mind that the Variables are redundant because they are shared
-      # across towers. So .. we will just return the first tower's pointer to
-      # the Variable.
-      v = grad_and_vars[0][1]
-      grad_and_var = (grad, v)
-      average_grads.append(grad_and_var)
+
+    # Average over the 'tower' dimension.
+    grad = tf.concat(axis=0, values=grads)
+    grad = tf.reduce_mean(grad, 0)
+
+    # Keep in mind that the Variables are redundant because they are shared
+    # across towers. So .. we will just return the first tower's pointer to
+    # the Variable.
+    v = grad_and_vars[0][1]
+    grad_and_var = (grad, v)
+    average_grads.append(grad_and_var)
   return average_grads
 
 
@@ -142,7 +144,7 @@ def train():
         initializer=tf.constant_initializer(0), trainable=False)
 
     # Calculate the learning rate schedule.
-    WEIGHTS_DECAY = True
+    WEIGHTS_DECAY = False
     if WEIGHTS_DECAY:
       num_batches_per_epoch = (model_wrapper.NUM_EXAMPLES_PER_EPOCH_FOR_TRAIN /
                                FLAGS.batch_size)
@@ -277,6 +279,8 @@ def train():
         # print(loss_value)
         if (step % 100 == 0):
         #   print(loss_value)
+          with open("loss.txt", "a") as f:
+            f.write("{}\n".format(loss_value))
         #   print(np.mean(grads_val[0]))
         #   print(grads_val[0])
         #   print(grads_val)
