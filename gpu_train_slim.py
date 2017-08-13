@@ -181,8 +181,8 @@ def train():
                     # final tower. Ideally, we should grab the updates from all towers
                     # but these stats accumulate extremely fast so we can ignore the
                     # other stats from the other towers without significant detriment.
-                    batchnorm_updates = tf.get_collection(tf.GraphKeys.UPDATE_OPS,
-                                                            scope)
+                    # batchnorm_updates = tf.get_collection(tf.GraphKeys.UPDATE_OPS,
+                    #                                         scope)
                     grads = opt.compute_gradients(loss)
                     tower_grads.append(grads)
 
@@ -196,11 +196,13 @@ def train():
         variables_to_average = (tf.trainable_variables() +
                             tf.moving_average_variables())
         variables_averages_op = variable_averages.apply(variables_to_average)
+        #
+        # batchnorm_updates_op = tf.group(*batchnorm_updates)
 
-        batchnorm_updates_op = tf.group(*batchnorm_updates)
-
-        train_op = tf.group(apply_gradient_op, variables_averages_op,
-                        batchnorm_updates_op)
+        # train_op = tf.group(apply_gradient_op, variables_averages_op,
+        #                 batchnorm_updates_op)
+        #
+        train_op = apply_gradient_op
         # total_loss = tf.reduce_mean(tower_losses, 0)
         # train_op = slim.learning.create_train_op(total_loss, opt, clip_gradient_norm=3)
 
