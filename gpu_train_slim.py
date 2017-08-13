@@ -264,9 +264,9 @@ def train():
             while step <= train_epoch_size and FLAGS.is_train:
                 _, loss_value, lr_value = sess.run([train_op, loss, lr])
                 step += FLAGS.batch_size * FLAGS.num_gpus
-                # assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
+                assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
                 # assert not np.isnan(grads_value).any(), 'Model has NaN gradients'
-                assert not np.sum(grads_value == None), 'Model has None gradients'
+                # assert not np.sum(grads_value == None), 'Model has None gradients'
                 if step % 100 == 0:
                     # print(grads_value)
                     # print(lr_value)
