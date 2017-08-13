@@ -39,6 +39,7 @@ def inference(images, num_classes, for_training=False, restore_logits=True,
     with slim.arg_scope([slim.conv2d, slim.fully_connected],
                         activation_fn=tf.nn.relu,
                         weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
+                        biases_initializer=init_ops.zeros_initializer(),
                         weights_regularizer=slim.l2_regularizer(0.0005)):
         with slim.arg_scope([slim.conv2d],
                         stride=1, padding='SAME'):
