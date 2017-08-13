@@ -206,6 +206,8 @@ def train():
         # total_loss = tf.reduce_mean(tower_losses, 0)
         # train_op = slim.learning.create_train_op(total_loss, opt, clip_gradient_norm=3)
         variables_names = [v.name for v in tf.trainable_variables()]
+        print(variables_names)
+        sys.exit()
 
         saver = tf.train.Saver(tf.global_variables())
 
@@ -251,12 +253,11 @@ def train():
                 step = 0
 
             while step <= train_epoch_size and FLAGS.is_train:
-                _, loss_value, lr_value, names = sess.run([train_op, loss, lr, variables_names])
+                _, loss_value, lr_value = sess.run([train_op, loss, lr])
                 step += FLAGS.batch_size * FLAGS.num_gpus
                 assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
                 if step % 100 == 0:
                     # print(grads_value)
-                    print(names)
                     print(lr_value)
                     with open("loss.txt", "a") as f:
                         f.write("{}\n".format(loss_value))
