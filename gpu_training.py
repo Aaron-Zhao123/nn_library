@@ -166,7 +166,7 @@ def train():
                                     epsilon=RMSPROP_EPSILON)
     #   opt = tf.train.GradientDescentOptimizer(lr)
     else:
-      opt = tf.train.AdamOptimizer(1e-3)
+      opt = tf.train.AdamOptimizer(1e-1)
 
     # Calculate the gradients for each model tower.
     tower_grads = []
