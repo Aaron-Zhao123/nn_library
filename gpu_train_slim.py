@@ -80,7 +80,7 @@ def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variab
 
     with tf.variable_scope(tf.get_variable_scope(), reuse = reuse_variables):
         logits = model_wrapper_slim.inference(images, num_classes,
-                for_training=isTrain,
+                is_training=isTrain,
                 restore_logits=restore_logits,
                 scope = scope)
 
