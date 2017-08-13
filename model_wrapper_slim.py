@@ -33,7 +33,7 @@ def inference(images, num_classes, is_training=True, restore_logits=True,
     num_classes=num_classes,
     is_training=is_training,
     scope=scope)
-    
+
     return logits
 
 
@@ -75,7 +75,6 @@ def distorted_inputs(num_preprocess_threads):
 
     imgs_train, labels_train= ult.distorted_inputs(
         dataset_train,
-        isTrain=True,
         batch_size=FLAGS.batch_size,
         num_preprocess_threads=num_preprocess_threads)
 
