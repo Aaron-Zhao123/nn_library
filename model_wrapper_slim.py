@@ -67,7 +67,6 @@ def loss(logits, labels, batch_size=None):
     # labels = slim.one_hot_encoding(
     #             labels, 1001)
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(logits = logits, labels = labels)
-    loss = tf.reduce_mean(loss)
     tf.add_to_collection('losses', loss)
     return loss
 
