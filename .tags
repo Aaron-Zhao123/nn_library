@@ -128,27 +128,6 @@ GPU_DATA_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^GPU_DATA_DIR=\/lo
 TRAIN_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^TRAIN_DIR=.\/tmp$/;"	macro	line:5
 CUDA_VISIBLE_DEVICES	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^	CUDA_VISIBLE_DEVICES=0,1 python gpu_train_slim.py --num_preprocess_threads=4 --num_gpus=2 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR) --batch_size=64 --model_name='vggnet' --is_load=False$/;"	macro	line:12
 -train_dir	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^	python cpu_train.py --train_dir=$(TRAIN_DIR) --data_dir=$(CPU_DATA_DIR)$/;"	macro	line:19
-absolute_import	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
-division	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import division$/;"	namespace	line:2
-print_function	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
-re	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import re$/;"	namespace	line:5
-tf	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow as tf$/;"	namespace	line:7
-tensorflow	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:8
-contrib	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:8
-slim	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:8
-ult	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from preprocessing import preprocess_utility as ult$/;"	namespace	line:10
-ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:11
-vgg_model_slim	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from models import vgg_model_slim$/;"	namespace	line:13
-FLAGS	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:15
-TOWER_NAME	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^TOWER_NAME = 'tower'$/;"	variable	line:16
-BATCHNORM_MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^BATCHNORM_MOVING_AVERAGE_DECAY = 0.9$/;"	variable	line:20
-MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^MOVING_AVERAGE_DECAY = 0.9999$/;"	variable	line:23
-num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^num_examples_per_epoch = 1281167$/;"	variable	line:25
-inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def inference(images, num_classes, is_training=True, restore_logits=True,$/;"	function	line:27
-loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:40
-distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:68
-_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:90
-_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:103
 absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
 division	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import division$/;"	namespace	line:2
 print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
@@ -197,3 +176,24 @@ slim	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import te
 tf	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow as tf$/;"	namespace	line:15
 vgg_arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_arg_scope(weight_decay=0.0005):$/;"	function	line:17
 vgg_16	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_16(inputs,$/;"	function	line:32
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
+re	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import re$/;"	namespace	line:5
+tf	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow as tf$/;"	namespace	line:7
+tensorflow	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:8
+contrib	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:8
+slim	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:8
+ult	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from preprocessing import preprocess_utility as ult$/;"	namespace	line:10
+ImagenetData	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from datasets.imagenet_dataset import ImagenetData$/;"	namespace	line:11
+vgg_model_slim	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from models import vgg_model_slim$/;"	namespace	line:13
+FLAGS	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^FLAGS = tf.app.flags.FLAGS$/;"	variable	line:15
+TOWER_NAME	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^TOWER_NAME = 'tower'$/;"	variable	line:16
+BATCHNORM_MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^BATCHNORM_MOVING_AVERAGE_DECAY = 0.9$/;"	variable	line:20
+MOVING_AVERAGE_DECAY	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^MOVING_AVERAGE_DECAY = 0.9999$/;"	variable	line:23
+num_examples_per_epoch	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^num_examples_per_epoch = 1281167$/;"	variable	line:25
+inference	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def inference(images, num_classes, is_training=True, restore_logits=True,$/;"	function	line:27
+loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(logits, labels, batch_size=None):$/;"	function	line:40
+distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:70
+_activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:92
+_activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:105
