@@ -195,4 +195,4 @@ tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def tower_lo
 average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def average_gradients(tower_grads):$/;"	function	line:87
 ClipIfNotNone	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^      def ClipIfNotNone(grad):$/;"	function	line:109	function:average_gradients
 train	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def train():$/;"	function	line:134
-main	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:325
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_training.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:326

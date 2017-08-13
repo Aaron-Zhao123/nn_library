@@ -177,8 +177,9 @@ def train():
         with tf.device('/gpu:%d' % i):
           with tf.name_scope('%s_%d' % (model_wrapper.TOWER_NAME, i)) as scope:
             # loss for one tower.
-            loss, tower_top1_acc, tower_top5_acc = tower_loss(scope, isTrain_ph, isLoad)
+            _, tower_top1_acc, tower_top5_acc = tower_loss(scope, isTrain_ph, isLoad)
             # Reuse variables for the next tower.
+            loss = tf.get_collection(tf.GraphKeys.LOSSES)
             tf.get_variable_scope().reuse_variables()
             # Retain the summaries from the final tower.
             summaries = tf.get_collection(tf.GraphKeys.SUMMARIES, scope)
