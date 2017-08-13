@@ -12,6 +12,7 @@ from tensorflow.python.ops import init_ops
 from tensorflow.python.ops import nn_ops
 from tensorflow.python.ops import variable_scope
 import tensorflow.contrib.slim as slim
+import tensorflow as tf
 
 def vgg_arg_scope(weight_decay=0.0005):
     """Defines the VGG arg scope.
