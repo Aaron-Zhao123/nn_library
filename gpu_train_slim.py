@@ -107,9 +107,17 @@ def average_gradients(tower_grads):
         #   ((grad0_gpu0, var0_gpu0), ... , (grad0_gpuN, var0_gpuN))
         grads = []
         for g, _ in grad_and_vars:
-            g = tf.clip_by_value(g, -1., 1.)
+
+            """gradient clipping"""
+            def ClipIfNotNone(grad):
+              if grad is None:
+                  return grad
+              return tf.clip_by_value(grad, -1, 1)
+
+            clipped_grads = ClipIfNotNone(g)
+
             # Add 0 dimension to the gradients to represent the tower.
-            expanded_g = tf.expand_dims(g, 0)
+            expanded_g = tf.expand_dims(clipped_grads, 0)
             # Append on a 'tower' dimension which we will average over below.
             grads.append(expanded_g)
         # Average over the 'tower' dimension.
@@ -254,10 +262,10 @@ def train():
                 step = 0
 
             while step <= train_epoch_size and FLAGS.is_train:
-                _, loss_value, lr_value, grads_value = sess.run([train_op, loss, lr, grad_fetch])
+                _, loss_value, lr_value = sess.run([train_op, loss, lr])
                 step += FLAGS.batch_size * FLAGS.num_gpus
-                assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
-                assert not np.isnan(grads_value).any(), 'Model has NaN gradients'
+                # assert not np.isnan(loss_value), 'Model diverged with loss = NaN'
+                # assert not np.isnan(grads_value).any(), 'Model has NaN gradients'
                 assert not np.sum(grads_value == None), 'Model has None gradients'
                 if step % 100 == 0:
                     # print(grads_value)
