@@ -84,7 +84,7 @@ def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variab
                 is_training=isTrain,
                 restore_logits=restore_logits,
                 scope = scope)
-
+    print(logits)
     split_batch_size = images.get_shape().as_list()[0]
     _ = model_wrapper_slim.loss(logits, labels, batch_size = split_batch_size)
     # losses = slim.losses.get_total_loss(add_regularization_losses=True)
