@@ -94,9 +94,7 @@ def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variab
     # total_loss = tf.add_n(losses, name='total_loss')
     print(losses)
     print(regularization_losses)
-    total_loss = losses + regularization_losses
-    print(total_loss)
-    sys.exit()
+    total_loss = losses + tf.reduce_sum(regularization_losses)
 
     # loss_averages = tf.train.ExponentialMovingAverage(0.9, name='avg')
     # loss_averages_op = loss_averages.apply(losses + [total_loss])

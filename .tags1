@@ -30,7 +30,7 @@ RMSPROP_DECAY	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP
 RMSPROP_MOMENTUM	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_MOMENTUM = 0.9             # Momentum in RMSProp.$/;"	variable	line:67
 RMSPROP_EPSILON	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_EPSILON = 1.0              # Epsilon term for RMSProp.$/;"	variable	line:68
 tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:72
-average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:108
-ClipIfNotNone	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^            def ClipIfNotNone(grad):$/;"	function	line:117	function:average_gradients
-train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:139
-main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:298
+average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:106
+ClipIfNotNone	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^            def ClipIfNotNone(grad):$/;"	function	line:115	function:average_gradients
+train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:137
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:296
