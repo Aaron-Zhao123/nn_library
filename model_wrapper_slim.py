@@ -46,7 +46,7 @@ def loss(logits, labels, batch_size=None):
     print(labels)
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(logits = logits, labels = labels)
     loss = tf.reduce_mean(loss)
-    tf.add_to_collection('losses', loss)
+    # tf.add_to_collection('losses', loss)
     return loss
 
     # Reshape the labels into a dense Tensor of

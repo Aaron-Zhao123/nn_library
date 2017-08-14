@@ -128,6 +128,24 @@ GPU_DATA_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^GPU_DATA_DIR=\/lo
 TRAIN_DIR	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^TRAIN_DIR=.\/tmp$/;"	macro	line:5
 CUDA_VISIBLE_DEVICES	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^	CUDA_VISIBLE_DEVICES=0,1 python gpu_train_slim.py --num_preprocess_threads=4 --num_gpus=2 --train_dir=$(TRAIN_DIR) --data_dir=$(GPU_DATA_DIR) --batch_size=64 --model_name='vggnet' --is_load=False$/;"	macro	line:12
 -train_dir	/Users/aaron/Projects/NN_models/NN_lib/makefile	/^	python cpu_train.py --train_dir=$(TRAIN_DIR) --data_dir=$(CPU_DATA_DIR)$/;"	macro	line:19
+absolute_import	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
+division	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import division$/;"	namespace	line:2
+print_function	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
+layers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib import layers$/;"	namespace	line:5
+arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.framework.python.ops import arg_scope$/;"	namespace	line:6
+layers_lib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import layers as layers_lib$/;"	namespace	line:7
+regularizers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import regularizers$/;"	namespace	line:8
+utils	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import utils$/;"	namespace	line:9
+array_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import array_ops$/;"	namespace	line:10
+init_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import init_ops$/;"	namespace	line:11
+nn_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import nn_ops$/;"	namespace	line:12
+variable_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import variable_scope$/;"	namespace	line:13
+tensorflow	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+contrib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+slim	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
+tf	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow as tf$/;"	namespace	line:15
+vgg_arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_arg_scope(weight_decay=0.0005):$/;"	function	line:17
+vgg_16	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_16(inputs,$/;"	function	line:32
 absolute_import	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
 division	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import division$/;"	namespace	line:2
 print_function	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
@@ -149,24 +167,6 @@ loss	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def loss(log
 distorted_inputs	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def distorted_inputs(num_preprocess_threads):$/;"	function	line:70
 _activation_summary	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summary(x):$/;"	function	line:92
 _activation_summaries	/Users/aaron/Projects/NN_models/NN_lib/model_wrapper_slim.py	/^def _activation_summaries(endpoints):$/;"	function	line:105
-absolute_import	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
-division	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import division$/;"	namespace	line:2
-print_function	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
-layers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib import layers$/;"	namespace	line:5
-arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.framework.python.ops import arg_scope$/;"	namespace	line:6
-layers_lib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import layers as layers_lib$/;"	namespace	line:7
-regularizers	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import regularizers$/;"	namespace	line:8
-utils	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.contrib.layers.python.layers import utils$/;"	namespace	line:9
-array_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import array_ops$/;"	namespace	line:10
-init_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import init_ops$/;"	namespace	line:11
-nn_ops	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import nn_ops$/;"	namespace	line:12
-variable_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^from tensorflow.python.ops import variable_scope$/;"	namespace	line:13
-tensorflow	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
-contrib	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
-slim	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow.contrib.slim as slim$/;"	namespace	line:14
-tf	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^import tensorflow as tf$/;"	namespace	line:15
-vgg_arg_scope	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_arg_scope(weight_decay=0.0005):$/;"	function	line:17
-vgg_16	/Users/aaron/Projects/NN_models/NN_lib/models/vgg_model_slim.py	/^def vgg_16(inputs,$/;"	function	line:32
 absolute_import	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import absolute_import$/;"	namespace	line:1
 division	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import division$/;"	namespace	line:2
 print_function	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^from __future__ import print_function$/;"	namespace	line:3
@@ -193,7 +193,7 @@ RMSPROP_DECAY	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP
 RMSPROP_MOMENTUM	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_MOMENTUM = 0.9             # Momentum in RMSProp.$/;"	variable	line:67
 RMSPROP_EPSILON	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^RMSPROP_EPSILON = 1.0              # Epsilon term for RMSProp.$/;"	variable	line:68
 tower_loss	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variables = None):$/;"	function	line:72
-average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:104
-ClipIfNotNone	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^            def ClipIfNotNone(grad):$/;"	function	line:113	function:average_gradients
-train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:135
-main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:294
+average_gradients	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def average_gradients(tower_grads):$/;"	function	line:107
+ClipIfNotNone	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^            def ClipIfNotNone(grad):$/;"	function	line:116	function:average_gradients
+train	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def train():$/;"	function	line:138
+main	/Users/aaron/Projects/NN_models/NN_lib/gpu_train_slim.py	/^def main(argv=None):  # pylint: disable=unused-argument$/;"	function	line:297
