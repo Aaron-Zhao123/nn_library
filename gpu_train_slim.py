@@ -94,11 +94,11 @@ def tower_loss(images, labels, num_classes, isTrain, isLoad, scope, reuse_variab
     # total_loss = tf.add_n(losses, name='total_loss')
     total_loss = losses + regularization_losses
 
-    loss_averages = tf.train.ExponentialMovingAverage(0.9, name='avg')
-    loss_averages_op = loss_averages.apply(losses + [total_loss])
-
-    with tf.control_dependencies([loss_averages_op]):
-        total_loss = tf.identity(total_loss)
+    # loss_averages = tf.train.ExponentialMovingAverage(0.9, name='avg')
+    # loss_averages_op = loss_averages.apply(losses + [total_loss])
+    #
+    # with tf.control_dependencies([loss_averages_op]):
+    total_loss = tf.identity(total_loss)
     return total_loss
 
 def average_gradients(tower_grads):
