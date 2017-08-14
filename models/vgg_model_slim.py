@@ -73,6 +73,8 @@ def vgg_16(inputs,
             net = slim.repeat(net, 3, slim.conv2d, 512, [3, 3], scope='conv5')
             net = slim.max_pool2d(net, [2, 2], scope='pool5')
             # Use conv2d instead of fully_connected layers.
+            n_conv_out = 7*7*512
+            net = tf.reshape(net, [-1,n_conv_out])
             net = slim.fully_connected(net, 4096, scope='fc6')
             net = slim.dropout(
                 net, dropout_keep_prob, is_training=is_training, scope='dropout6')
